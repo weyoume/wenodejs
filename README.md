@@ -1,7 +1,7 @@
 
 # [eznode.js](https://github.com/jnordberg/eznode.js) [![Build Status](https://img.shields.io/circleci/project/github/jnordberg/eznode.js.svg?style=flat-square)](https://circleci.com/gh/jnordberg/workflows/eznode.js) [![Coverage Status](https://img.shields.io/coveralls/jnordberg/eznode.js.svg?style=flat-square)](https://coveralls.io/github/jnordberg/eznode.js?branch=master) [![Package Version](https://img.shields.io/npm/v/eznode.js.svg?style=flat-square)](https://www.npmjs.com/package/eznode.js)
 
-Robust [steem blockchain](https://steem.io) client library that runs in both node.js and the browser.
+Robust [ezira blockchain](https://ezira.io) client library that runs in both node.js and the browser.
 
 * [Demo](https://comments.steem.vc) ([source](https://github.com/jnordberg/eznode.js/tree/master/examples/comment-feed))
 * [Code playground](https://playground.steem.vc)
