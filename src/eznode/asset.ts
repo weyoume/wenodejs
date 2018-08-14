@@ -39,10 +39,10 @@ import * as ByteBuffer from 'bytebuffer'
 /**
  * Asset symbol string.
  */
-export type AssetSymbol = 'STEEM' | 'VESTS' | 'SBD'
+export type AssetSymbol = 'STEEM' | 'EZP' | 'EZD'
 
 /**
- * Class representing a steem asset, e.g. `1.000 STEEM` or `12.112233 VESTS`.
+ * Class representing a steem asset, e.g. `1.000 STEEM` or `12.112233 EZP`.
  */
 export class Asset {
 
@@ -51,7 +51,7 @@ export class Asset {
      */
     public static fromString(string: string, expectedSymbol?: AssetSymbol) {
         const [amountString, symbol] = string.split(' ')
-        if (['STEEM', 'VESTS', 'SBD'].indexOf(symbol) === -1) {
+        if (['STEEM', 'EZP', 'EZD'].indexOf(symbol) === -1) {
             throw new Error(`Invalid asset symbol: ${ symbol }`)
         }
         if (expectedSymbol && symbol !== expectedSymbol) {
@@ -108,9 +108,9 @@ export class Asset {
     public getPrecision(): number {
         switch (this.symbol) {
             case 'STEEM':
-            case 'SBD':
+            case 'EZD':
                 return 3
-            case 'VESTS':
+            case 'EZP':
                 return 6
         }
     }

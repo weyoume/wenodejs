@@ -1,5 +1,5 @@
 
-dsteem comment feed example
+eznode.js comment feed example
 ===========================
 
 Running on: <https://comments.steem.vc>

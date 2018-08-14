@@ -1,5 +1,5 @@
 /**
- * @file dsteem exports.
+ * @file eznode.js exports.
  * @author Johan Nordberg <code@johan-nordberg.com>
  * @license
  * Copyright (c) 2017 Johan Nordberg. All Rights Reserved.
@@ -39,7 +39,7 @@ export {utils}
 export * from './helpers/blockchain'
 export * from './helpers/database'
 
-export * from './steem/account'
+export * from './eznode/account'
 export * from './steem/asset'
 export * from './steem/block'
 export * from './steem/comment'

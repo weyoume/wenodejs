@@ -26,7 +26,7 @@ describe('operations', function() {
         const currentDelegation = Asset.from(user1.received_vesting_shares)
         const newDelegation = Asset.from(
             currentDelegation.amount >= 1000 ? 0 : 1000 + Math.random() * 1000,
-            'VESTS'
+            'EZP'
         )
         const result = await client.broadcast.delegateVestingShares({
             delegator: acc1.username,
@@ -112,8 +112,8 @@ describe('operations', function() {
             permlink, author: username,
             allow_votes: false,
             allow_curation_rewards: false,
-            percent_steem_dollars: 0,
-            max_accepted_payout: Asset.from(10, 'SBD'),
+            percent_EZD: 0,
+            max_accepted_payout: Asset.from(10, 'EZD'),
             extensions: [
                 [0, {beneficiaries: [
                     {weight: 10000, account: acc1.username}
@@ -128,8 +128,8 @@ describe('operations', function() {
         assert.equal(newAcc.memo_key, PrivateKey.fromLogin(username, password, 'memo').createPublic(client.addressPrefix).toString())
         const [post] = await client.database.getDiscussions('blog', {tag: username, limit: 1})
         assert.deepEqual(post.beneficiaries, [{account: acc1.username, weight: 10000}])
-        assert.equal(post.max_accepted_payout, '10.000 SBD')
-        assert.equal(post.percent_steem_dollars, 0)
+        assert.equal(post.max_accepted_payout, '10.000 EZD')
+        assert.equal(post.percent_EZD, 0)
         assert.equal(post.allow_votes, false)
     })
 
@@ -192,7 +192,7 @@ describe('operations', function() {
         // fixed fee and delegation
         await client.broadcast.createAccount({
             password, creator, username: 'foo' + randomString(12),
-            fee: '2.000 STEEM', delegation: Asset.from(1000, 'VESTS')
+            fee: '2.000 STEEM', delegation: Asset.from(1000, 'EZP')
         }, acc1Key)
 
         try {

@@ -243,9 +243,9 @@ export interface ClaimRewardBalanceOperation extends Operation {
     0: 'claim_reward_balance' // 39
     1: {
         account: string // account_name_type
-        reward_steem: string | Asset
-        reward_sbd: string | Asset
-        reward_vests: string | Asset
+        reward_ECO: string | Asset
+        reward_EZD: string | Asset
+        reward_EZP: string | Asset
     }
 }
 
@@ -267,10 +267,10 @@ export interface CommentOptionsOperation extends Operation {
     1: {
       author: string // account_name_type
       permlink: string
-      /** SBD value of the maximum payout this post will receive. */
+      /** EZD value of the maximum payout this post will receive. */
       max_accepted_payout: Asset | string
       /** The percent of Steem Dollars to key, unkept amounts will be received as Steem Power. */
-      percent_steem_dollars: number // uint16_t
+      percent_EZD: number // uint16_t
       /** Whether to allow post to receive votes. */
       allow_votes: boolean
       /** Whether to allow post to recieve curation rewards. */
@@ -429,11 +429,11 @@ export interface EscrowReleaseOperation extends Operation {
         /**
          * The amount of sbd to release.
          */
-        sbd_amount: Asset | string
+        EZD_amount: Asset | string
         /**
          * The amount of steem to release.
          */
-        steem_amount: Asset | string
+        ECO_amount: Asset | string
     }
 }
 
@@ -462,8 +462,8 @@ export interface EscrowTransferOperation extends Operation {
         to: string // account_name_type
         agent: string // account_name_type
         escrow_id: number // uint32_t
-        sbd_amount: Asset | string
-        steem_amount: Asset | string
+        EZD_amount: Asset | string
+        ECO_amount: Asset | string
         fee: Asset | string
         ratification_deadline: string // time_point_sec
         escrow_expiration: string // time_point_sec
@@ -718,14 +718,14 @@ export interface SetResetAccountOperation extends Operation {
  * request for the funds to be transferred directly to another account's
  * balance rather than the withdrawing account. In addition, those funds
  * can be immediately vested again, circumventing the conversion from
- * vests to steem and back, guaranteeing they maintain their value.
+ * EZP to steem and back, guaranteeing they maintain their value.
  */
 export interface SetWithdrawVestingRouteOperation extends Operation {
     0: 'set_withdraw_vesting_route' // 20
     1: {
         from_account: string // account_name_type
         to_account: string // account_name_type
-        percent: number // uint16_t (100% = STEEMIT_100_PERCENT = 10000)
+        percent: number // uint16_t (100% = PERCENT_100 = 10000)
         auto_vest: boolean
     }
 }
@@ -745,7 +745,7 @@ export interface TransferOperation extends Operation {
          */
         to: string // account_name_type
         /**
-         * Amount of STEEM or SBD to send.
+         * Amount of STEEM or EZD to send.
          */
         amount: string | Asset
         /**
@@ -803,7 +803,7 @@ export interface VoteOperation extends Operation {
         author: string // account_name_type
         permlink: string
         /**
-         * Voting weight, 100% = 10000 (STEEMIT_100_PERCENT).
+         * Voting weight, 100% = 10000 (PERCENT_100).
          */
         weight: number // int16_t
     }
@@ -826,7 +826,7 @@ export interface WithdrawVestingOperation extends Operation {
     1: {
         account: string // account_name_type
         /**
-         * Amount to power down, must be VESTS.
+         * Amount to power down, must be EZP.
          */
         vesting_shares: string | Asset
     }

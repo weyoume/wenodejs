@@ -22,10 +22,10 @@ describe('database api', function() {
         assert.deepEqual(Object.keys(result), [
             'id', 'head_block_number', 'head_block_id', 'time', 'current_witness',
             'total_pow', 'num_pow_witnesses', 'virtual_supply', 'current_supply',
-            'confidential_supply', 'current_sbd_supply', 'confidential_sbd_supply',
-            'total_vesting_fund_steem', 'total_vesting_shares', 'total_reward_fund_steem',
-            'total_reward_shares2', 'pending_rewarded_vesting_shares', 'pending_rewarded_vesting_steem',
-            'sbd_interest_rate', 'sbd_print_rate', 'maximum_block_size', 'current_aslot',
+            'confidential_supply', 'current_EZD_supply', 'confidential_EZD_supply',
+            'total_vesting_fund_ECO', 'total_vesting_shares', 'total_reward_fund_ECO',
+            'total_reward_shares2', 'pending_rewarded_vesting_shares', 'pending_rewarded_vesting_ECO',
+            'EZD_interest_rate', 'EZD_print_rate', 'maximum_block_size', 'current_aslot',
             'recent_slots_filled', 'participation_count', 'last_irreversible_block_num',
             'vote_power_reserve_rate', 'current_reserve_ratio', 'average_block_size',
             'max_virtual_bandwidth'
@@ -95,7 +95,7 @@ describe('database api', function() {
 
     it('getCurrentMedianHistoryPrice', async function() {
         const price = await liveClient.database.getCurrentMedianHistoryPrice()
-        assert.equal(Asset.from(price.base).symbol, 'SBD')
+        assert.equal(Asset.from(price.base).symbol, 'EZD')
         assert.equal(price.quote.symbol, 'STEEM')
     })
 
@@ -104,7 +104,7 @@ describe('database api', function() {
         const [delegation] = await liveClient.database.getVestingDelegations('steem', '', 1)
         assert.equal(delegation.delegator, 'steem')
         assert.equal(typeof delegation.id, 'number')
-        assert.equal(Asset.from(delegation.vesting_shares).symbol, 'VESTS')
+        assert.equal(Asset.from(delegation.vesting_shares).symbol, 'EZP')
     })
 
     it('verifyAuthority', async function() {

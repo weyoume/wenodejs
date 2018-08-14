@@ -1,4 +1,4 @@
-const dsteem = require('dsteem')
+const eznode.js = require('eznode.js')
 
 // bot is configured with enviroment variables
 
@@ -11,16 +11,16 @@ const FOLLOW_USER = process.env['FOLLOW_USER'] || die('FOLLOW_USER missing')
 // and the vote weight to use, 10000 = 100%
 const VOTE_WEIGHT = process.env['VOTE_WEIGHT'] ? parseInt(process.env['VOTE_WEIGHT']) : 10000
 
-// setup the dsteem client, you can use other nodes, for example gtg's public node at https://gtg.steem.house:8090
-const client = new dsteem.Client('https://api.steemit.com')
+// setup the eznode.js client, you can use other nodes, for example gtg's public node at https://gtg.steem.house:8090
+const client = new eznode.js.Client('https://api.steemit.com')
 
 // deserialize the posting key (in wif format, same format as you find on the steemit.com interface)
-const key = dsteem.PrivateKey.from(POSTING_KEY)
+const key = eznode.js.PrivateKey.from(POSTING_KEY)
 
 // create a new readable stream with all operations, we use the 'latest' mode since
 // we don't care about reversed block that much for a simple vote bot
 // and this will make it react faster to the votes of it's master
-const stream = client.blockchain.getOperationsStream({mode: dsteem.BlockchainMode.Latest})
+const stream = client.blockchain.getOperationsStream({mode: eznode.js.BlockchainMode.Latest})
 
 console.log(`Following ${ FOLLOW_USER } with ${ VOTE_WEIGHT / 100 }% vote weight`)
 

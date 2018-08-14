@@ -1,5 +1,5 @@
 {
-  "name": "dsteem",
+  "name": "eznode.js",
   "version": "0.9.0",
   "description": "Steem blockchain RPC client library",
   "author": "Johan Nordberg",
@@ -7,8 +7,8 @@
   "main": "./lib/index-node",
   "typings": "./lib/index",
   "browser": {
-    "./lib/index-node": "./dist/dsteem.js",
-    "./src/index-node": "./dist/dsteem.js",
+    "./lib/index-node": "./dist/eznode.js",
+    "./src/index-node": "./dist/eznode.js",
     "./src/version": "./lib/version.js"
   },
   "files": [
@@ -17,7 +17,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/jnordberg/dsteem"
+    "url": "https://github.com/jnordberg/eznode.js"
   },
   "scripts": {
     "test": "make ci-test",

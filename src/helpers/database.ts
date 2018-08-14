@@ -34,7 +34,7 @@
  */
 
 import {Client} from './../client'
-import {ExtendedAccount} from './../steem/account'
+import {ExtendedAccount} from './../eznode/account'
 import {Asset, Price} from './../steem/asset'
 import {BlockHeader, SignedBlock} from './../steem/block'
 import {Discussion} from './../steem/comment'
@@ -114,7 +114,7 @@ export class DatabaseAPI {
     }
 
     /**
-     * Return median price in SBD for 1 STEEM as reported by the witnesses.
+     * Return median price in EZD for 1 STEEM as reported by the witnesses.
      */
     public async getCurrentMedianHistoryPrice(): Promise<Price> {
         return Price.from(await this.call('get_current_median_history_price'))

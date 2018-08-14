@@ -37,7 +37,7 @@ import * as assert from 'assert'
 
 import {Client} from './../client'
 import {cryptoUtils, PrivateKey, PublicKey} from './../crypto'
-import {Authority, AuthorityType} from './../steem/account'
+import {Authority, AuthorityType} from './../eznode/account'
 import {Asset} from './../steem/asset'
 import {getVestingSharePrice, HexBuffer} from './../steem/misc'
 import {
@@ -83,7 +83,7 @@ export interface CreateAccountOptions {
      */
     fee?: string | Asset | number
     /**
-     * Account delegation, amount of VESTS to delegate to the new account.
+     * Account delegation, amount of EZP to delegate to the new account.
      * If omitted the delegation amount will be the lowest possible based
      * on the fee. Can be set to zero to disable delegation.
      */
@@ -200,10 +200,10 @@ export class BroadcastAPI {
 
             const targetDelegation = sharePrice
                 .convert(creationFee.multiply(modifier * ratio))
-                .add('0.000002 VESTS') // add a tiny buffer since we are trying to hit a moving target
+                .add('0.000002 EZP') // add a tiny buffer since we are trying to hit a moving target
 
             if (delegation !== undefined && fee === undefined) {
-                delegation = Asset.from(delegation, 'VESTS')
+                delegation = Asset.from(delegation, 'EZP')
                 fee = Asset.max(
                     sharePrice.convert(targetDelegation.subtract(delegation)).divide(ratio),
                     creationFee,
@@ -212,13 +212,13 @@ export class BroadcastAPI {
                 fee = Asset.from(fee || creationFee, 'STEEM')
                 delegation = Asset.max(
                     targetDelegation.subtract(sharePrice.convert(fee.multiply(ratio))),
-                    Asset.from(0, 'VESTS'),
+                    Asset.from(0, 'EZP'),
                 )
             }
         }
         const op: AccountCreateWithDelegationOperation = ['account_create_with_delegation', {
             active, creator,
-            delegation: Asset.from(delegation, 'VESTS'),
+            delegation: Asset.from(delegation, 'EZP'),
             extensions: [],
             fee: Asset.from(fee, 'STEEM'),
             json_metadata: metadata ? JSON.stringify(metadata) : '',
@@ -247,7 +247,7 @@ export class BroadcastAPI {
      * decreasing it as needed. (i.e. a delegation of 0 removes the delegation)
      *
      * When a delegation is removed the shares are placed in limbo for a week to prevent a satoshi
-     * of VESTS from voting on the same content twice.
+     * of EZP from voting on the same content twice.
      *
      * @param options Delegation options.
      * @param key Private active key of the delegator.
