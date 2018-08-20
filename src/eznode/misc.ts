@@ -1,5 +1,5 @@
 /**
- * @file Misc steem type definitions.
+ * @file Misc EzProtocol type definitions.
  * @author Johan Nordberg <code@johan-nordberg.com>
  * @license
  * Copyright (c) 2017 Johan Nordberg. All Rights Reserved.
@@ -77,12 +77,12 @@ export class HexBuffer {
  */
 export interface ChainProperties {
     /**
-     * This fee, paid in STEEM, is converted into VESTING SHARES for the new account. Accounts
-     * without vesting shares cannot earn usage rations and therefore are powerless. This minimum
+     * This fee, paid in ECO, is converted into eScore for the new account. Accounts
+     * without eScore cannot earn usage rations and therefore are powerless. This minimum
      * fee requires all accounts to have some kind of commitment to the network that includes the
      * ability to vote and make transactions.
      *
-     * @note This has to be multiplied by `STEEMIT_CREATE_ACCOUNT_WITH_STEEM_MODIFIER`
+     * @note This has to be multiplied by `CREATE_ACCOUNT_WITH_ECO_MODIFIER`
      *       (defined as 30 on the main chain) to get the minimum fee needed to create an account.
      *
      */
@@ -93,28 +93,28 @@ export interface ChainProperties {
      */
     maximum_block_size: number // uint32_t
     /**
-     * The EZD interest percentage rate decided by witnesses, expressed 0 to 10000.
+     * The EUSD interest percentage rate decided by witnesses, expressed 0 to 10000.
      */
-    EZD_interest_rate: number // uint16_t PERCENT_100
+    EUSD_interest_rate: number // uint16_t PERCENT_100
 }
 
-export interface VestingDelegation {
+export interface ESCORdelegation {
     /**
      * Delegation id.
      */
     id: number // id_type
     /**
-     * Account that is delegating EZP to delegatee.
+     * Account that is delegating ESCOR to delegatee.
      */
     delegator: string // account_name_type
     /**
-     * Account that is receiving EZP from delegator.
+     * Account that is receiving ESCOR from delegator.
      */
     delegatee: string // account_name_type
     /**
-     * Amount of EZP delegated.
+     * Amount of ESCOR delegated.
      */
-    vesting_shares: Asset | string
+    eScore: Asset | string
     /**
      * Earliest date delegation can be removed.
      */
@@ -155,25 +155,25 @@ export interface DynamicGlobalProperties {
      * Total asset held in confidential balances.
      */
     confidential_supply: Asset | string
-    current_EZD_supply: Asset | string
+    current_EUSD_supply: Asset | string
     /**
      * Total asset held in confidential balances.
      */
-    confidential_EZD_supply: Asset | string
-    total_vesting_fund_ECO: Asset | string
-    total_vesting_shares: Asset | string
+    confidential_EUSD_supply: Asset | string
+    totalECOfundForESCOR: Asset | string
+    totalESCOR: Asset | string
     total_reward_fund_ECO: Asset | string
     /**
      * The running total of REWARD^2.
      */
-    total_reward_shares2: string
-    pending_rewarded_vesting_shares: Asset | string
-    pending_rewarded_vesting_ECO: Asset | string
+    total_ESCORreward2: string
+    pending_rewarded_ESCOR: Asset | string
+    pending_rewarded_ESCORvalueInECO: Asset | string
     /**
-     * This property defines the interest rate that EZD deposits receive.
+     * This property defines the interest rate that EUSD deposits receive.
      */
-    EZD_interest_rate: number
-    EZD_print_rate: number
+    EUSD_interest_rate: number
+    EUSD_print_rate: number
     /**
      *  Average block size is updated every block to be:
      *
@@ -207,7 +207,7 @@ export interface DynamicGlobalProperties {
     /**
      * The maximum bandwidth the blockchain can support is:
      *
-     *    max_bandwidth = maximum_block_size * STEEMIT_BANDWIDTH_AVERAGE_WINDOW_SECONDS / STEEMIT_BLOCK_INTERVAL
+     *    max_bandwidth = maximum_block_size * BANDWIDTH_AVERAGE_WINDOW_SECONDS / BLOCK_INTERVAL
      *
      * The maximum virtual bandwidth is:
      *
@@ -216,7 +216,7 @@ export interface DynamicGlobalProperties {
     max_virtual_bandwidth: Bignum
     /**
      * Any time average_block_size <= 50% maximum_block_size this value grows by 1 until it
-     * reaches STEEMIT_MAX_RESERVE_RATIO.  Any time average_block_size is greater than
+     * reaches MAX_RESERVE_RATIO.  Any time average_block_size is greater than
      * 50% it falls by 1%.  Upward adjustments happen once per round, downward adjustments
      * happen every block.
      */
@@ -230,13 +230,13 @@ export interface DynamicGlobalProperties {
 }
 
 /**
- * Return the vesting share price.
+ * Return the eScore price.
  */
-export function getVestingSharePrice(props: DynamicGlobalProperties): Price {
-    const totalVestingFund = Asset.from(props.total_vesting_fund_ECO)
-    const totalVestingShares = Asset.from(props.total_vesting_shares)
-    if (totalVestingFund.amount === 0 || totalVestingShares.amount === 0) {
-        return new Price(new Asset(1, 'EZP'), new Asset(1, 'STEEM'))
+export function getESCORPriceinECO(props: DynamicGlobalProperties): Price {
+    const totalECOfundForESCOR = Asset.from(props.totalECOfundForESCOR)
+    const totalESCOR = Asset.from(props.totalESCOR)
+    if (totalECOfundForESCOR.amount === 0 || totalESCOR.amount === 0) {
+        return new Price(new Asset(1, 'ESCOR'), new Asset(1, 'ECO'))
     }
-    return new Price(totalVestingShares, totalVestingFund)
+    return new Price(totalESCOR, totalECOfundForESCOR)
 }

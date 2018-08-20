@@ -1,5 +1,5 @@
 /**
- * @file Steem account type definitions.
+ * @file Ezira account type definitions.
  * @author Johan Nordberg <code@johan-nordberg.com>
  * @license
  * Copyright (c) 2017 Johan Nordberg. All Rights Reserved.
@@ -80,18 +80,18 @@ export interface Account {
     owner: Authority
     active: Authority
     posting: Authority
-    memo_key: string // public_key_type
-    json_metadata: string
+    memoKey: string // public_key_type
+    json: string
     proxy: string // account_name_type
     last_owner_update: string // time_point_sec
-    last_account_update: string // time_point_sec
+    last_accountUpdate: string // time_point_sec
     created: string // time_point_sec
     mined: boolean
     owner_challenged: boolean
     active_challenged: boolean
     last_owner_proved: string // time_point_sec
     last_active_proved: string // time_point_sec
-    recovery_account: string // account_name_type
+    recoveryAccount: string // account_name_type
     reset_account: string // account_name_type
     last_account_recovery: string // time_point_sec
     comment_count: number // uint32_t
@@ -101,31 +101,32 @@ export interface Account {
     voting_power: number // uint16_t
     last_vote_time: string // time_point_sec
     balance: string | Asset
-    savings_balance: string | Asset
-    EZD_balance: string | Asset
-    EZD_seconds: string // uint128_t
-    EZD_seconds_last_update: string // time_point_sec
-    EZD_last_interest_payment: string // time_point_sec
-    savings_EZD_balance: string | Asset // asset
-    savings_EZD_seconds: string // uint128_t
-    savings_EZD_seconds_last_update: string // time_point_sec
-    savings_EZD_last_interest_payment: string // time_point_sec
+    ECOsavingsBalance: string | Asset
+    EUSDbalance: string | Asset
+    EUSD_seconds: string // uint128_t
+    EUSD_seconds_last_update: string // time_point_sec
+    EUSD_last_interest_payment: string // time_point_sec
+    EUSDsavingsBalance: string | Asset // asset
+    savings_EUSD_seconds: string // uint128_t
+    savings_EUSD_seconds_last_update: string // time_point_sec
+    savings_EUSD_last_interest_payment: string // time_point_sec
     savings_withdraw_requests: number // uint8_t
-    reward_EZD_balance: string | Asset
-    reward_ECO_balance: string | Asset
-    reward_vesting_balance: string | Asset
-    reward_vesting_ECO: string | Asset
-    curation_rewards: number | string // share_type
+    EUSDrewardbalance: string | Asset
+    ECOrewardBalance: string | Asset
+    ESCORrewardBalance: string | Asset
+    ESCORrewardBalanceInECO: string | Asset
+    ESCORreward: string | Asset
+    curationRewards: number | string // share_type
     posting_rewards: number | string // share_type
-    vesting_shares: string | Asset
-    delegated_vesting_shares: string | Asset
-    received_vesting_shares: string | Asset
-    vesting_withdraw_rate: string | Asset
-    next_vesting_withdrawal: string // time_point_sec
+    eScore: string | Asset
+    ESCORDelegated: string | Asset
+    ESCORreceived: string | Asset
+    ESCORwithdrawRateInECO: string | Asset
+    nextESCORwithdrawalTime: string // time_point_sec
     withdrawn: number | string // share_type
     to_withdraw: number | string // share_type
     withdraw_routes: number // uint16_t
-    proxied_vsf_votes: number[] // vector< share_type >
+    proxied_ESCORfundECObalance_votes: number[] // vector< share_type >
     witnesses_voted_for: number // uint16_t
     average_bandwidth: number | string // share_type
     lifetime_bandwidth: number | string // share_type
@@ -139,12 +140,12 @@ export interface Account {
 
 export interface ExtendedAccount extends Account {
     /**
-     * Convert vesting_shares to vesting steem.
+     * Convert eScore to eCoin value.
      */
-    vesting_balance: string | Asset
+    ESCORbalanceInECO: string | Asset
     reputation: string | number // share_type
     /**
-     * Transfer to/from vesting.
+     * Transfer to/from eScore ECO fund.
      */
     transfer_history: any[] // map<uint64_t,applied_operation>
     /**

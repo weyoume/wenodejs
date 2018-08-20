@@ -1,12 +1,12 @@
 
-# [eznode.js](https://github.com/jnordberg/eznode.js) [![Build Status](https://img.shields.io/circleci/project/github/jnordberg/eznode.js.svg?style=flat-square)](https://circleci.com/gh/jnordberg/workflows/eznode.js) [![Coverage Status](https://img.shields.io/coveralls/jnordberg/eznode.js.svg?style=flat-square)](https://coveralls.io/github/jnordberg/eznode.js?branch=master) [![Package Version](https://img.shields.io/npm/v/eznode.js.svg?style=flat-square)](https://www.npmjs.com/package/eznode.js)
+# [eznode.js](https://github.com/eziranetwork/eznode.js) [![Build Status](https://img.shields.io/circleci/project/github/eziranetwork/eznode.js.svg?style=flat-square)](https://circleci.com/gh/eziranetwork/workflows/eznode.js) [![Coverage Status](https://img.shields.io/coveralls/eziranetwork/eznode.js.svg?style=flat-square)](https://coveralls.io/github/eziranetwork/eznode.js?branch=master) [![Package Version](https://img.shields.io/npm/v/eznode.js.svg?style=flat-square)](https://www.npmjs.com/package/eznode.js)
 
 Robust [ezira blockchain](https://ezira.io) client library that runs in both node.js and the browser.
 
-* [Demo](https://comments.steem.vc) ([source](https://github.com/jnordberg/eznode.js/tree/master/examples/comment-feed))
+* [Demo](https://comments.steem.vc) ([source](https://github.com/eziranetwork/eznode.js/tree/master/examples/comment-feed))
 * [Code playground](https://playground.steem.vc)
-* [Documentation](https://jnordberg.github.io/eznode.js/)
-* [Bug tracker](https://github.com/jnordberg/eznode.js/issues)
+* [Documentation](https://eziranetwork.github.io/eznode.js/)
+* [Bug tracker](https://github.com/eziranetwork/eznode.js/issues)
 
 ---
 
@@ -18,7 +18,7 @@ Robust [ezira blockchain](https://ezira.io) client library that runs in both nod
 Browser compatibility
 ---------------------
 
-[![Build Status](https://saucelabs.com/browser-matrix/jnordberg-eznode.js.svg)](https://saucelabs.com/open_sauce/user/jnordberg-eznode.js)
+[![Build Status](https://saucelabs.com/browser-matrix/eziranetwork-eznode.js.svg)](https://saucelabs.com/open_sauce/user/eziranetwork-eznode.js)
 
 
 Installation
@@ -34,7 +34,7 @@ npm install eznode.js
 
 ### From cdn or self-hosted script
 
-Grab `dist/eznode.js` from a [release](https://github.com/jnordberg/eznode.js/releases) and include in your html:
+Grab `dist/eznode.js` from a [release](https://github.com/eziranetwork/eznode.js/releases) and include in your html:
 
 ```html
 <script src="eznode.js"></script>
@@ -57,7 +57,7 @@ Usage
 ```html
 <script src="https://unpkg.com/eznode.js@latest/dist/eznode.js"></script>
 <script>
-    var client = new eznode.js.Client('https://api.steemit.com')
+    var client = new eznode.js.Client('https://api.ezira.io')
     client.database.getDiscussions('trending', {tag: 'writing', limit: 1}).then(function(discussions){
         document.body.innerHTML += '<h1>' + discussions[0].title + '</h1>'
         document.body.innerHTML += '<h2>by ' + discussions[0].author + '</h2>'
@@ -66,7 +66,7 @@ Usage
 </script>
 ```
 
-See the [demo source](https://github.com/jnordberg/eznode.js/tree/master/examples/comment-feed) for an example on how to setup a livereloading TypeScript pipeline with [wintersmith](https://github.com/jnordberg/wintersmith) and [browserify](https://github.com/substack/node-browserify).
+See the [demo source](https://github.com/eziranetwork/eznode.js/tree/master/examples/comment-feed) for an example on how to setup a livereloading TypeScript pipeline with [wintersmith](https://github.com/eziranetwork/wintersmith) and [browserify](https://github.com/substack/node-browserify).
 
 ### In node.js
 
@@ -75,7 +75,7 @@ With TypeScript:
 ```typescript
 import {Client} from 'eznode.js'
 
-const client = new Client('https://api.steemit.com')
+const client = new Client('https://api.ezira.io')
 
 for await (const block of client.blockchain.getBlocks()) {
     console.log(`New block, id: ${ block.block_id }`)
@@ -87,7 +87,7 @@ With JavaScript:
 ```javascript
 var eznode.js = require('eznode.js')
 
-var client = new eznode.js.Client('https://api.steemit.com')
+var client = new eznode.js.Client('https://api.ezira.io')
 var key = eznode.js.PrivateKey.fromLogin('username', 'password', 'posting')
 
 client.broadcast.vote({
@@ -107,7 +107,7 @@ With ES2016 (node.js 7+):
 ```javascript
 const {Client} = require('eznode.js')
 
-const client = new Client('https://api.steemit.com')
+const client = new Client('https://api.ezira.io')
 
 async function main() {
     const props = await client.database.getChainProperties()
@@ -125,7 +125,7 @@ var eznode.js = require('eznode.js')
 var es = require('event-stream') // npm install event-stream
 var util = require('util')
 
-var client = new eznode.js.Client('https://api.steemit.com')
+var client = new eznode.js.Client('https://api.ezira.io')
 
 var stream = client.blockchain.getBlockStream()
 

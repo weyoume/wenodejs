@@ -70,13 +70,13 @@
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
 						<p>At any given point in time an account can be withdrawing from their
-							vesting shares. A user may change the number of shares they wish to
+							eScore. A user may change the number of eScore they wish to
 						cash out at any time between 0 and their total vesting stake.</p>
 					</div>
-					<p>After applying this operation, vesting_shares will be withdrawn
-						at a rate of vesting_shares/104 per week for two years starting
+					<p>After applying this operation, eScore will be withdrawn
+						at a rate of eScore/104 per week for two years starting
 					one week after this operation is included in the blockchain.</p>
-					<p>This operation is not valid if the user has no vesting shares.
+					<p>This operation is not valid if the user has no eScore.
 					(A.k.a. Powering Down)</p>
 				</div>
 			</section>
@@ -112,7 +112,7 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
 					<a name="0" class="tsd-anchor"></a>
 					<h3>0</h3>
-					<div class="tsd-signature tsd-kind-icon">0<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"withdraw_vesting"</span></div>
+					<div class="tsd-signature tsd-kind-icon">0<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"withdraw_eScore"</span></div>
 					<aside class="tsd-sources">
 						<p>Overrides <a href="operation.html">Operation</a>.<a href="operation.html#0">0</a></p>
 						<ul>
@@ -137,10 +137,10 @@
 								<h5>account<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
 							</li>
 							<li class="tsd-parameter">
-								<h5>vesting_<wbr>shares<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="../classes/asset.html" class="tsd-signature-type">Asset</a></h5>
+								<h5>vesting_<wbr>eScore<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="../classes/asset.html" class="tsd-signature-type">Asset</a></h5>
 								<div class="tsd-comment tsd-typography">
 									<div class="lead">
-										<p>Amount to power down, must be EZP.</p>
+										<p>Amount to power down, must be ESCOR.</p>
 									</div>
 								</div>
 							</li>

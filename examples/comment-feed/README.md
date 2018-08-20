@@ -37,4 +37,4 @@ Static output will be in the `build/` folder ready to be copied to a webserver.
 ---
 
 
-Built with [Wintersmith](https://github.com/jnordberg/wintersmith).
+Built with [Wintersmith](https://github.com/eziranetwork/wintersmith).

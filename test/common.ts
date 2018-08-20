@@ -5,7 +5,7 @@ import {randomBytes} from 'crypto'
 
 export const NUM_TEST_ACCOUNTS = 2
 export const IS_BROWSER = global['isBrowser'] === true
-export const TEST_NODE = process.env['TEST_NODE'] || 'https://api.steemit.com'
+export const TEST_NODE = process.env['TEST_NODE'] || 'https://api.ezira.io'
 
 export const agent = IS_BROWSER ? undefined : new https.Agent({keepAlive: true})
 
@@ -38,7 +38,7 @@ export function randomString(length: number) {
 export async function createAccount(): Promise<{username: string, password: string}> {
     const password = randomString(32)
     const username = `eznode.js-${ randomString(9) }`
-    const response = await fetch('https://testnet.steem.vc/create', {
+    const response = await fetch('https://testnet.ezira.io/create', {
         method: 'POST',
         body: `username=${ username }&password=${ password }`,
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},

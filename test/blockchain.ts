@@ -14,13 +14,13 @@ describe('blockchain', function() {
     const expectedIds = ['0000000109833ce528d5bbfb3f6225b39ee10086',
                          '00000002ed04e3c3def0238f693931ee7eebbdf1']
     const expectedOps = ['vote', 'vote', 'comment', 'vote', 'vote', 'vote', 'vote',
-                         'custom_json', 'producer_reward', 'author_reward', 'fill_vesting_withdraw',
-                         'fill_vesting_withdraw', 'comment', 'comment', 'vote', 'vote',
-                         'vote', 'vote', 'comment', 'custom_json', 'custom_json',
-                         'custom_json', 'custom_json', 'claim_reward_balance',
-                         'custom_json', 'vote', 'comment', 'comment_options',
-                         'custom_json', 'vote', 'producer_reward', 'curation_reward', 'author_reward',
-                         'fill_vesting_withdraw', 'fill_vesting_withdraw' ]
+                         'customJson', 'producer_reward', 'authorReward', 'fillESCORWithdraw',
+                         'fillESCORWithdraw', 'comment', 'comment', 'vote', 'vote',
+                         'vote', 'vote', 'comment', 'customJson', 'customJson',
+                         'customJson', 'customJson', 'claimRewardBalance',
+                         'customJson', 'vote', 'comment', 'comment_options',
+                         'customJson', 'vote', 'producer_reward', 'curationReward', 'authorReward',
+                         'fillESCORWithdraw', 'fillESCORWithdraw' ]
 
     it('should yield blocks', async function() {
         let ids: string[] = []

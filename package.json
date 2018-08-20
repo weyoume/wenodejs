@@ -1,8 +1,8 @@
 {
   "name": "eznode.js",
-  "version": "0.9.0",
-  "description": "Steem blockchain RPC client library",
-  "author": "Johan Nordberg",
+  "version": "0.9.111",
+  "description": "Ezira blockchain RPC client library",
+  "author": "Lopu",
   "license": "BSD-3-Clause",
   "main": "./lib/index-node",
   "typings": "./lib/index",
@@ -17,7 +17,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/jnordberg/eznode.js"
+    "url": "https://github.com/eziranetwork/eznode.js"
   },
   "scripts": {
     "test": "make ci-test",
@@ -27,8 +27,11 @@
     "blockchain",
     "client",
     "rpc",
-    "steem",
-    "steemit"
+    "ezira",
+    "eziranetwork",
+    "eznode",
+    "eznode.js",
+    "ezira protocol"
   ],
   "dependencies": {
     "bs58": "^4.0.1",

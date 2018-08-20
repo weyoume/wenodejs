@@ -1,39 +1,39 @@
 import 'mocha'
 import * as assert from 'assert'
 
-import {Asset, Price, getVestingSharePrice} from './../src/index-node'
+import {Asset, Price, getESCORPriceinECO} from './../src/index-node'
 
 describe('asset', function() {
 
     it('should create from string', function() {
-        const oneSteem = Asset.fromString('1.000 STEEM')
-        assert.equal(oneSteem.amount, 1)
-        assert.equal(oneSteem.symbol, 'STEEM')
-        const EZP = Asset.fromString('0.123456 EZP')
-        assert.equal(EZP.amount, 0.123456)
-        assert.equal(EZP.symbol, 'EZP')
-        const sbd = Asset.from('0.444 EZD')
-        assert.equal(sbd.amount, 0.444)
-        assert.equal(sbd.symbol, 'EZD')
+        const oneECO = Asset.fromString('1.000 ECO')
+        assert.equal(oneECO.amount, 1)
+        assert.equal(oneECO.symbol, 'ECO')
+        const ESCOR = Asset.fromString('0.123456 ESCOR')
+        assert.equal(ESCOR.amount, 0.123456)
+        assert.equal(ESCOR.symbol, 'ESCOR')
+        const EUSD = Asset.from('0.444 EUSD')
+        assert.equal(EUSD.amount, 0.444)
+        assert.equal(EUSD.symbol, 'EUSD')
     })
 
     it('should convert to string', function() {
-        const steem = new Asset(44.999999, 'STEEM')
-        assert.equal(steem.toString(), '45.000 STEEM')
-        const EZP = new Asset(44.999999, 'EZP')
-        assert.equal(EZP.toString(), '44.999999 EZP')
+        const ECO = new Asset(44.999999, 'ECO')
+        assert.equal(ECO.toString(), '45.000 ECO')
+        const ESCOR = new Asset(44.999999, 'ESCOR')
+        assert.equal(ESCOR.toString(), '44.999999 ESCOR')
     })
 
     it('should add and subtract', function() {
-        const a = new Asset(44.999, 'STEEM')
-        assert.equal(a.subtract(1.999).toString(), '43.000 STEEM')
-        assert.equal(a.add(0.001).toString(), '45.000 STEEM')
-        assert.equal(Asset.from('1.999 STEEM').subtract(a).toString(), '-43.000 STEEM')
-        assert.equal(Asset.from(a).subtract(a).toString(), '0.000 STEEM')
-        assert.equal(Asset.from('99.999999 EZP').add('0.000001 EZP').toString(), '100.000000 EZP')
-        assert.throws(() => Asset.fromString('100.000 STEEM').subtract('100.000000 EZP'))
-        assert.throws(() => Asset.from(100, 'EZP').add(a))
-        assert.throws(() => Asset.from(100).add('1.000000 EZP'))
+        const a = new Asset(44.999, 'ECO')
+        assert.equal(a.subtract(1.999).toString(), '43.000 ECO')
+        assert.equal(a.add(0.001).toString(), '45.000 ECO')
+        assert.equal(Asset.from('1.999 ECO').subtract(a).toString(), '-43.000 ECO')
+        assert.equal(Asset.from(a).subtract(a).toString(), '0.000 ECO')
+        assert.equal(Asset.from('99.999999 ESCOR').add('0.000001 ESCOR').toString(), '100.000000 ESCOR')
+        assert.throws(() => Asset.fromString('100.000 ECO').subtract('100.000000 ESCOR'))
+        assert.throws(() => Asset.from(100, 'ESCOR').add(a))
+        assert.throws(() => Asset.from(100).add('1.000000 ESCOR'))
     })
 
     it('should max and min', function() {
@@ -47,9 +47,9 @@ describe('asset', function() {
     it('should throw on invalid values', function() {
         assert.throws(() => Asset.fromString('1.000 SNACKS'))
         assert.throws(() => Asset.fromString('I LIKE TURT 0.42'))
-        assert.throws(() => Asset.fromString('Infinity STEEM'))
-        assert.throws(() => Asset.fromString('..0 STEEM'))
-        assert.throws(() => Asset.from('..0 STEEM'))
+        assert.throws(() => Asset.fromString('Infinity ECO'))
+        assert.throws(() => Asset.fromString('..0 ECO'))
+        assert.throws(() => Asset.from('..0 ECO'))
         assert.throws(() => Asset.from(NaN))
         assert.throws(() => Asset.from(false as any))
         assert.throws(() => Asset.from(Infinity))
@@ -57,45 +57,45 @@ describe('asset', function() {
     })
 
     it('should parse price', function() {
-        const price1 = new Price(Asset.from('1.000 STEEM'), Asset.from(1, 'EZD'))
+        const price1 = new Price(Asset.from('1.000 ECO'), Asset.from(1, 'EUSD'))
         const price2 = Price.from(price1)
-        const price3 = Price.from({base: '1.000 STEEM', quote: price1.quote})
-        assert.equal(price1.toString(), '1.000 STEEM:1.000 EZD')
+        const price3 = Price.from({base: '1.000 ECO', quote: price1.quote})
+        assert.equal(price1.toString(), '1.000 ECO:1.000 EUSD')
         assert.equal(price2.base.toString(), price3.base.toString())
         assert.equal(price2.quote.toString(), price3.quote.toString())
     })
 
-    it('should get vesting share price', function() {
+    it('should get eScore price', function() {
         const props: any = {
-            total_vesting_fund_ECO: '5.000 STEEM',
-            total_vesting_shares: '12345.000000 EZP',
+            totalECOfundForESCOR: '5.000 ECO',
+            totalESCOR: '12345.000000 ESCOR',
         }
-        const price1 = getVestingSharePrice(props)
+        const price1 = getESCORPriceinECO(props)
         assert.equal(price1.base.amount, 12345)
-        assert.equal(price1.base.symbol, 'EZP')
+        assert.equal(price1.base.symbol, 'ESCOR')
         assert.equal(price1.quote.amount, 5)
-        assert.equal(price1.quote.symbol, 'STEEM')
+        assert.equal(price1.quote.symbol, 'ECO')
         const badProps: any = {
-            total_vesting_fund_ECO: '0.000 STEEM',
-            total_vesting_shares: '0.000000 EZP',
+            totalECOfundForESCOR: '0.000 ECO',
+            totalESCOR: '0.000000 ESCOR',
         }
-        const price2 = getVestingSharePrice(badProps)
+        const price2 = getESCORPriceinECO(badProps)
         assert.equal(price2.base.amount, 1)
-        assert.equal(price2.base.symbol, 'EZP')
+        assert.equal(price2.base.symbol, 'ESCOR')
         assert.equal(price2.quote.amount, 1)
-        assert.equal(price2.quote.symbol, 'STEEM')
+        assert.equal(price2.quote.symbol, 'ECO')
     })
 
     it('should convert price', function() {
-        const price1 = new Price(Asset.from('0.500 STEEM'), Asset.from('1.000 EZD'))
-        const v1 = price1.convert(Asset.from('1.000 STEEM'))
+        const price1 = new Price(Asset.from('0.500 ECO'), Asset.from('1.000 EUSD'))
+        const v1 = price1.convert(Asset.from('1.000 ECO'))
         assert.equal(v1.amount, 2)
-        assert.equal(v1.symbol, 'EZD')
-        const v2 = price1.convert(Asset.from('1.000 EZD'))
+        assert.equal(v1.symbol, 'EUSD')
+        const v2 = price1.convert(Asset.from('1.000 EUSD'))
         assert.equal(v2.amount, 0.5)
-        assert.equal(v2.symbol, 'STEEM')
+        assert.equal(v2.symbol, 'ECO')
         assert.throws(() => {
-            price1.convert(Asset.from(1, 'EZP'))
+            price1.convert(Asset.from(1, 'ESCOR'))
         })
     })
 

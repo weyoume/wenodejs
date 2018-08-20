@@ -35,7 +35,7 @@ describe('broadcast', function() {
             permlink: postPermlink,
             title: `Picture of the day #${ ~~(Math.random() * 1e8) }`,
             body,
-            json_metadata: JSON.stringify({foo: 'bar', tags: ['test']}),
+            json: JSON.stringify({foo: 'bar', tags: ['test']}),
         }, key)
         const block = await client.database.getBlock(result.block_num)
         assert(block.transaction_ids.indexOf(result.id) !== -1)
@@ -49,8 +49,8 @@ describe('broadcast', function() {
             author: acc2.username,
             permlink: `${ postPermlink }-botcomment-1`,
             title: 'Comments has titles?',
-            body: `Amazing post! Revoted upsteemed and trailing! @${ acc2.username }`,
-            json_metadata: '',
+            body: `Amazing post! revoted, upvoted and trailing! @${ acc2.username }`,
+            json: '',
         }, key)
         const votePromise = client.broadcast.vote({
             voter: acc2.username,

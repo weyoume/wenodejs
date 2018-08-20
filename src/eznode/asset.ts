@@ -1,5 +1,5 @@
 /**
- * @file Steem asset type definitions and helpers.
+ * @file Ezira asset type definitions and helpers.
  * @author Johan Nordberg <code@johan-nordberg.com>
  * @license
  * Copyright (c) 2017 Johan Nordberg. All Rights Reserved.
@@ -39,19 +39,19 @@ import * as ByteBuffer from 'bytebuffer'
 /**
  * Asset symbol string.
  */
-export type AssetSymbol = 'STEEM' | 'EZP' | 'EZD'
+export type AssetSymbol = 'ECO' | 'ESCOR' | 'EUSD'
 
 /**
- * Class representing a steem asset, e.g. `1.000 STEEM` or `12.112233 EZP`.
+ * Class representing an Ezira Network asset, e.g. `1.000 ECO` or `12.112233 ESCOR`.
  */
 export class Asset {
 
     /**
-     * Create a new Asset instance from a string, e.g. `42.000 STEEM`.
+     * Create a new Asset instance from a string, e.g. `42.000 ECO`.
      */
     public static fromString(string: string, expectedSymbol?: AssetSymbol) {
         const [amountString, symbol] = string.split(' ')
-        if (['STEEM', 'EZP', 'EZD'].indexOf(symbol) === -1) {
+        if (['ECO', 'ESCOR', 'EUSD'].indexOf(symbol) === -1) {
             throw new Error(`Invalid asset symbol: ${ symbol }`)
         }
         if (expectedSymbol && symbol !== expectedSymbol) {
@@ -76,7 +76,7 @@ export class Asset {
              }
              return value
          } else if (typeof value === 'number' && Number.isFinite(value)) {
-             return new Asset(value, symbol || 'STEEM')
+             return new Asset(value, symbol || 'ECO')
          } else if (typeof value === 'string') {
              return Asset.fromString(value, symbol)
          } else {
@@ -107,16 +107,16 @@ export class Asset {
      */
     public getPrecision(): number {
         switch (this.symbol) {
-            case 'STEEM':
-            case 'EZD':
+            case 'ECO':
+            case 'EUSD':
                 return 3
-            case 'EZP':
+            case 'ESCOR':
                 return 6
         }
     }
 
     /**
-     * Return a string representation of this asset, e.g. `42.000 STEEM`.
+     * Return a string representation of this asset, e.g. `42.000 ECO`.
      */
     public toString(): string {
         return `${ this.amount.toFixed(this.getPrecision()) } ${ this.symbol }`

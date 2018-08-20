@@ -22,10 +22,10 @@ describe('database api', function() {
         assert.deepEqual(Object.keys(result), [
             'id', 'head_block_number', 'head_block_id', 'time', 'current_witness',
             'total_pow', 'num_pow_witnesses', 'virtual_supply', 'current_supply',
-            'confidential_supply', 'current_EZD_supply', 'confidential_EZD_supply',
-            'total_vesting_fund_ECO', 'total_vesting_shares', 'total_reward_fund_ECO',
-            'total_reward_shares2', 'pending_rewarded_vesting_shares', 'pending_rewarded_vesting_ECO',
-            'EZD_interest_rate', 'EZD_print_rate', 'maximum_block_size', 'current_aslot',
+            'confidential_supply', 'current_EUSD_supply', 'confidential_EUSD_supply',
+            'totalECOfundForESCOR', 'totalESCOR', 'total_reward_fund_ECO',
+            'total_ESCORreward2', 'pending_rewarded_ESCOR', 'pending_rewarded_ESCORvalueInECO',
+            'EUSD_interest_rate', 'EUSD_print_rate', 'maximum_block_size', 'current_aslot',
             'recent_slots_filled', 'participation_count', 'last_irreversible_block_num',
             'vote_power_reserve_rate', 'current_reserve_ratio', 'average_block_size',
             'max_virtual_bandwidth'
@@ -34,12 +34,12 @@ describe('database api', function() {
 
     it('getConfig', async function() {
         const result = await client.database.getConfig()
-        const r = (key: string) => result['STEEM_'+key] || result['STEEMIT_'+key]
+        const r = (key: string) => result[key] || result[key]
         assert.equal(r('CHAIN_ID'), client.options.chainId)
         serverConfig = result
         // also test some assumptions made throughout the code
         const conf = await liveClient.database.getConfig()
-        assert.equal(r('CREATE_ACCOUNT_WITH_STEEM_MODIFIER'), 30)
+        assert.equal(r('CREATE_ACCOUNT_WITH_ECO_MODIFIER'), 30)
         assert.equal(r('CREATE_ACCOUNT_DELEGATION_RATIO'), 5)
         assert.equal(r('100_PERCENT'), 10000)
         assert.equal(r('1_PERCENT'), 100)
@@ -54,8 +54,8 @@ describe('database api', function() {
         const result = await client.database.getBlock(1)
         assert.equal('0000000000000000000000000000000000000000', result.previous)
         assert.equal(
-            serverConfig['STEEMIT_INIT_PUBLIC_KEY_STR'] ||
-            serverConfig['STEEM_INIT_PUBLIC_KEY_STR'],
+            serverConfig['INIT_PUBLIC_KEY_STR'] ||
+            serverConfig['INIT_PUBLIC_KEY_STR'],
             result.signing_key
         )
     })
@@ -90,21 +90,21 @@ describe('database api', function() {
 
     it('getChainProperties', async function() {
         const props = await liveClient.database.getChainProperties()
-        assert.equal(Asset.from(props.account_creation_fee).symbol, 'STEEM')
+        assert.equal(Asset.from(props.account_creation_fee).symbol, 'ECO')
     })
 
     it('getCurrentMedianHistoryPrice', async function() {
         const price = await liveClient.database.getCurrentMedianHistoryPrice()
-        assert.equal(Asset.from(price.base).symbol, 'EZD')
-        assert.equal(price.quote.symbol, 'STEEM')
+        assert.equal(Asset.from(price.base).symbol, 'EUSD')
+        assert.equal(price.quote.symbol, 'ECO')
     })
 
-    it('getVestingDelegations', async function() {
+    it('getESCORdelegations', async function() {
         this.slow(5 * 1000)
-        const [delegation] = await liveClient.database.getVestingDelegations('steem', '', 1)
-        assert.equal(delegation.delegator, 'steem')
+        const [delegation] = await liveClient.database.getESCORdelegations('ezprotocolTestAccount', '', 1)
+        assert.equal(delegation.delegator, 'ezprotocolTestAccount')
         assert.equal(typeof delegation.id, 'number')
-        assert.equal(Asset.from(delegation.vesting_shares).symbol, 'EZP')
+        assert.equal(Asset.from(delegation.ESCOR).symbol, 'ESCOR')
     })
 
     it('verifyAuthority', async function() {
@@ -113,7 +113,7 @@ describe('database api', function() {
             ref_block_num: 0,
             ref_block_prefix: 0,
             expiration: '2000-01-01T00:00:00',
-            operations: [['custom_json', {
+            operations: [['customJson', {
                 required_auths: [],
                 required_posting_auths: [acc.username],
                 id: 'rpc-params',

@@ -64,25 +64,25 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<h1 id="eznode.js-build-status-coverage-status-package-version"><a href="https://github.com/jnordberg/eznode.js">eznode.js</a> <a href="https://travis-ci.org/jnordberg/eznode.js"><img src="https://img.shields.io/travis/jnordberg/eznode.js.svg?style=flat-square" alt="Build Status"></a> <a href="https://coveralls.io/github/jnordberg/eznode.js?branch=master"><img src="https://img.shields.io/coveralls/jnordberg/eznode.js.svg?style=flat-square" alt="Coverage Status"></a> <a href="https://www.npmjs.com/package/eznode.js"><img src="https://img.shields.io/npm/v/eznode.js.svg?style=flat-square" alt="Package Version"></a></h1>
+				<h1 id="eznode.js-build-status-coverage-status-package-version"><a href="https://github.com/eziranetwork/eznode.js">eznode.js</a> <a href="https://travis-ci.org/eziranetwork/eznode.js"><img src="https://img.shields.io/travis/eziranetwork/eznode.js.svg?style=flat-square" alt="Build Status"></a> <a href="https://coveralls.io/github/eziranetwork/eznode.js?branch=master"><img src="https://img.shields.io/coveralls/eziranetwork/eznode.js.svg?style=flat-square" alt="Coverage Status"></a> <a href="https://www.npmjs.com/package/eznode.js"><img src="https://img.shields.io/npm/v/eznode.js.svg?style=flat-square" alt="Package Version"></a></h1>
 				<p>Robust <a href="https://steem.io">steem blockchain</a> client library that runs in both node.js and the browser.</p>
 				<ul>
-					<li><a href="https://comments.steem.vc">Demo</a> (<a href="https://github.com/jnordberg/eznode.js/tree/master/examples/comment-feed">source</a>)</li>
+					<li><a href="https://comments.steem.vc">Demo</a> (<a href="https://github.com/eziranetwork/eznode.js/tree/master/examples/comment-feed">source</a>)</li>
 					<li><a href="https://playground.steem.vc">Code playground</a></li>
-					<li><a href="https://jnordberg.github.io/eznode.js/">Documentation</a></li>
-					<li><a href="https://github.com/jnordberg/eznode.js/issues">Bug tracker</a></li>
+					<li><a href="https://eziranetwork.github.io/eznode.js/">Documentation</a></li>
+					<li><a href="https://github.com/eziranetwork/eznode.js/issues">Bug tracker</a></li>
 				</ul>
 				<hr>
 				<p><strong>note</strong> As of version 0.7.0 WebSocket support has been removed. The only transport provided now is HTTP(2). For most users the only change required is to swap <code>wss://</code> to <code>https://</code> in the address. If you run your own full node make sure to set the proper <a href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing">CORS headers</a> if you plan to access it from a browser.</p>
 				<hr>
 				<h2 id="browser-compatibility">Browser compatibility</h2>
-				<p><a href="https://saucelabs.com/open_sauce/user/jnordberg-eznode.js"><img src="https://saucelabs.com/browser-matrix/jnordberg-eznode.js.svg" alt="Build Status"></a></p>
+				<p><a href="https://saucelabs.com/open_sauce/user/eziranetwork-eznode.js"><img src="https://saucelabs.com/browser-matrix/eziranetwork-eznode.js.svg" alt="Build Status"></a></p>
 				<h2 id="installation">Installation</h2>
 				<h3 id="via-npm">Via npm</h3>
 				<p>For node.js or the browser with <a href="https://github.com/substack/node-browserify">browserify</a> or <a href="https://github.com/webpack/webpack">webpack</a>.</p>
 				<pre><code>npm <span class="hljs-keyword">install</span> eznode.js
 </code></pre><h3 id="from-cdn-or-self-hosted-script">From cdn or self-hosted script</h3>
-				<p>Grab <code>dist/eznode.js</code> from a <a href="https://github.com/jnordberg/eznode.js/releases">release</a> and include in your html:</p>
+				<p>Grab <code>dist/eznode.js</code> from a <a href="https://github.com/eziranetwork/eznode.js/releases">release</a> and include in your html:</p>
 				<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"eznode.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 </code></pre>
 				<p>Or from the <a href="https://unpkg.com">unpkg</a> cdn:</p>
@@ -101,7 +101,7 @@
     })
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 </code></pre>
-				<p>See the <a href="https://github.com/jnordberg/eznode.js/tree/master/examples/comment-feed">demo source</a> for an example on how to setup a livereloading TypeScript pipeline with <a href="https://github.com/jnordberg/wintersmith">wintersmith</a> and <a href="https://github.com/substack/node-browserify">browserify</a>.</p>
+				<p>See the <a href="https://github.com/eziranetwork/eznode.js/tree/master/examples/comment-feed">demo source</a> for an example on how to setup a livereloading TypeScript pipeline with <a href="https://github.com/eziranetwork/wintersmith">wintersmith</a> and <a href="https://github.com/substack/node-browserify">browserify</a>.</p>
 				<h3 id="in-node-js">In node.js</h3>
 				<p>With TypeScript:</p>
 				<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> {Client} <span class="hljs-keyword">from</span> <span class="hljs-string">'eznode.js'</span>
@@ -287,7 +287,7 @@ stream.pipe(es.map(<span class="hljs-function"><span class="hljs-keyword">functi
 						<a href="interfaces/declinevotingrightsoperation.html" class="tsd-kind-icon">Decline<wbr>Voting<wbr>Rights<wbr>Operation</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/delegatevestingsharesoperation.html" class="tsd-kind-icon">Delegate<wbr>Vesting<wbr>Shares<wbr>Operation</a>
+						<a href="interfaces/delegateEScoreoperation.html" class="tsd-kind-icon">Delegate<wbr>Vesting<wbr>eScore<wbr>Operation</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/deletecommentoperation.html" class="tsd-kind-icon">Delete<wbr>Comment<wbr>Operation</a>
@@ -401,7 +401,7 @@ stream.pipe(es.map(<span class="hljs-function"><span class="hljs-keyword">functi
 						<a href="interfaces/transfertovestingoperation.html" class="tsd-kind-icon">Transfer<wbr>ToVesting<wbr>Operation</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/vestingdelegation.html" class="tsd-kind-icon">Vesting<wbr>Delegation</a>
+						<a href="interfaces/escoredelegation.html" class="tsd-kind-icon">Vesting<wbr>Delegation</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/voteoperation.html" class="tsd-kind-icon">Vote<wbr>Operation</a>
@@ -557,7 +557,7 @@ stream.pipe(es.map(<span class="hljs-function"><span class="hljs-keyword">functi
 						<a href="globals.html#encodepublic" class="tsd-kind-icon">encode<wbr>Public</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="globals.html#getvestingshareprice" class="tsd-kind-icon">get<wbr>Vesting<wbr>Share<wbr>Price</a>
+						<a href="globals.html#getvestingEScoreprice" class="tsd-kind-icon">get<wbr>eScore<wbr>Price</a>
 					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="globals.html#iscanonicalsignature" class="tsd-kind-icon">is<wbr>Canonical<wbr>Signature</a>

@@ -65,7 +65,7 @@ node_modules:
 docs: $(SRC_FILES) node_modules
 	typedoc --gitRevision master --target ES6 --mode file --out docs src
 	find docs -name "*.html" | xargs sed -i '' 's~$(shell pwd)~.~g'
-	echo "Served at <https://jnordberg.github.io/eznode.js/>" > docs/README.md
+	echo "Served at <https://eziranetwork.github.io/eznode.js/>" > docs/README.md
 	touch docs
 
 .PHONY: clean

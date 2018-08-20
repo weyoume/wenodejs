@@ -35,13 +35,13 @@
 
 import {Client} from './../client'
 import {ExtendedAccount} from './../eznode/account'
-import {Asset, Price} from './../steem/asset'
-import {BlockHeader, SignedBlock} from './../steem/block'
-import {Discussion} from './../steem/comment'
-import {DynamicGlobalProperties} from './../steem/misc'
-import {ChainProperties, VestingDelegation} from './../steem/misc'
-import {AppliedOperation} from './../steem/operation'
-import {SignedTransaction, Transaction, TransactionConfirmation} from './../steem/transaction'
+import {Asset, Price} from './../ezira/asset'
+import {BlockHeader, SignedBlock} from './../ezira/block'
+import {Discussion} from './../ezira/comment'
+import {DynamicGlobalProperties} from './../ezira/misc'
+import {ChainProperties, ESCORdelegation} from './../ezira/misc'
+import {AppliedOperation} from './../ezira/operation'
+import {SignedTransaction, Transaction, TransactionConfirmation} from './../ezira/transaction'
 
 /**
  * Possible categories for `get_discussions_by_*`.
@@ -114,7 +114,7 @@ export class DatabaseAPI {
     }
 
     /**
-     * Return median price in EZD for 1 STEEM as reported by the witnesses.
+     * Return median price in EUSD for 1 ECO as reported by the witnesses.
      */
     public async getCurrentMedianHistoryPrice(): Promise<Price> {
         return Price.from(await this.call('get_current_median_history_price'))
@@ -126,15 +126,15 @@ export class DatabaseAPI {
      * @param from Delegatee start offset, used for paging.
      * @param limit Number of results, max 1000.
      */
-    public async getVestingDelegations(account: string,
+    public async getESCORdelegations(account: string,
                                        from: string = '',
-                                       limit: number = 1000): Promise<VestingDelegation[]> {
-        return this.call('get_vesting_delegations', [account, from, limit])
+                                       limit: number = 1000): Promise<ESCORdelegation[]> {
+        return this.call('get_ESCOR_delegations', [account, from, limit])
     }
 
     /**
      * Return server config. See:
-     * https://github.com/steemit/steem/blob/master/libraries/protocol/include/steemit/protocol/config.hpp
+     * https://github.com/eziranetwork/ezira/blob/master/libraries/protocol/include/eznode/protocol/config.hpp
      */
     public getConfig(): Promise<{[name: string]: string|number|boolean}> {
         return this.call('get_config')

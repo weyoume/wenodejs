@@ -21,20 +21,20 @@ describe('operations', function() {
         acc1Key = PrivateKey.fromLogin(acc1.username, acc1.password, 'active')
     })
 
-    it('should delegate vesting shares', async function() {
+    it('should delegate eScore', async function() {
         const [user1] = await client.database.getAccounts([acc1.username])
-        const currentDelegation = Asset.from(user1.received_vesting_shares)
+        const currentDelegation = Asset.from(user1.ESCORreceived)
         const newDelegation = Asset.from(
             currentDelegation.amount >= 1000 ? 0 : 1000 + Math.random() * 1000,
-            'EZP'
+            'ESCOR'
         )
-        const result = await client.broadcast.delegateVestingShares({
+        const result = await client.broadcast.delegateESCOR({
             delegator: acc1.username,
             delegatee: acc2.username,
-            vesting_shares: newDelegation
+            ESCOR: newDelegation
         }, acc1Key)
         const [user2] = await client.database.getAccounts([acc2.username])
-        assert.equal(user2.received_vesting_shares, newDelegation.toString())
+        assert.equal(user2.ESCORreceived, newDelegation.toString())
     })
 
     it('should send custom', async function() {
@@ -81,16 +81,16 @@ describe('operations', function() {
         assert.deepEqual(JSON.parse(tx.operations[0][1].json), data)
     })
 
-    it('should transfer steem', async function() {
+    it('should transfer ECO', async function() {
         const [acc2bf] = await client.database.getAccounts([acc2.username])
         await client.broadcast.transfer({
             from: acc1.username,
             to: acc2.username,
-            amount: '0.042 STEEM',
+            amount: '0.042 ECO',
             memo: 'Hej på dig!',
         }, acc1Key)
         const [acc2af] = await client.database.getAccounts([acc2.username])
-        assert.equal(Asset.from(acc2af.balance).subtract(acc2bf.balance).toString(), '0.042 STEEM')
+        assert.equal(Asset.from(acc2af.balance).subtract(acc2bf.balance).toString(), '0.042 ECO')
     })
 
     it('should create account and post with options', async function() {
@@ -107,13 +107,13 @@ describe('operations', function() {
             permlink,
             title: 'Hello world!',
             body: `My password is: ${ password }`,
-            json_metadata: JSON.stringify({tags: ['test', 'hello']}),
+            json: JSON.stringify({tags: ['test', 'hello']}),
         }, {
             permlink, author: username,
             allow_votes: false,
-            allow_curation_rewards: false,
-            percent_EZD: 0,
-            max_accepted_payout: Asset.from(10, 'EZD'),
+            allow_curationRewards: false,
+            percent_EUSD: 0,
+            max_accepted_payout: Asset.from(10, 'EUSD'),
             extensions: [
                 [0, {beneficiaries: [
                     {weight: 10000, account: acc1.username}
@@ -123,13 +123,13 @@ describe('operations', function() {
 
         const [newAcc] = await client.database.getAccounts([username])
         assert.equal(newAcc.name, username)
-        // not sure why but on the testnet the recovery account is always 'steem'
-        // assert.equal(newAcc.recovery_account, acc1.username)
-        assert.equal(newAcc.memo_key, PrivateKey.fromLogin(username, password, 'memo').createPublic(client.addressPrefix).toString())
+        // not sure why but on the testnet the recovery account is always 'ezira'
+        // assert.equal(newAcc.recoveryAccount, acc1.username)
+        assert.equal(newAcc.memoKey, PrivateKey.fromLogin(username, password, 'memo').createPublic(client.addressPrefix).toString())
         const [post] = await client.database.getDiscussions('blog', {tag: username, limit: 1})
         assert.deepEqual(post.beneficiaries, [{account: acc1.username, weight: 10000}])
-        assert.equal(post.max_accepted_payout, '10.000 EZD')
-        assert.equal(post.percent_EZD, 0)
+        assert.equal(post.max_accepted_payout, '10.000 EUSD')
+        assert.equal(post.percent_EUSD, 0)
         assert.equal(post.allow_votes, false)
     })
 
@@ -138,11 +138,11 @@ describe('operations', function() {
         const foo = Math.random()
         const rv = await client.broadcast.updateAccount({
             account: acc1.username,
-            memo_key: PrivateKey.fromLogin(acc1.username, acc1.password, 'memo').createPublic(client.addressPrefix),
-            json_metadata: JSON.stringify({foo}),
+            memoKey: PrivateKey.fromLogin(acc1.username, acc1.password, 'memo').createPublic(client.addressPrefix),
+            json: JSON.stringify({foo}),
         }, key)
         const [acc] = await client.database.getAccounts([acc1.username])
-        assert.deepEqual({foo}, JSON.parse(acc.json_metadata))
+        assert.deepEqual({foo}, JSON.parse(acc.json))
     })
 
     it('should create account custom auths', async function() {
@@ -169,7 +169,7 @@ describe('operations', function() {
         }, key)
         const [newAccount] = await client.database.getAccounts([username])
         assert.equal(newAccount.name, username)
-        assert(Asset.from(newAccount.received_vesting_shares).amount > 0)
+        assert(Asset.from(newAccount.ESCORreceived).amount > 0)
     })
 
     it('should create account and calculate fees', async function() {
@@ -186,13 +186,13 @@ describe('operations', function() {
         // fixed fee and auto delegation
         await client.broadcast.createAccount({
             password, metadata, creator, username: 'foo' + randomString(12),
-            fee: '2.000 STEEM'
+            fee: '2.000 ECO'
         }, acc1Key)
 
         // fixed fee and delegation
         await client.broadcast.createAccount({
             password, creator, username: 'foo' + randomString(12),
-            fee: '2.000 STEEM', delegation: Asset.from(1000, 'EZP')
+            fee: '2.000 ECO', delegation: Asset.from(1000, 'ESCOR')
         }, acc1Key)
 
         try {
@@ -205,9 +205,9 @@ describe('operations', function() {
     })
 
     it('should change recovery account', async function() {
-        const op: ds.ChangeRecoveryAccountOperation = ['change_recovery_account', {
-            account_to_recover: acc1.username,
-            new_recovery_account: acc2.username,
+        const op: ds.ChangeRecoveryAccountOperation = ['change_recoveryAccount', {
+            accountToRecover: acc1.username,
+            new_recoveryAccount: acc2.username,
             extensions: [],
         }]
         const key = ds.PrivateKey.fromLogin(acc1.username, acc1.password, 'owner')

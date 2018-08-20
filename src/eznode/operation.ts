@@ -1,5 +1,5 @@
 /**
- * @file Steem operation type definitions.
+ * @file Ezira operation type definitions.
  * @author Johan Nordberg <code@johan-nordberg.com>
  * @license
  * Copyright (c) 2017 Johan Nordberg. All Rights Reserved.
@@ -44,24 +44,24 @@ import {ChainProperties, HexBuffer} from './misc'
  * Operation name.
  */
 export type OperationName = // <id>
-    | 'account_create' // 9
-    | 'account_create_with_delegation' // 41
-    | 'account_update' // 10
+    | 'accountCreate' // 9
+    | 'accountCreateWithDelegation' // 41
+    | 'accountUpdate' // 10
     | 'account_witness_proxy' // 13
-    | 'account_witness_vote' // 12
-    | 'cancel_transfer_from_savings' // 34
+    | 'accountWitnessVote' // 12
+    | 'cancelTransferFromSavings' // 34
     | 'challenge_authority' // 22
-    | 'change_recovery_account' // 26
-    | 'claim_reward_balance' // 39
+    | 'change_recoveryAccount' // 26
+    | 'claimRewardBalance' // 39
     | 'comment' // 1
     | 'comment_options' // 19
     | 'convert' // 8
     | 'custom' // 15
     | 'custom_binary' // 35
-    | 'custom_json' // 18
+    | 'customJson' // 18
     | 'decline_voting_rights' // 36
-    | 'delegate_vesting_shares' // 40
-    | 'delete_comment' // 17
+    | 'delegateESCOR' // 40
+    | 'deleteComment' // 17
     | 'escrow_approve' // 31
     | 'escrow_dispute' // 28
     | 'escrow_release' // 29
@@ -78,32 +78,32 @@ export type OperationName = // <id>
     | 'request_account_recovery' // 24
     | 'reset_account' // 37
     | 'set_reset_account' // 38
-    | 'set_withdraw_vesting_route' // 20
+    | 'setWithdrawESCORasECOroute' // 20
     | 'transfer' // 2
-    | 'transfer_from_savings' // 33
-    | 'transfer_to_savings' // 32
-    | 'transfer_to_vesting' // 3
+    | 'transferFromSavings' // 33
+    | 'transferToSavings' // 32
+    | 'transferECOtoESCORfund' // 3
     | 'vote' // 0
-    | 'withdraw_vesting' // 4
+    | 'withdrawESCOR' // 4
     | 'witness_update' // 11
 
 /**
  * Virtual operation name.
  */
 export type VirtualOperationName = // <id>
-    | 'author_reward' // 43
+    | 'authorReward' // 43
     | 'comment_benefactor_reward' // 55
     | 'comment_payout_update' // 53
     | 'comment_reward' // 45
-    | 'curation_reward' // 44
+    | 'curationReward' // 44
     | 'fill_convert_request' // 42
     | 'fill_order' // 49
-    | 'fill_transfer_from_savings' // 51
-    | 'fill_vesting_withdraw' // 48
+    | 'fill_transferFromSavings' // 51
+    | 'fillESCORWithdraw' // 48
     | 'hardfork' // 52
     | 'interest' // 47
     | 'liquidity_reward' // 46
-    | 'return_vesting_delegation' // 54
+    | 'return_ESCOR_delegation' // 54
     | 'shutdown_witness' // 50
 
 /**
@@ -125,31 +125,31 @@ export interface AppliedOperation {
 }
 
 export interface AccountCreateOperation extends Operation {
-    0: 'account_create'
+    0: 'accountCreate'
     1: {
         fee: string | Asset
         creator: string // account_name_type
-        new_account_name: string // account_name_type
+        newAccountName: string // account_name_type
         owner: AuthorityType
         active: AuthorityType
         posting: AuthorityType
-        memo_key: string | PublicKey // public_key_type
-        json_metadata: string
+        memoKey: string | PublicKey // public_key_type
+        json: string
     }
 }
 
 export interface AccountCreateWithDelegationOperation extends Operation {
-    0: 'account_create_with_delegation'
+    0: 'accountCreateWithDelegation'
     1: {
         fee: string | Asset
         delegation: string | Asset
         creator: string // account_name_type
-        new_account_name: string // account_name_type
+        newAccountName: string // account_name_type
         owner: AuthorityType
         active: AuthorityType
         posting: AuthorityType
-        memo_key: string | PublicKey // public_key_type
-        json_metadata: string
+        memoKey: string | PublicKey // public_key_type
+        json: string
         /**
          * Extensions. Not currently used.
          */
@@ -158,14 +158,14 @@ export interface AccountCreateWithDelegationOperation extends Operation {
 }
 
 export interface AccountUpdateOperation extends Operation {
-    0: 'account_update' // 10
+    0: 'accountUpdate' // 10
     1: {
         account: string // account_name_type
         owner?: AuthorityType // optional< authority >
         active?: AuthorityType // optional< authority >
         posting?: AuthorityType // optional< authority >
-        memo_key: string | PublicKey // public_key_type
-        json_metadata: string
+        memoKey: string | PublicKey // public_key_type
+        json: string
     }
 }
 
@@ -178,7 +178,7 @@ export interface AccountWitnessProxyOperation extends Operation {
 }
 
 export interface AccountWitnessVoteOperation extends Operation {
-    0: 'account_witness_vote' // 12
+    0: 'accountWitnessVote' // 12
     1: {
         account: string // account_name_type
         witness: string // account_name_type
@@ -187,7 +187,7 @@ export interface AccountWitnessVoteOperation extends Operation {
 }
 
 export interface CancelTransferFromSavingsOperation extends Operation {
-    0: 'cancel_transfer_from_savings' // 34
+    0: 'cancelTransferFromSavings' // 34
     1: {
         from: string // account_name_type
         request_id: number // uint32_t
@@ -222,16 +222,16 @@ export interface ChallengeAuthorityOperation extends Operation {
  * witness according to stake.
  */
 export interface ChangeRecoveryAccountOperation extends Operation {
-    0: 'change_recovery_account' // 26
+    0: 'change_recoveryAccount' // 26
     1: {
         /**
          * The account that would be recovered in case of compromise.
          */
-        account_to_recover: string // account_name_type
+        accountToRecover: string // account_name_type
         /**
          * The account that creates the recover request.
          */
-        new_recovery_account: string // account_name_type
+        new_recoveryAccount: string // account_name_type
         /**
          * Extensions. Not currently used.
          */
@@ -240,12 +240,12 @@ export interface ChangeRecoveryAccountOperation extends Operation {
 }
 
 export interface ClaimRewardBalanceOperation extends Operation {
-    0: 'claim_reward_balance' // 39
+    0: 'claimRewardBalance' // 39
     1: {
         account: string // account_name_type
-        reward_ECO: string | Asset
-        reward_EZD: string | Asset
-        reward_EZP: string | Asset
+        ECOreward: string | Asset
+        EUSDreward: string | Asset
+        ESCORreward: string | Asset
     }
 }
 
@@ -258,7 +258,7 @@ export interface CommentOperation extends Operation {
         permlink: string
         title: string
         body: string
-        json_metadata: string
+        json: string
     }
 }
 
@@ -267,14 +267,14 @@ export interface CommentOptionsOperation extends Operation {
     1: {
       author: string // account_name_type
       permlink: string
-      /** EZD value of the maximum payout this post will receive. */
+      /** EUSD value of the maximum payout this post will receive. */
       max_accepted_payout: Asset | string
-      /** The percent of Steem Dollars to key, unkept amounts will be received as Steem Power. */
-      percent_EZD: number // uint16_t
+      /** The percent of EUSDs to key, unkept amounts will be received as ESCOR. */
+      percent_EUSD: number // uint16_t
       /** Whether to allow post to receive votes. */
       allow_votes: boolean
       /** Whether to allow post to recieve curation rewards. */
-      allow_curation_rewards: boolean
+      allow_curationRewards: boolean
       extensions: Array<[0, {beneficiaries: BeneficiaryRoute[]}]> // flat_set< comment_options_extension >
     }
 }
@@ -313,7 +313,7 @@ export interface CustomBinaryOperation extends Operation {
 }
 
 export interface CustomJsonOperation extends Operation {
-    0: 'custom_json' // 18
+    0: 'customJson' // 18
     1: {
         required_auths: string[] // flat_set< account_name_type >
         required_posting_auths: string[] // flat_set< account_name_type >
@@ -336,26 +336,26 @@ export interface DeclineVotingRightsOperation extends Operation {
     }
 }
 
-export interface DelegateVestingSharesOperation extends Operation {
-    0: 'delegate_vesting_shares' // 40
+export interface DelegateESCOROperation extends Operation {
+    0: 'delegateESCOR' // 40
     1: {
         /**
-         * The account delegating vesting shares.
+         * The account delegating eScore.
          */
         delegator: string // account_name_type
         /**
-         * The account receiving vesting shares.
+         * The account receiving eScore.
          */
         delegatee: string // account_name_type
         /**
-         * The amount of vesting shares delegated.
+         * The amount of eScore delegated.
          */
-        vesting_shares: string | Asset
+        eScore: string | Asset
     }
 }
 
 export interface DeleteCommentOperation extends Operation {
-    0: 'delete_comment' // 17
+    0: 'deleteComment' // 17
     1: {
         author: string // account_name_type
         permlink: string
@@ -427,13 +427,13 @@ export interface EscrowReleaseOperation extends Operation {
         receiver: string // account_name_type
         escrow_id: number // uint32_t
         /**
-         * The amount of sbd to release.
+         * The amount of EUSD to release.
          */
-        EZD_amount: Asset | string
+        EUSDamount: Asset | string
         /**
-         * The amount of steem to release.
+         * The amount of ECO to release.
          */
-        ECO_amount: Asset | string
+        ECOamount: Asset | string
     }
 }
 
@@ -462,12 +462,12 @@ export interface EscrowTransferOperation extends Operation {
         to: string // account_name_type
         agent: string // account_name_type
         escrow_id: number // uint32_t
-        EZD_amount: Asset | string
-        ECO_amount: Asset | string
+        EUSDamount: Asset | string
+        ECOamount: Asset | string
         fee: Asset | string
         ratification_deadline: string // time_point_sec
         escrow_expiration: string // time_point_sec
-        json_meta: string
+        json: string
     }
 }
 
@@ -598,7 +598,7 @@ export interface RecoverAccountOperation extends Operation {
         /**
          * The account to be recovered.
          */
-        account_to_recover: string // account_name_type
+        accountToRecover: string // account_name_type
         /**
          * The new owner authority as specified in the request account recovery operation.
          */
@@ -618,14 +618,14 @@ export interface RecoverAccountOperation extends Operation {
 /**
  * This operation is used to report a miner who signs two blocks
  * at the same time. To be valid, the violation must be reported within
- * STEEMIT_MAX_WITNESSES blocks of the head block (1 round) and the
+ * MAX_WITNESSES blocks of the head block (1 round) and the
  * producer must be in the ACTIVE witness set.
  *
  * Users not in the ACTIVE witness set should not have to worry about their
  * key getting compromised and being used to produced multiple blocks so
- * the attacker can report it and steel their vesting steem.
+ * the attacker can report it and steel their eScore.
  *
- * The result of the operation is to transfer the full VESTING STEEM balance
+ * The result of the operation is to transfer the full eScore balance
  * of the block producer to the reporter.
  */
 export interface ReportOverProductionOperation extends Operation {
@@ -670,11 +670,11 @@ export interface RequestAccountRecoveryOperation extends Operation {
         /**
          * The recovery account is listed as the recovery account on the account to recover.
          */
-        recovery_account: string // account_name_type
+        recoveryAccount: string // account_name_type
         /**
          * The account to recover. This is likely due to a compromised owner authority.
          */
-        account_to_recover: string // account_name_type
+        accountToRecover: string // account_name_type
         /**
          * The new owner authority the account to recover wishes to have. This is secret
          * known by the account to recover and will be confirmed in a recover_account_operation.
@@ -688,7 +688,7 @@ export interface RequestAccountRecoveryOperation extends Operation {
 }
 
 /**
- * This operation allows recovery_account to change account_to_reset's owner authority to
+ * This operation allows recoveryAccount to change account_to_reset's owner authority to
  * new_owner_authority after 60 days of inactivity.
  */
 export interface ResetAccountOperation extends Operation {
@@ -714,24 +714,24 @@ export interface SetResetAccountOperation extends Operation {
 }
 
 /**
- * Allows an account to setup a vesting withdraw but with the additional
+ * Allows an account to setup an eScore withdraw but with the additional
  * request for the funds to be transferred directly to another account's
  * balance rather than the withdrawing account. In addition, those funds
- * can be immediately vested again, circumventing the conversion from
- * EZP to steem and back, guaranteeing they maintain their value.
+ * can be immediately turned into eScore again, circumventing the conversion from
+ * ESCOR to ECO and back, guaranteeing they maintain their value.
  */
-export interface SetWithdrawVestingRouteOperation extends Operation {
-    0: 'set_withdraw_vesting_route' // 20
+export interface SetWithdrawESCORasECOrouteOperation extends Operation {
+    0: 'setWithdrawESCORasECOroute' // 20
     1: {
         from_account: string // account_name_type
         to_account: string // account_name_type
         percent: number // uint16_t (100% = PERCENT_100 = 10000)
-        auto_vest: boolean
+        autoESCOR: boolean
     }
 }
 
 /**
- * Transfers STEEM from one account to another.
+ * Transfers ECO from one account to another.
  */
 export interface TransferOperation extends Operation {
     0: 'transfer' // 2
@@ -745,7 +745,7 @@ export interface TransferOperation extends Operation {
          */
         to: string // account_name_type
         /**
-         * Amount of STEEM or EZD to send.
+         * Amount of ECO or EUSD to send.
          */
         amount: string | Asset
         /**
@@ -756,7 +756,7 @@ export interface TransferOperation extends Operation {
 }
 
 export interface TransferFromSavingsOperation extends Operation {
-    0: 'transfer_from_savings' // 33
+    0: 'transferFromSavings' // 33
     1: {
         from: string // account_name_type
         request_id: number // uint32_t
@@ -767,7 +767,7 @@ export interface TransferFromSavingsOperation extends Operation {
 }
 
 export interface TransferToSavingsOperation extends Operation {
-    0: 'transfer_to_savings' // 32
+    0: 'transferToSavings' // 32
     1: {
         amount: string | Asset
         from: string // account_name_type
@@ -778,19 +778,19 @@ export interface TransferToSavingsOperation extends Operation {
 }
 
 /**
- * This operation converts STEEM into VFS (Vesting Fund Shares) at
+ * This operation converts ECO into eScore (ESCOR) at
  * the current exchange rate. With this operation it is possible to
- * give another account vesting shares so that faucets can
- * pre-fund new accounts with vesting shares.
+ * give another account eScore so that faucets can
+ * pre-fund new accounts with eScore.
  * (A.k.a. Powering Up)
  */
-export interface TransferToVestingOperation extends Operation {
-    0: 'transfer_to_vesting' // 3
+export interface TransferToESCOROperation extends Operation {
+    0: 'transferECOtoESCORfund' // 3
     1: {
         from: string // account_name_type
         to: string // account_name_type
         /**
-         * Amount to power up, must be STEEM.
+         * Amount to power up, must be ECO.
          */
         amount: string | Asset
     }
@@ -811,24 +811,24 @@ export interface VoteOperation extends Operation {
 
 /**
  * At any given point in time an account can be withdrawing from their
- * vesting shares. A user may change the number of shares they wish to
- * cash out at any time between 0 and their total vesting stake.
+ * eScore. A user may change the number of eScore they wish to
+ * cash out at any time between 0 and their total eScore ECO fund stake.
  *
- * After applying this operation, vesting_shares will be withdrawn
- * at a rate of vesting_shares/104 per week for two years starting
+ * After applying this operation, eScore will be withdrawn
+ * at a rate of eScore/104 per week for two years starting
  * one week after this operation is included in the blockchain.
  *
- * This operation is not valid if the user has no vesting shares.
+ * This operation is not valid if the user has no eScore.
  * (A.k.a. Powering Down)
  */
-export interface WithdrawVestingOperation extends Operation {
-    0: 'withdraw_vesting' // 4
+export interface withdrawESCORasECOOperation extends Operation {
+    0: 'withdrawESCOR' // 4
     1: {
         account: string // account_name_type
         /**
-         * Amount to power down, must be EZP.
+         * Amount to power down, must be ESCOR.
          */
-        vesting_shares: string | Asset
+        eScore: string | Asset
     }
 }
 
@@ -839,7 +839,7 @@ export interface WithdrawVestingOperation extends Operation {
  *
  * If the owner isn't a witness they will become a witness.  Witnesses
  * are charged a fee equal to 1 weeks worth of witness pay which in
- * turn is derived from the current share supply.  The fee is
+ * turn is derived from the current eScore supply.  The fee is
  * only applied if the owner is not already a witness.
  *
  * If the block_signing_key is null then the witness is removed from

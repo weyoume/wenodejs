@@ -1,5 +1,5 @@
 /**
- * @file Steem protocol serialization.
+ * @file Ezira protocol serialization.
  * @author Johan Nordberg <code@johan-nordberg.com>
  * @license
  * Copyright (c) 2017 Johan Nordberg. All Rights Reserved.
@@ -202,7 +202,7 @@ const SignedBlockHeaderSerializer = ObjectSerializer([
 const ChainPropertiesSerializer = ObjectSerializer([
     ['account_creation_fee', AssetSerializer],
     ['maximum_block_size', UInt32Serializer],
-    ['EZD_interest_rate', UInt16Serializer],
+    ['EUSD_interest_rate', UInt16Serializer],
 ])
 
 const OperationDataSerializer = (operationId: number, definitions: Array<[string, Serializer]>) => {
@@ -215,37 +215,37 @@ const OperationDataSerializer = (operationId: number, definitions: Array<[string
 
 const OperationSerializers: {[name: string]: Serializer} = {}
 
-OperationSerializers.account_create = OperationDataSerializer(9, [
+OperationSerializers.accountCreate = OperationDataSerializer(9, [
     ['fee', AssetSerializer],
     ['creator', StringSerializer],
-    ['new_account_name', StringSerializer],
+    ['newAccountName', StringSerializer],
     ['owner', AuthoritySerializer],
     ['active', AuthoritySerializer],
     ['posting', AuthoritySerializer],
-    ['memo_key', PublicKeySerializer],
-    ['json_metadata', StringSerializer],
+    ['memoKey', PublicKeySerializer],
+    ['json', StringSerializer],
 ])
 
-OperationSerializers.account_create_with_delegation = OperationDataSerializer(41, [
+OperationSerializers.accountCreateWithDelegation = OperationDataSerializer(41, [
     ['fee', AssetSerializer],
     ['delegation', AssetSerializer],
     ['creator', StringSerializer],
-    ['new_account_name', StringSerializer],
+    ['newAccountName', StringSerializer],
     ['owner', AuthoritySerializer],
     ['active', AuthoritySerializer],
     ['posting', AuthoritySerializer],
-    ['memo_key', PublicKeySerializer],
-    ['json_metadata', StringSerializer],
+    ['memoKey', PublicKeySerializer],
+    ['json', StringSerializer],
     ['extensions', ArraySerializer(VoidSerializer)],
 ])
 
-OperationSerializers.account_update = OperationDataSerializer(10, [
+OperationSerializers.accountUpdate = OperationDataSerializer(10, [
     ['account', StringSerializer],
     ['owner', OptionalSerializer(AuthoritySerializer)],
     ['active', OptionalSerializer(AuthoritySerializer)],
     ['posting', OptionalSerializer(AuthoritySerializer)],
-    ['memo_key', PublicKeySerializer],
-    ['json_metadata', StringSerializer],
+    ['memoKey', PublicKeySerializer],
+    ['json', StringSerializer],
 ])
 
 OperationSerializers.account_witness_proxy = OperationDataSerializer(13, [
@@ -253,13 +253,13 @@ OperationSerializers.account_witness_proxy = OperationDataSerializer(13, [
     ['proxy', StringSerializer],
 ])
 
-OperationSerializers.account_witness_vote = OperationDataSerializer(12, [
+OperationSerializers.accountWitnessVote = OperationDataSerializer(12, [
     ['account', StringSerializer],
     ['witness', StringSerializer],
     ['approve', BooleanSerializer],
 ])
 
-OperationSerializers.cancel_transfer_from_savings = OperationDataSerializer(34, [
+OperationSerializers.cancelTransferFromSavings = OperationDataSerializer(34, [
     ['from', StringSerializer],
     ['request_id', UInt32Serializer],
 ])
@@ -270,17 +270,17 @@ OperationSerializers.challenge_authority = OperationDataSerializer(22, [
     ['require_owner', BooleanSerializer],
 ])
 
-OperationSerializers.change_recovery_account = OperationDataSerializer(26, [
-    ['account_to_recover', StringSerializer],
-    ['new_recovery_account', StringSerializer],
+OperationSerializers.change_recoveryAccount = OperationDataSerializer(26, [
+    ['accountToRecover', StringSerializer],
+    ['new_recoveryAccount', StringSerializer],
     ['extensions', ArraySerializer(VoidSerializer)],
 ])
 
-OperationSerializers.claim_reward_balance = OperationDataSerializer(39, [
+OperationSerializers.claimRewardBalance = OperationDataSerializer(39, [
     ['account', StringSerializer],
-    ['reward_ECO', AssetSerializer],
-    ['reward_EZD', AssetSerializer],
-    ['reward_EZP', AssetSerializer],
+    ['ECOreward', AssetSerializer],
+    ['EUSDreward', AssetSerializer],
+    ['ESCORreward', AssetSerializer],
 ])
 
 OperationSerializers.comment = OperationDataSerializer(1, [
@@ -290,16 +290,16 @@ OperationSerializers.comment = OperationDataSerializer(1, [
     ['permlink', StringSerializer],
     ['title', StringSerializer],
     ['body', StringSerializer],
-    ['json_metadata', StringSerializer],
+    ['json', StringSerializer],
 ])
 
 OperationSerializers.comment_options = OperationDataSerializer(19, [
     ['author', StringSerializer],
     ['permlink', StringSerializer],
     ['max_accepted_payout', AssetSerializer],
-    ['percent_EZD', UInt16Serializer],
+    ['percent_EUSD', UInt16Serializer],
     ['allow_votes', BooleanSerializer],
-    ['allow_curation_rewards', BooleanSerializer],
+    ['allow_curationRewards', BooleanSerializer],
     ['extensions', ArraySerializer(
         StaticVariantSerializer([ObjectSerializer(
             [['beneficiaries', ArraySerializer(BeneficiarySerializer)]],
@@ -328,7 +328,7 @@ OperationSerializers.custom_binary = OperationDataSerializer(35, [
     ['data', BinarySerializer()],
 ])
 
-OperationSerializers.custom_json = OperationDataSerializer(18, [
+OperationSerializers.customJson = OperationDataSerializer(18, [
     ['required_auths', ArraySerializer(StringSerializer)],
     ['required_posting_auths', ArraySerializer(StringSerializer)],
     ['id', StringSerializer],
@@ -340,13 +340,13 @@ OperationSerializers.decline_voting_rights = OperationDataSerializer(36, [
     ['decline', BooleanSerializer],
 ])
 
-OperationSerializers.delegate_vesting_shares = OperationDataSerializer(40, [
+OperationSerializers.delegateESCOR = OperationDataSerializer(40, [
     ['delegator', StringSerializer],
     ['delegatee', StringSerializer],
-    ['vesting_shares', AssetSerializer],
+    ['ESCOR', AssetSerializer],
 ])
 
-OperationSerializers.delete_comment = OperationDataSerializer(17, [
+OperationSerializers.deleteComment = OperationDataSerializer(17, [
     ['author', StringSerializer],
     ['permlink', StringSerializer],
 ])
@@ -375,8 +375,8 @@ OperationSerializers.escrow_release = OperationDataSerializer(29, [
     ['who', StringSerializer],
     ['receiver', StringSerializer],
     ['escrow_id', UInt32Serializer],
-    ['EZD_amount', AssetSerializer],
-    ['ECO_amount', AssetSerializer],
+    ['EUSDamount', AssetSerializer],
+    ['ECOamount', AssetSerializer],
 ])
 
 OperationSerializers.escrow_transfer = OperationDataSerializer(27, [
@@ -384,12 +384,12 @@ OperationSerializers.escrow_transfer = OperationDataSerializer(27, [
     ['to', StringSerializer],
     ['agent', StringSerializer],
     ['escrow_id', UInt32Serializer],
-    ['EZD_amount', AssetSerializer],
-    ['ECO_amount', AssetSerializer],
+    ['EUSDamount', AssetSerializer],
+    ['ECOamount', AssetSerializer],
     ['fee', AssetSerializer],
     ['ratification_deadline', DateSerializer],
     ['escrow_expiration', DateSerializer],
-    ['json_meta', StringSerializer],
+    ['json', StringSerializer],
 ])
 
 OperationSerializers.feed_publish = OperationDataSerializer(7, [
@@ -426,7 +426,7 @@ OperationSerializers.prove_authority = OperationDataSerializer(23, [
 ])
 
 OperationSerializers.recover_account = OperationDataSerializer(25, [
-    ['account_to_recover', StringSerializer],
+    ['accountToRecover', StringSerializer],
     ['new_owner_authority', AuthoritySerializer],
     ['recent_owner_authority', AuthoritySerializer],
     ['extensions', ArraySerializer(VoidSerializer)],
@@ -439,8 +439,8 @@ OperationSerializers.report_over_production = OperationDataSerializer(16, [
 ])
 
 OperationSerializers.request_account_recovery = OperationDataSerializer(24, [
-    ['recovery_account', StringSerializer],
-    ['account_to_recover', StringSerializer],
+    ['recoveryAccount', StringSerializer],
+    ['accountToRecover', StringSerializer],
     ['new_owner_authority', AuthoritySerializer],
     ['extensions', ArraySerializer(VoidSerializer)],
 ])
@@ -457,11 +457,11 @@ OperationSerializers.set_reset_account = OperationDataSerializer(38, [
     ['reset_account', StringSerializer],
 ])
 
-OperationSerializers.set_withdraw_vesting_route = OperationDataSerializer(20, [
+OperationSerializers.setWithdrawESCORasECOroute = OperationDataSerializer(20, [
     ['from_account', StringSerializer],
     ['to_account', StringSerializer],
     ['percent', UInt16Serializer],
-    ['auto_vest', BooleanSerializer],
+    ['autoESCOR', BooleanSerializer],
 ])
 
 OperationSerializers.transfer = OperationDataSerializer(2, [
@@ -471,7 +471,7 @@ OperationSerializers.transfer = OperationDataSerializer(2, [
     ['memo', StringSerializer],
 ])
 
-OperationSerializers.transfer_from_savings = OperationDataSerializer(33, [
+OperationSerializers.transferFromSavings = OperationDataSerializer(33, [
     ['from', StringSerializer],
     ['request_id', UInt32Serializer],
     ['to', StringSerializer],
@@ -479,14 +479,14 @@ OperationSerializers.transfer_from_savings = OperationDataSerializer(33, [
     ['memo', StringSerializer],
 ])
 
-OperationSerializers.transfer_to_savings = OperationDataSerializer(32, [
+OperationSerializers.transferToSavings = OperationDataSerializer(32, [
     ['from', StringSerializer],
     ['to', StringSerializer],
     ['amount', AssetSerializer],
     ['memo', StringSerializer],
 ])
 
-OperationSerializers.transfer_to_vesting = OperationDataSerializer(3, [
+OperationSerializers.transferECOtoESCORfund = OperationDataSerializer(3, [
     ['from', StringSerializer],
     ['to', StringSerializer],
     ['amount', AssetSerializer],
@@ -499,9 +499,9 @@ OperationSerializers.vote = OperationDataSerializer(0, [
     ['weight', Int16Serializer],
 ])
 
-OperationSerializers.withdraw_vesting = OperationDataSerializer(4, [
+OperationSerializers.withdrawESCOR = OperationDataSerializer(4, [
     ['account', StringSerializer],
-    ['vesting_shares', AssetSerializer],
+    ['ESCOR', AssetSerializer],
 ])
 
 OperationSerializers.witness_update = OperationDataSerializer(11, [

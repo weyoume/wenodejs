@@ -38,8 +38,8 @@ import * as assert from 'assert'
 import {Client} from './../client'
 import {cryptoUtils, PrivateKey, PublicKey} from './../crypto'
 import {Authority, AuthorityType} from './../eznode/account'
-import {Asset} from './../steem/asset'
-import {getVestingSharePrice, HexBuffer} from './../steem/misc'
+import {Asset} from './../eznode/asset'
+import {getESCORPriceinECO, HexBuffer} from './../eznode/misc'
 import {
     AccountCreateOperation,
     AccountCreateWithDelegationOperation,
@@ -47,12 +47,12 @@ import {
     CommentOperation,
     CommentOptionsOperation,
     CustomJsonOperation,
-    DelegateVestingSharesOperation,
+    DelegateESCOROperation,
     Operation,
     TransferOperation,
     VoteOperation,
-} from './../steem/operation'
-import {SignedTransaction, Transaction, TransactionConfirmation} from './../steem/transaction'
+} from './../eznode/operation'
+import {SignedTransaction, Transaction, TransactionConfirmation} from './../eznode/transaction'
 
 export interface CreateAccountOptions {
     /**
@@ -83,7 +83,7 @@ export interface CreateAccountOptions {
      */
     fee?: string | Asset | number
     /**
-     * Account delegation, amount of EZP to delegate to the new account.
+     * Account delegation, amount of ESCOR to delegate to the new account.
      * If omitted the delegation amount will be the lowest possible based
      * on the fee. Can be set to zero to disable delegation.
      */
@@ -152,11 +152,11 @@ export class BroadcastAPI {
 
     /**
      * Broadcast custom JSON.
-     * @param data The custom_json operation payload.
+     * @param data The customJson operation payload.
      * @param key Private posting or active key.
      */
     public async json(data: CustomJsonOperation[1], key: PrivateKey) {
-        const op: Operation = ['custom_json', data]
+        const op: Operation = ['customJson', data]
         return this.sendOperations([op], key)
     }
 
@@ -168,7 +168,7 @@ export class BroadcastAPI {
     public async createAccount(options: CreateAccountOptions, key: PrivateKey) {
         const {username, metadata, creator} = options
         const prefix = this.client.addressPrefix
-        let owner: Authority, active: Authority, posting: Authority, memo_key: PublicKey
+        let owner: Authority, active: Authority, posting: Authority, memoKey: PublicKey
         if (options.password) {
             const ownerKey = PrivateKey.fromLogin(username, options.password, 'owner').createPublic(prefix)
             owner = Authority.from(ownerKey)
@@ -176,12 +176,12 @@ export class BroadcastAPI {
             active = Authority.from(activeKey)
             const postingKey = PrivateKey.fromLogin(username, options.password, 'posting').createPublic(prefix)
             posting = Authority.from(postingKey)
-            memo_key = PrivateKey.fromLogin(username, options.password, 'memo').createPublic(prefix)
+            memoKey = PrivateKey.fromLogin(username, options.password, 'memo').createPublic(prefix)
         } else if (options.auths) {
             owner = Authority.from(options.auths.owner)
             active = Authority.from(options.auths.active)
             posting = Authority.from(options.auths.posting)
-            memo_key = PublicKey.from(options.auths.memoKey)
+            memoKey = PublicKey.from(options.auths.memoKey)
         } else {
             throw new Error('Must specify either password or auths')
         }
@@ -193,37 +193,37 @@ export class BroadcastAPI {
                 this.client.database.getChainProperties(),
             ])
 
-            const sharePrice = getVestingSharePrice(dynamicProps)
+            const ESCORprice = getESCORPriceinECO(dynamicProps)
             const creationFee = Asset.from(chainProps.account_creation_fee)
-            const modifier = 30 // STEEMIT_CREATE_ACCOUNT_WITH_STEEM_MODIFIER
-            const ratio = 5 // STEEMIT_CREATE_ACCOUNT_DELEGATION_RATIO
+            const modifier = 30 // CREATE_ACCOUNT_WITH_ECO_MODIFIER
+            const ratio = 5 // CREATE_ACCOUNT_DELEGATION_RATIO
 
-            const targetDelegation = sharePrice
+            const targetDelegation = ESCORprice
                 .convert(creationFee.multiply(modifier * ratio))
-                .add('0.000002 EZP') // add a tiny buffer since we are trying to hit a moving target
+                .add('0.000002 ESCOR') // add a tiny buffer since we are trying to hit a moving target
 
             if (delegation !== undefined && fee === undefined) {
-                delegation = Asset.from(delegation, 'EZP')
+                delegation = Asset.from(delegation, 'ESCOR')
                 fee = Asset.max(
-                    sharePrice.convert(targetDelegation.subtract(delegation)).divide(ratio),
+                    ESCORprice.convert(targetDelegation.subtract(delegation)).divide(ratio),
                     creationFee,
                 )
             } else {
-                fee = Asset.from(fee || creationFee, 'STEEM')
+                fee = Asset.from(fee || creationFee, 'ECO')
                 delegation = Asset.max(
-                    targetDelegation.subtract(sharePrice.convert(fee.multiply(ratio))),
-                    Asset.from(0, 'EZP'),
+                    targetDelegation.subtract(ESCORprice.convert(fee.multiply(ratio))),
+                    Asset.from(0, 'ESCOR'),
                 )
             }
         }
-        const op: AccountCreateWithDelegationOperation = ['account_create_with_delegation', {
+        const op: AccountCreateWithDelegationOperation = ['accountCreateWithDelegation', {
             active, creator,
-            delegation: Asset.from(delegation, 'EZP'),
+            delegation: Asset.from(delegation, 'ESCOR'),
             extensions: [],
-            fee: Asset.from(fee, 'STEEM'),
-            json_metadata: metadata ? JSON.stringify(metadata) : '',
-            memo_key,
-            new_account_name: username,
+            fee: Asset.from(fee, 'ECO'),
+            json: metadata ? JSON.stringify(metadata) : '',
+            memoKey,
+            newAccountName: username,
             owner, posting,
         }]
         return this.sendOperations([op], key)
@@ -231,29 +231,29 @@ export class BroadcastAPI {
 
     /**
      * Update account.
-     * @param data The account_update payload.
+     * @param data The accountUpdate payload.
      * @param key The private key of the account affected, should be the corresponding
      *            key level or higher for updating account authorities.
      */
     public async updateAccount(data: AccountUpdateOperation[1], key: PrivateKey) {
-        const op: Operation = ['account_update', data]
+        const op: Operation = ['accountUpdate', data]
         return this.sendOperations([op], key)
     }
 
     /**
-     * Delegate vesting shares from one account to the other. The vesting shares are still owned
+     * Delegate eScore from one account to the other. The eScore are still owned
      * by the original account, but content voting rights and bandwidth allocation are transferred
-     * to the receiving account. This sets the delegation to `vesting_shares`, increasing it or
+     * to the receiving account. This sets the delegation to `eScore`, increasing it or
      * decreasing it as needed. (i.e. a delegation of 0 removes the delegation)
      *
-     * When a delegation is removed the shares are placed in limbo for a week to prevent a satoshi
-     * of EZP from voting on the same content twice.
+     * When a delegation is removed the eScore are placed in limbo for a week to prevent a satoshi
+     * of ESCOR from voting on the same content twice.
      *
      * @param options Delegation options.
      * @param key Private active key of the delegator.
      */
-    public async delegateVestingShares(options: DelegateVestingSharesOperation[1], key: PrivateKey) {
-        const op: Operation = ['delegate_vesting_shares', options]
+    public async delegateESCOR(options: DelegateESCOROperation[1], key: PrivateKey) {
+        const op: Operation = ['delegateESCOR', options]
         return this.sendOperations([op], key)
     }
 

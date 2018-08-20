@@ -2,7 +2,7 @@
 vote-vot
 ========
 
-Simple steemit copycat votebot.
+Simple Ezira copycat votebot.
 
 Usage
 -----

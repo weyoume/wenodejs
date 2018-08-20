@@ -1,1 +1,1 @@
-Served at <https://jnordberg.github.io/eznode.js/>
+Served at <https://eziranetwork.github.io/eznode.js/>

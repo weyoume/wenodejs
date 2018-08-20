@@ -1,5 +1,5 @@
 /**
- * @file Steem RPC client implementation.
+ * @file Ezira RPC client implementation.
  * @author Johan Nordberg <code@johan-nordberg.com>
  * @license
  * Copyright (c) 2017 Johan Nordberg. All Rights Reserved.
@@ -48,12 +48,12 @@ import {copy, retryingFetch, waitForEvent} from './utils'
 export const VERSION = packageVersion
 
 /**
- * Main steem network chain id.
+ * Main Ezchain id.
  */
 export const DEFAULT_CHAIN_ID = Buffer.from('0000000000000000000000000000000000000000000000000000000000000000', 'hex')
 
 /**
- * Main steem network address prefix.
+ * Main Ezchain address prefix.
  */
 export const DEFAULT_ADDRESS_PREFIX = 'STM'
 
@@ -112,12 +112,12 @@ interface PendingRequest {
  */
 export interface ClientOptions {
     /**
-     * Steem chain id. Defaults to main steem network:
+     * Ezchain id. Defaults to main Ezira Network:
      * `0000000000000000000000000000000000000000000000000000000000000000`
      */
     chainId?: string
     /**
-     * Steem address prefix. Defaults to main steem network:
+     * Ezchain address prefix. Defaults to main Ezira Network:
      * `STM`
      */
     addressPrefix?: string
@@ -159,7 +159,7 @@ export class Client {
         }
         opts.addressPrefix = 'STX'
         opts.chainId = '79276aea5d4877d9a25892eaa01b0adf019d3e5cb12a97478df3298ccdd01673'
-        return new Client('https://testnet.steem.vc', opts)
+        return new Client('https://testnet.ezira.io', opts)
     }
 
     /**
@@ -168,7 +168,7 @@ export class Client {
     public readonly options: ClientOptions
 
     /**
-     * Address to Steem RPC server, *read-only*.
+     * Address to Ezchain RPC server, *read-only*.
      */
     public readonly address: string
 
@@ -202,7 +202,7 @@ export class Client {
     private backoff: typeof defaultBackoff
 
     /**
-     * @param address The address to the Steem RPC server, e.g. `https://api.steemit.com`.
+     * @param address The address to the Ezchain RPC server, e.g. `https://api.ezira.io`.
      * @param options Client options.
      */
     constructor(address: string, options: ClientOptions = {}) {
