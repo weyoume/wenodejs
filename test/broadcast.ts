@@ -18,7 +18,7 @@ describe('broadcast', function() {
         [acc1, acc2] = await getTestnetAccounts()
     })
 
-    const postPermlink = `eznode.js-test-${ randomString(7) }`
+    const postPermlink = `wenodejs-test-${ randomString(7) }`
 
     it('should broadcast', async function() {
         const key = PrivateKey.fromLogin(acc1.username, acc1.password, 'posting')

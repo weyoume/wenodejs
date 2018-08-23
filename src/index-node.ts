@@ -1,5 +1,5 @@
 /**
- * @file eznode.js entry point for node.js.
+ * @file wenodejs entry point for node.js.
  * @author Johan Nordberg <code@johan-nordberg.com>
  * @license
  * Copyright (c) 2017 Johan Nordberg. All Rights Reserved.

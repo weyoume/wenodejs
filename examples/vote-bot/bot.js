@@ -1,4 +1,4 @@
-const eznode.js = require('eznode.js')
+const wenodejs = require('wenodejs')
 
 // bot is configured with enviroment variables
 
@@ -11,16 +11,16 @@ const FOLLOW_USER = process.env['FOLLOW_USER'] || die('FOLLOW_USER missing')
 // and the vote weight to use, 10000 = 100%
 const VOTE_WEIGHT = process.env['VOTE_WEIGHT'] ? parseInt(process.env['VOTE_WEIGHT']) : 10000
 
-// setup the eznode.js client, you can use other nodes, for example peer's public node at https://peer.ezira.io:8090
-const client = new eznode.js.Client('https://api.ezira.io')
+// setup the wenodejs client, you can use other nodes, for example peer's public node at https://peer.ezira.io:8090
+const client = new wenodejs.Client('https://api.ezira.io')
 
 // deserialize the posting key (in wif format, same format as you find on the alpha.ezira.io interface)
-const key = eznode.js.PrivateKey.from(POSTING_KEY)
+const key = wenodejs.PrivateKey.from(POSTING_KEY)
 
 // create a new readable stream with all operations, we use the 'latest' mode since
 // we don't care about reversed block that much for a simple vote bot
 // and this will make it react faster to the votes of it's master
-const stream = client.blockchain.getOperationsStream({mode: eznode.js.BlockchainMode.Latest})
+const stream = client.blockchain.getOperationsStream({mode: wenodejs.BlockchainMode.Latest})
 
 console.log(`Following ${ FOLLOW_USER } with ${ VOTE_WEIGHT / 100 }% vote weight`)
 

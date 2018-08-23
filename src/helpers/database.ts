@@ -34,7 +34,7 @@
  */
 
 import {Client} from './../client'
-import {ExtendedAccount} from './../eznode/account'
+import {ExtendedAccount} from './../node/account'
 import {Asset, Price} from './../ezira/asset'
 import {BlockHeader, SignedBlock} from './../ezira/block'
 import {Discussion} from './../ezira/comment'
@@ -134,7 +134,7 @@ export class DatabaseAPI {
 
     /**
      * Return server config. See:
-     * https://github.com/eziranetwork/ezira/blob/master/libraries/protocol/include/eznode/protocol/config.hpp
+     * https://github.com/eziranetwork/ezira/blob/master/libraries/protocol/include/node/protocol/config.hpp
      */
     public getConfig(): Promise<{[name: string]: string|number|boolean}> {
         return this.call('get_config')

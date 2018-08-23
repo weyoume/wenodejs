@@ -1,6 +1,6 @@
 {
   "private": true,
   "dependencies": {
-    "eznode.js": "^0.8.1"
+    "wenodejs": "^0.8.1"
   }
 }

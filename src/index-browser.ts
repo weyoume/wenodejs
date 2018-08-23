@@ -1,5 +1,5 @@
 /**
- * @file eznode.js entry point for browsers.
+ * @file wenodejs entry point for browsers.
  * @author Johan Nordberg <code@johan-nordberg.com>
  * @license
  * Copyright (c) 2017 Johan Nordberg. All Rights Reserved.

@@ -2,7 +2,7 @@ Arguments:
   /Users/lopu/.nvm/versions/node/v8.11.2/bin/node /usr/local/Cellar/yarn/1.7.0/libexec/bin/yarn.js install --non-interactive --frozen-lockfile
 
 PATH: 
-  ./node_modules/.bin:/Users/lopu/.nvm/versions/node/v8.11.2/lib/node_modules/npm/node_modules/npm-lifecycle/node-gyp-bin:/Users/lopu/State/git/eziranetwork/eznode.js/dev-eznode.js/node_modules/.bin:/opt/local/bin:/opt/local/sbin:/opt/local/bin:/opt/local/sbin:/opt/local/bin:/opt/local/sbin:/opt/local/bin:/opt/local/sbin:/opt/local/bin:/opt/local/sbin:/opt/local/bin:/opt/local/sbin:/opt/local/bin:/opt/local/sbin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code:/Library/Frameworks/Python.framework/Versions/3.5/bin:/usr/local/opt/openssl/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/MacGPG2/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Users/lopu/.nvm/versions/node/v8.11.2/bin:/opt/local/bin:/opt/local/sbin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code:/Library/Frameworks/Python.framework/Versions/3.5/bin:/usr/local/opt/openssl/bin:/usr/local/sbin
+  ./node_modules/.bin:/Users/lopu/.nvm/versions/node/v8.11.2/lib/node_modules/npm/node_modules/npm-lifecycle/node-gyp-bin:/Users/lopu/State/git/eziranetwork/wenodejs/dev-wenodejs/node_modules/.bin:/opt/local/bin:/opt/local/sbin:/opt/local/bin:/opt/local/sbin:/opt/local/bin:/opt/local/sbin:/opt/local/bin:/opt/local/sbin:/opt/local/bin:/opt/local/sbin:/opt/local/bin:/opt/local/sbin:/opt/local/bin:/opt/local/sbin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code:/Library/Frameworks/Python.framework/Versions/3.5/bin:/usr/local/opt/openssl/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/MacGPG2/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Users/lopu/.nvm/versions/node/v8.11.2/bin:/opt/local/bin:/opt/local/sbin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code:/Library/Frameworks/Python.framework/Versions/3.5/bin:/usr/local/opt/openssl/bin:/usr/local/sbin
 
 Yarn version: 
   1.7.0
@@ -20,7 +20,7 @@ Trace:
 
 npm manifest: 
   {
-    "name": "eznode.js",
+    "name": "wenodejs",
     "version": "0.9.111",
     "description": "Ezira blockchain RPC client library",
     "author": "Johan Nordberg",
@@ -28,8 +28,8 @@ npm manifest:
     "main": "./lib/index-node",
     "typings": "./lib/index",
     "browser": {
-      "./lib/index-node": "./dist/eznode.js",
-      "./src/index-node": "./dist/eznode.js",
+      "./lib/index-node": "./dist/nodejs",
+      "./src/index-node": "./dist/nodejs",
       "./src/version": "./lib/version.js"
     },
     "files": [
@@ -38,7 +38,7 @@ npm manifest:
     ],
     "repository": {
       "type": "git",
-      "url": "https://github.com/eziranetwork/eznode.js"
+      "url": "https://github.com/eziranetwork/wenodejs"
     },
     "scripts": {
       "test": "make ci-test",
@@ -50,8 +50,8 @@ npm manifest:
       "rpc",
       "ezira",
   		"eziranetwork",
-  		"eznode",
-  		"eznode.js",
+  		"node",
+  		"wenodejs",
   		"ezira protocol"
     ],
     "dependencies": {

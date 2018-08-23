@@ -1,5 +1,5 @@
 {
-  "name": "eznode.js",
+  "name": "wenodejs",
   "version": "0.9.111",
   "description": "Ezira blockchain RPC client library",
   "author": "Lopu",
@@ -7,8 +7,8 @@
   "main": "./lib/index-node",
   "typings": "./lib/index",
   "browser": {
-    "./lib/index-node": "./dist/eznode.js",
-    "./src/index-node": "./dist/eznode.js",
+    "./lib/index-node": "./dist/nodejs",
+    "./src/index-node": "./dist/nodejs",
     "./src/version": "./lib/version.js"
   },
   "files": [
@@ -17,7 +17,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/eziranetwork/eznode.js"
+    "url": "https://github.com/eziranetwork/wenodejs"
   },
   "scripts": {
     "test": "make ci-test",
@@ -29,8 +29,8 @@
     "rpc",
     "ezira",
     "eziranetwork",
-    "eznode",
-    "eznode.js",
+    "node",
+    "wenodejs",
     "ezira protocol"
   ],
   "dependencies": {

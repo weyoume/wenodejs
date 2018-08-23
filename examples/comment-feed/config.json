@@ -15,7 +15,7 @@
     "watchify": false,
     "extensions": [".ts"],
     "plugins": ["tsify"],
-    "staticLibs": ["eznode.js"],
+    "staticLibs": ["wenodejs"],
     "staticLibsBundle": true
   },
   "stylus": {

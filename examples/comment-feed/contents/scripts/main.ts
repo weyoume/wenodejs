@@ -1,5 +1,5 @@
 
-import {Client, BlockchainMode} from 'eznode.js'
+import {Client, BlockchainMode} from 'node'
 
 import * as removeMarkdown from 'remove-markdown'
 

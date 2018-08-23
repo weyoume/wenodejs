@@ -37,9 +37,9 @@ import * as assert from 'assert'
 
 import {Client} from './../client'
 import {cryptoUtils, PrivateKey, PublicKey} from './../crypto'
-import {Authority, AuthorityType} from './../eznode/account'
-import {Asset} from './../eznode/asset'
-import {getESCORPriceinECO, HexBuffer} from './../eznode/misc'
+import {Authority, AuthorityType} from './../node/account'
+import {Asset} from './../node/asset'
+import {getESCORPriceinECO, HexBuffer} from './../node/misc'
 import {
     AccountCreateOperation,
     AccountCreateWithDelegationOperation,
@@ -51,8 +51,8 @@ import {
     Operation,
     TransferOperation,
     VoteOperation,
-} from './../eznode/operation'
-import {SignedTransaction, Transaction, TransactionConfirmation} from './../eznode/transaction'
+} from './../node/operation'
+import {SignedTransaction, Transaction, TransactionConfirmation} from './../node/transaction'
 
 export interface CreateAccountOptions {
     /**

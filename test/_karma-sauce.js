@@ -231,7 +231,7 @@ config.set({
     captureTimeout: 0,
     browserNoActivityTimeout: 1000 * 60 * 5,
     sauceLabs: {
-        testName: 'eziranetwork/eznode.js',
+        testName: 'eziranetwork/wenodejs',
         connectOptions: {tunnelDomains: 'localhost,127.0.0.1'}
     },
     concurrency: 5,

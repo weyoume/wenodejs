@@ -246,7 +246,7 @@ export class Client {
         const opts: any = {
             body,
             cache: 'no-cache',
-            headers: {'User-Agent': `eznode.js/${ packageVersion }`},
+            headers: {'User-Agent': `wenodejs/${ packageVersion }`},
             method: 'POST',
             mode: 'cors',
         }

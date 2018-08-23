@@ -37,7 +37,7 @@ export function randomString(length: number) {
 
 export async function createAccount(): Promise<{username: string, password: string}> {
     const password = randomString(32)
-    const username = `eznode.js-${ randomString(9) }`
+    const username = `wenodejs-${ randomString(9) }`
     const response = await fetch('https://testnet.ezira.io/create', {
         method: 'POST',
         body: `username=${ username }&password=${ password }`,

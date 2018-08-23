@@ -1,5 +1,5 @@
 /**
- * @file eznode.js exports.
+ * @file wenodejs exports.
  * @author Johan Nordberg <code@johan-nordberg.com>
  * @license
  * Copyright (c) 2017 Johan Nordberg. All Rights Reserved.
@@ -39,7 +39,7 @@ export {utils}
 export * from './helpers/blockchain'
 export * from './helpers/database'
 
-export * from './eznode/account'
+export * from './node/account'
 export * from './ezira/asset'
 export * from './ezira/block'
 export * from './ezira/comment'

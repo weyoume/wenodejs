@@ -1,12 +1,12 @@
 
-# [eznode.js](https://github.com/eziranetwork/eznode.js) [![Build Status](https://img.shields.io/circleci/project/github/eziranetwork/eznode.js.svg?style=flat-square)](https://circleci.com/gh/eziranetwork/workflows/eznode.js) [![Coverage Status](https://img.shields.io/coveralls/eziranetwork/eznode.js.svg?style=flat-square)](https://coveralls.io/github/eziranetwork/eznode.js?branch=master) [![Package Version](https://img.shields.io/npm/v/eznode.js.svg?style=flat-square)](https://www.npmjs.com/package/eznode.js)
+# [wenodejs](https://github.com/eziranetwork/wenodejs) [![Build Status](https://img.shields.io/circleci/project/github/eziranetwork/wenodejs.svg?style=flat-square)](https://circleci.com/gh/eziranetwork/workflows/wenodejs) [![Coverage Status](https://img.shields.io/coveralls/eziranetwork/wenodejs.svg?style=flat-square)](https://coveralls.io/github/eziranetwork/wenodejs?branch=master) [![Package Version](https://img.shields.io/npm/v/wenodejs.svg?style=flat-square)](https://www.npmjs.com/package/wenodejs)
 
 Robust [ezira blockchain](https://ezira.io) client library that runs in both node.js and the browser.
 
-* [Demo](https://comments.steem.vc) ([source](https://github.com/eziranetwork/eznode.js/tree/master/examples/comment-feed))
+* [Demo](https://comments.steem.vc) ([source](https://github.com/eziranetwork/wenodejs/tree/master/examples/comment-feed))
 * [Code playground](https://playground.steem.vc)
-* [Documentation](https://eziranetwork.github.io/eznode.js/)
-* [Bug tracker](https://github.com/eziranetwork/eznode.js/issues)
+* [Documentation](https://eziranetwork.github.io/wenodejs/)
+* [Bug tracker](https://github.com/eziranetwork/wenodejs/issues)
 
 ---
 
@@ -18,7 +18,7 @@ Robust [ezira blockchain](https://ezira.io) client library that runs in both nod
 Browser compatibility
 ---------------------
 
-[![Build Status](https://saucelabs.com/browser-matrix/eziranetwork-eznode.js.svg)](https://saucelabs.com/open_sauce/user/eziranetwork-eznode.js)
+[![Build Status](https://saucelabs.com/browser-matrix/eziranetwork-wenodejs.svg)](https://saucelabs.com/open_sauce/user/eziranetwork-wenodejs)
 
 
 Installation
@@ -29,24 +29,24 @@ Installation
 For node.js or the browser with [browserify](https://github.com/substack/node-browserify) or [webpack](https://github.com/webpack/webpack).
 
 ```
-npm install eznode.js
+npm install wenodejs
 ```
 
 ### From cdn or self-hosted script
 
-Grab `dist/eznode.js` from a [release](https://github.com/eziranetwork/eznode.js/releases) and include in your html:
+Grab `dist/nodejs` from a [release](https://github.com/eziranetwork/wenodejs/releases) and include in your html:
 
 ```html
-<script src="eznode.js"></script>
+<script src="wenodejs"></script>
 ```
 
 Or from the [unpkg](https://unpkg.com) cdn:
 
 ```html
-<script src="https://unpkg.com/eznode.js@^0.8.0/dist/eznode.js"></script>
+<script src="https://unpkg.com/wenodejs@^0.8.0/dist/nodejs"></script>
 ```
 
-Make sure to set the version you want when including from the cdn, you can also use `eznode.js@latest` but that is not always desirable. See [unpkg.com](https://unpkg.com) for more information.
+Make sure to set the version you want when including from the cdn, you can also use `wenodejs@latest` but that is not always desirable. See [unpkg.com](https://unpkg.com) for more information.
 
 
 Usage
@@ -55,9 +55,9 @@ Usage
 ### In the browser
 
 ```html
-<script src="https://unpkg.com/eznode.js@latest/dist/eznode.js"></script>
+<script src="https://unpkg.com/wenodejs@latest/dist/nodejs"></script>
 <script>
-    var client = new eznode.js.Client('https://api.ezira.io')
+    var client = new wenodejs.Client('https://api.ezira.io')
     client.database.getDiscussions('trending', {tag: 'writing', limit: 1}).then(function(discussions){
         document.body.innerHTML += '<h1>' + discussions[0].title + '</h1>'
         document.body.innerHTML += '<h2>by ' + discussions[0].author + '</h2>'
@@ -66,14 +66,14 @@ Usage
 </script>
 ```
 
-See the [demo source](https://github.com/eziranetwork/eznode.js/tree/master/examples/comment-feed) for an example on how to setup a livereloading TypeScript pipeline with [wintersmith](https://github.com/eziranetwork/wintersmith) and [browserify](https://github.com/substack/node-browserify).
+See the [demo source](https://github.com/eziranetwork/wenodejs/tree/master/examples/comment-feed) for an example on how to setup a livereloading TypeScript pipeline with [wintersmith](https://github.com/eziranetwork/wintersmith) and [browserify](https://github.com/substack/node-browserify).
 
 ### In node.js
 
 With TypeScript:
 
 ```typescript
-import {Client} from 'eznode.js'
+import {Client} from 'wenodejs'
 
 const client = new Client('https://api.ezira.io')
 
@@ -85,15 +85,15 @@ for await (const block of client.blockchain.getBlocks()) {
 With JavaScript:
 
 ```javascript
-var eznode.js = require('eznode.js')
+var wenodejs = require('wenodejs')
 
-var client = new eznode.js.Client('https://api.ezira.io')
-var key = eznode.js.PrivateKey.fromLogin('username', 'password', 'posting')
+var client = new wenodejs.Client('https://api.ezira.io')
+var key = wenodejs.PrivateKey.fromLogin('username', 'password', 'posting')
 
 client.broadcast.vote({
     voter: 'username',
     author: 'almost-digital',
-    permlink: 'eznode.js-is-the-best',
+    permlink: 'wenodejs-is-the-best',
     weight: 10000
 }, key).then(function(result){
    console.log('Included in block: ' + result.block_num)
@@ -105,7 +105,7 @@ client.broadcast.vote({
 With ES2016 (node.js 7+):
 
 ```javascript
-const {Client} = require('eznode.js')
+const {Client} = require('wenodejs')
 
 const client = new Client('https://api.ezira.io')
 
@@ -121,11 +121,11 @@ main().catch(console.error)
 With node.js streams:
 
 ```javascript
-var eznode.js = require('eznode.js')
+var wenodejs = require('wenodejs')
 var es = require('event-stream') // npm install event-stream
 var util = require('util')
 
-var client = new eznode.js.Client('https://api.ezira.io')
+var client = new wenodejs.Client('https://api.ezira.io')
 
 var stream = client.blockchain.getBlockStream()
 
@@ -138,9 +138,9 @@ stream.pipe(es.map(function(block, callback) {
 Bundling
 --------
 
-The easiest way to bundle eznode.js (with browserify, webpack etc.) is to just `npm install eznode.js` and `require('eznode.js')` which will give you well-tested (see browser compatibility matrix above) pre-bundled code guaranteed to JustWork™. However, that is not always desirable since it will not allow your bundler to de-duplicate any shared dependencies eznode.js and your app might have.
+The easiest way to bundle wenodejs (with browserify, webpack etc.) is to just `npm install wenodejs` and `require('wenodejs')` which will give you well-tested (see browser compatibility matrix above) pre-bundled code guaranteed to JustWork™. However, that is not always desirable since it will not allow your bundler to de-duplicate any shared dependencies wenodejs and your app might have.
 
-To allow for deduplication you can `require('eznode.js/lib/index-browser')`, or if you plan to provide your own polyfills: `require('eznode.js/lib/index')`. See `src/index-browser.ts` for a list of polyfills expected.
+To allow for deduplication you can `require('wenodejs/lib/index-browser')`, or if you plan to provide your own polyfills: `require('wenodejs/lib/index')`. See `src/index-browser.ts` for a list of polyfills expected.
 
 ---
 
