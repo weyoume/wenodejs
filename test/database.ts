@@ -101,8 +101,8 @@ describe('database api', function() {
 
     it('getESCORdelegations', async function() {
         this.slow(5 * 1000)
-        const [delegation] = await liveClient.database.getESCORdelegations('ezprotocolTestAccount', '', 1)
-        assert.equal(delegation.delegator, 'ezprotocolTestAccount')
+        const [delegation] = await liveClient.database.getESCORdelegations('ProtocolTestAccount', '', 1)
+        assert.equal(delegation.delegator, 'ProtocolTestAccount')
         assert.equal(typeof delegation.id, 'number')
         assert.equal(Asset.from(delegation.ESCOR).symbol, 'ESCOR')
     })

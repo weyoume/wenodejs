@@ -34,14 +34,14 @@
  */
 
 import {Client} from './../client'
-import {ExtendedAccount} from './../node/account'
-import {Asset, Price} from './../ezira/asset'
-import {BlockHeader, SignedBlock} from './../ezira/block'
-import {Discussion} from './../ezira/comment'
-import {DynamicGlobalProperties} from './../ezira/misc'
-import {ChainProperties, ESCORdelegation} from './../ezira/misc'
-import {AppliedOperation} from './../ezira/operation'
-import {SignedTransaction, Transaction, TransactionConfirmation} from './../ezira/transaction'
+import {ExtendedAccount} from './../protocol/account'
+import {Asset, Price} from './../protocol/asset'
+import {BlockHeader, SignedBlock} from './../protocol/block'
+import {Discussion} from './../protocol/comment'
+import {DynamicGlobalProperties} from './../protocol/misc'
+import {ChainProperties, ESCORdelegation} from './../protocol/misc'
+import {AppliedOperation} from './../protocol/operation'
+import {SignedTransaction, Transaction, TransactionConfirmation} from './../protocol/transaction'
 
 /**
  * Possible categories for `get_discussions_by_*`.
@@ -134,7 +134,7 @@ export class DatabaseAPI {
 
     /**
      * Return server config. See:
-     * https://github.com/eziranetwork/ezira/blob/master/libraries/protocol/include/node/protocol/config.hpp
+     * https://github.com/eziranetwork/wenode/blob/master/libraries/protocol/include/node/protocol/config.hpp
      */
     public getConfig(): Promise<{[name: string]: string|number|boolean}> {
         return this.call('get_config')

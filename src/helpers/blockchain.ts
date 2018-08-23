@@ -34,8 +34,8 @@
  */
 
 import {Client} from './../client'
-import {BlockHeader, SignedBlock} from './../ezira/block'
-import {AppliedOperation} from './../ezira/operation'
+import {BlockHeader, SignedBlock} from './../protocol/block'
+import {AppliedOperation} from './../protocol/operation'
 import {iteratorStream, sleep} from './../utils'
 
 export enum BlockchainMode {

@@ -37,9 +37,9 @@ import * as assert from 'assert'
 
 import {Client} from './../client'
 import {cryptoUtils, PrivateKey, PublicKey} from './../crypto'
-import {Authority, AuthorityType} from './../node/account'
-import {Asset} from './../node/asset'
-import {getESCORPriceinECO, HexBuffer} from './../node/misc'
+import {Authority, AuthorityType} from './../protocol/account'
+import {Asset} from './../protocol/asset'
+import {getESCORPriceinECO, HexBuffer} from './../protocol/misc'
 import {
     AccountCreateOperation,
     AccountCreateWithDelegationOperation,
@@ -51,8 +51,8 @@ import {
     Operation,
     TransferOperation,
     VoteOperation,
-} from './../node/operation'
-import {SignedTransaction, Transaction, TransactionConfirmation} from './../node/transaction'
+} from './../protocol/operation'
+import {SignedTransaction, Transaction, TransactionConfirmation} from './../protocol/transaction'
 
 export interface CreateAccountOptions {
     /**

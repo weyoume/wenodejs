@@ -1,5 +1,5 @@
 /**
- * @file Misc EzProtocol type definitions.
+ * @file Misc Network Protocol type definitions.
  * @author Johan Nordberg <code@johan-nordberg.com>
  * @license
  * Copyright (c) 2017 Johan Nordberg. All Rights Reserved.

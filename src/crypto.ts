@@ -41,8 +41,8 @@ import * as secp256k1 from 'secp256k1'
 import {VError} from 'verror'
 
 import {DEFAULT_ADDRESS_PREFIX, DEFAULT_CHAIN_ID} from './client'
-import {Types} from './ezira/serializer'
-import {SignedTransaction, Transaction} from './ezira/transaction'
+import {Types} from './protocol/serializer'
+import {SignedTransaction, Transaction} from './protocol/transaction'
 import {copy} from './utils'
 
 /**
