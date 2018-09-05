@@ -1,7 +1,7 @@
 {
   "name": "wenodejs",
-  "version": "1.0.0",
-  "description": "WeYouMe blockchain RPC client library",
+  "version": "1.0.1",
+  "description": "WeYouMe blockchain nodejs client library",
   "author": "Lopu",
   "license": "BSD-3-Clause",
   "main": "./lib/index-node",
