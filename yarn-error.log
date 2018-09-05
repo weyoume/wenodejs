@@ -22,14 +22,14 @@ npm manifest:
   {
     "name": "wenodejs",
     "version": "0.9.111",
-    "description": "Ezira blockchain RPC client library",
+    "description": "WeYouMe blockchain RPC client library",
     "author": "Johan Nordberg",
     "license": "BSD-3-Clause",
     "main": "./lib/index-node",
     "typings": "./lib/index",
     "browser": {
-      "./lib/index-node": "./dist/nodejs",
-      "./src/index-node": "./dist/nodejs",
+      "./lib/index-node": "./dist/wenodejs",
+      "./src/index-node": "./dist/wenodejs",
       "./src/version": "./lib/version.js"
     },
     "files": [
@@ -52,7 +52,7 @@ npm manifest:
   		"eziranetwork",
   		"node",
   		"wenodejs",
-  		"ezira protocol"
+  		"Protocol"
     ],
     "dependencies": {
       "bs58": "^4.0.1",

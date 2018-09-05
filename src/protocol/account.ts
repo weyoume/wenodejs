@@ -101,32 +101,32 @@ export interface Account {
     voting_power: number // uint16_t
     last_vote_time: string // time_point_sec
     balance: string | Asset
-    ECOsavingsBalance: string | Asset
-    EUSDbalance: string | Asset
-    EUSD_seconds: string // uint128_t
-    EUSD_seconds_last_update: string // time_point_sec
-    EUSD_last_interest_payment: string // time_point_sec
-    EUSDsavingsBalance: string | Asset // asset
-    savings_EUSD_seconds: string // uint128_t
-    savings_EUSD_seconds_last_update: string // time_point_sec
-    savings_EUSD_last_interest_payment: string // time_point_sec
+    TMEsavingsBalance: string | Asset
+    TSDbalance: string | Asset
+    TSD_seconds: string // uint128_t
+    TSD_seconds_last_update: string // time_point_sec
+    TSD_last_interest_payment: string // time_point_sec
+    TSDsavingsBalance: string | Asset // asset
+    savings_TSD_seconds: string // uint128_t
+    savings_TSD_seconds_last_update: string // time_point_sec
+    savings_TSD_last_interest_payment: string // time_point_sec
     savings_withdraw_requests: number // uint8_t
-    EUSDrewardbalance: string | Asset
-    ECOrewardBalance: string | Asset
-    ESCORrewardBalance: string | Asset
-    ESCORrewardBalanceInECO: string | Asset
-    ESCORreward: string | Asset
+    TSDrewardBalance: string | Asset
+    TMErewardBalance: string | Asset
+    SCORErewardBalance: string | Asset
+    SCORErewardBalanceInTME: string | Asset
+    SCOREreward: string | Asset
     curationRewards: number | string // share_type
     posting_rewards: number | string // share_type
-    eScore: string | Asset
-    ESCORDelegated: string | Asset
-    ESCORreceived: string | Asset
-    ESCORwithdrawRateInECO: string | Asset
-    nextESCORwithdrawalTime: string // time_point_sec
+    SCORE: string | Asset
+    SCOREDelegated: string | Asset
+    SCOREreceived: string | Asset
+    SCOREwithdrawRateInTME: string | Asset
+    nextSCOREwithdrawalTime: string // time_point_sec
     withdrawn: number | string // share_type
     to_withdraw: number | string // share_type
     withdraw_routes: number // uint16_t
-    proxied_ESCORfundECObalance_votes: number[] // vector< share_type >
+    proxied_SCOREfundTMEbalance_votes: number[] // vector< share_type >
     witnesses_voted_for: number // uint16_t
     average_bandwidth: number | string // share_type
     lifetime_bandwidth: number | string // share_type
@@ -140,12 +140,12 @@ export interface Account {
 
 export interface ExtendedAccount extends Account {
     /**
-     * Convert eScore to eCoin value.
+     * Convert SCORE to TME value.
      */
-    ESCORbalanceInECO: string | Asset
+    SCOREbalanceInTME: string | Asset
     reputation: string | number // share_type
     /**
-     * Transfer to/from eScore ECO fund.
+     * Transfer to/from SCORE TME fund.
      */
     transfer_history: any[] // map<uint64_t,applied_operation>
     /**

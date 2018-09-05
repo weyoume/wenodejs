@@ -60,7 +60,7 @@ export type OperationName = // <id>
     | 'custom_binary' // 35
     | 'customJson' // 18
     | 'decline_voting_rights' // 36
-    | 'delegateESCOR' // 40
+    | 'delegateSCORE' // 40
     | 'deleteComment' // 17
     | 'escrow_approve' // 31
     | 'escrow_dispute' // 28
@@ -78,13 +78,13 @@ export type OperationName = // <id>
     | 'request_account_recovery' // 24
     | 'reset_account' // 37
     | 'set_reset_account' // 38
-    | 'setWithdrawESCORasECOroute' // 20
+    | 'setWithdrawSCOREasTMEroute' // 20
     | 'transfer' // 2
     | 'transferFromSavings' // 33
     | 'transferToSavings' // 32
-    | 'transferECOtoESCORfund' // 3
+    | 'transferTMEtoSCOREfund' // 3
     | 'vote' // 0
-    | 'withdrawESCOR' // 4
+    | 'withdrawSCORE' // 4
     | 'witness_update' // 11
 
 /**
@@ -99,11 +99,11 @@ export type VirtualOperationName = // <id>
     | 'fill_convert_request' // 42
     | 'fill_order' // 49
     | 'fill_transferFromSavings' // 51
-    | 'fillESCORWithdraw' // 48
+    | 'fillSCOREWithdraw' // 48
     | 'hardfork' // 52
     | 'interest' // 47
     | 'liquidity_reward' // 46
-    | 'return_ESCOR_delegation' // 54
+    | 'return_SCORE_delegation' // 54
     | 'shutdown_witness' // 50
 
 /**
@@ -243,9 +243,9 @@ export interface ClaimRewardBalanceOperation extends Operation {
     0: 'claimRewardBalance' // 39
     1: {
         account: string // account_name_type
-        ECOreward: string | Asset
-        EUSDreward: string | Asset
-        ESCORreward: string | Asset
+        TMEreward: string | Asset
+        TSDreward: string | Asset
+        SCOREreward: string | Asset
     }
 }
 
@@ -267,10 +267,10 @@ export interface CommentOptionsOperation extends Operation {
     1: {
       author: string // account_name_type
       permlink: string
-      /** EUSD value of the maximum payout this post will receive. */
+      /** TSD value of the maximum payout this post will receive. */
       max_accepted_payout: Asset | string
-      /** The percent of EUSDs to key, unkept amounts will be received as ESCOR. */
-      percent_EUSD: number // uint16_t
+      /** The percent of TSDs to key, unkept amounts will be received as SCORE. */
+      percent_TSD: number // uint16_t
       /** Whether to allow post to receive votes. */
       allow_votes: boolean
       /** Whether to allow post to recieve curation rewards. */
@@ -336,21 +336,21 @@ export interface DeclineVotingRightsOperation extends Operation {
     }
 }
 
-export interface DelegateESCOROperation extends Operation {
-    0: 'delegateESCOR' // 40
+export interface DelegateSCOREOperation extends Operation {
+    0: 'delegateSCORE' // 40
     1: {
         /**
-         * The account delegating eScore.
+         * The account delegating SCORE.
          */
         delegator: string // account_name_type
         /**
-         * The account receiving eScore.
+         * The account receiving SCORE.
          */
         delegatee: string // account_name_type
         /**
-         * The amount of eScore delegated.
+         * The amount of SCORE delegated.
          */
-        eScore: string | Asset
+        SCORE: string | Asset
     }
 }
 
@@ -427,13 +427,13 @@ export interface EscrowReleaseOperation extends Operation {
         receiver: string // account_name_type
         escrow_id: number // uint32_t
         /**
-         * The amount of EUSD to release.
+         * The amount of TSD to release.
          */
-        EUSDamount: Asset | string
+        TSDamount: Asset | string
         /**
-         * The amount of ECO to release.
+         * The amount of TME to release.
          */
-        ECOamount: Asset | string
+        TMEamount: Asset | string
     }
 }
 
@@ -462,8 +462,8 @@ export interface EscrowTransferOperation extends Operation {
         to: string // account_name_type
         agent: string // account_name_type
         escrow_id: number // uint32_t
-        EUSDamount: Asset | string
-        ECOamount: Asset | string
+        TSDamount: Asset | string
+        TMEamount: Asset | string
         fee: Asset | string
         ratification_deadline: string // time_point_sec
         escrow_expiration: string // time_point_sec
@@ -623,9 +623,9 @@ export interface RecoverAccountOperation extends Operation {
  *
  * Users not in the ACTIVE witness set should not have to worry about their
  * key getting compromised and being used to produced multiple blocks so
- * the attacker can report it and steel their eScore.
+ * the attacker can report it and steel their SCORE.
  *
- * The result of the operation is to transfer the full eScore balance
+ * The result of the operation is to transfer the full SCORE balance
  * of the block producer to the reporter.
  */
 export interface ReportOverProductionOperation extends Operation {
@@ -714,24 +714,24 @@ export interface SetResetAccountOperation extends Operation {
 }
 
 /**
- * Allows an account to setup an eScore withdraw but with the additional
+ * Allows an account to setup an SCORE withdraw but with the additional
  * request for the funds to be transferred directly to another account's
  * balance rather than the withdrawing account. In addition, those funds
- * can be immediately turned into eScore again, circumventing the conversion from
- * ESCOR to ECO and back, guaranteeing they maintain their value.
+ * can be immediately turned into SCORE again, circumventing the conversion from
+ * SCORE to TME and back, guaranteeing they maintain their value.
  */
-export interface SetWithdrawESCORasECOrouteOperation extends Operation {
-    0: 'setWithdrawESCORasECOroute' // 20
+export interface SetWithdrawSCOREasTMErouteOperation extends Operation {
+    0: 'setWithdrawSCOREasTMEroute' // 20
     1: {
         from_account: string // account_name_type
         to_account: string // account_name_type
         percent: number // uint16_t (100% = PERCENT_100 = 10000)
-        autoESCOR: boolean
+        autoSCORE: boolean
     }
 }
 
 /**
- * Transfers ECO from one account to another.
+ * Transfers TME from one account to another.
  */
 export interface TransferOperation extends Operation {
     0: 'transfer' // 2
@@ -745,7 +745,7 @@ export interface TransferOperation extends Operation {
          */
         to: string // account_name_type
         /**
-         * Amount of ECO or EUSD to send.
+         * Amount of TME or TSD to send.
          */
         amount: string | Asset
         /**
@@ -778,19 +778,19 @@ export interface TransferToSavingsOperation extends Operation {
 }
 
 /**
- * This operation converts ECO into eScore (ESCOR) at
+ * This operation converts TME into SCORE (SCORE) at
  * the current exchange rate. With this operation it is possible to
- * give another account eScore so that faucets can
- * pre-fund new accounts with eScore.
+ * give another account SCORE so that faucets can
+ * pre-fund new accounts with SCORE.
  * (A.k.a. Powering Up)
  */
-export interface TransferToESCOROperation extends Operation {
-    0: 'transferECOtoESCORfund' // 3
+export interface TransferToSCOREOperation extends Operation {
+    0: 'transferTMEtoSCOREfund' // 3
     1: {
         from: string // account_name_type
         to: string // account_name_type
         /**
-         * Amount to power up, must be ECO.
+         * Amount to power up, must be TME.
          */
         amount: string | Asset
     }
@@ -811,24 +811,24 @@ export interface VoteOperation extends Operation {
 
 /**
  * At any given point in time an account can be withdrawing from their
- * eScore. A user may change the number of eScore they wish to
- * cash out at any time between 0 and their total eScore ECO fund stake.
+ * SCORE. A user may change the number of SCORE they wish to
+ * cash out at any time between 0 and their total SCORE TME fund stake.
  *
- * After applying this operation, eScore will be withdrawn
- * at a rate of eScore/104 per week for two years starting
+ * After applying this operation, SCORE will be withdrawn
+ * at a rate of SCORE/104 per week for two years starting
  * one week after this operation is included in the blockchain.
  *
- * This operation is not valid if the user has no eScore.
+ * This operation is not valid if the user has no SCORE.
  * (A.k.a. Powering Down)
  */
-export interface withdrawESCORasECOOperation extends Operation {
-    0: 'withdrawESCOR' // 4
+export interface withdrawSCOREasTMEoperation extends Operation {
+    0: 'withdrawSCORE' // 4
     1: {
         account: string // account_name_type
         /**
-         * Amount to power down, must be ESCOR.
+         * Amount to power down, must be SCORE.
          */
-        eScore: string | Asset
+        SCORE: string | Asset
     }
 }
 
@@ -839,7 +839,7 @@ export interface withdrawESCORasECOOperation extends Operation {
  *
  * If the owner isn't a witness they will become a witness.  Witnesses
  * are charged a fee equal to 1 weeks worth of witness pay which in
- * turn is derived from the current eScore supply.  The fee is
+ * turn is derived from the current SCORE supply.  The fee is
  * only applied if the owner is not already a witness.
  *
  * If the block_signing_key is null then the witness is removed from

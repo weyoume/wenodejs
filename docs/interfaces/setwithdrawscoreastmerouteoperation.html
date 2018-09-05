@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>VestingDelegation | wenodejs</title>
+	<title>SetWithdrawSCOREasTMErouteOperation | wenodejs</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,21 +56,37 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="escoredelegation.html">VestingDelegation</a>
+					<a href="setwithdrawscoreastmerouteoperation.html">SetWithdrawSCOREasTMErouteOperation</a>
 				</li>
 			</ul>
-			<h1>Interface VestingDelegation</h1>
+			<h1>Interface SetWithdrawSCOREasTMErouteOperation</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Allows an account to setup an SCORE withdraw but with the additional
+							request for the funds to be transferred directly to another account&#39;s
+							balance rather than the withdrawing account. In addition, those funds
+							can be immediately turned into SCORE again, circumventing the conversion from
+						SCORE to TME and back, guaranteeing they maintain their value.</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">VestingDelegation</span>
+						<a href="operation.html" class="tsd-signature-type">Operation</a>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">SetWithdrawSCOREasTMErouteOperation</span>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
@@ -81,11 +97,8 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="escoredelegation.html#delegatee" class="tsd-kind-icon">delegatee</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="escoredelegation.html#delegator" class="tsd-kind-icon">delegator</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="escoredelegation.html#id" class="tsd-kind-icon">id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="escoredelegation.html#min_delegation_time" class="tsd-kind-icon">min_<wbr>delegation_<wbr>time</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="escoredelegation.html#eScore" class="tsd-kind-icon">vesting_<wbr>eScore</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite"><a href="setwithdrawscoreastmerouteoperation.html#0" class="tsd-kind-icon">0</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite"><a href="setwithdrawscoreastmerouteoperation.html#1" class="tsd-kind-icon">1</a></li>
 							</ul>
 						</section>
 					</div>
@@ -93,79 +106,43 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="delegatee" class="tsd-anchor"></a>
-					<h3>delegatee</h3>
-					<div class="tsd-signature tsd-kind-icon">delegatee<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
+					<a name="0" class="tsd-anchor"></a>
+					<h3>0</h3>
+					<div class="tsd-signature tsd-kind-icon">0<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"setWithdrawSCOREasTMEroute"</span></div>
 					<aside class="tsd-sources">
+						<p>Overrides <a href="operation.html">Operation</a>.<a href="operation.html#0">0</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/eziranetwork/wenodejs/blob/master/src/protocol/misc.ts#L113">steem/misc.ts:113</a></li>
+							<li>Defined in <a href="https://github.com/lopudesigns/wenodejs/blob/master/src/protocol/operation.ts#L724">protocol/operation.ts:724</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Account that is receiving ESCOR from delegator.</p>
-						</div>
-					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="delegator" class="tsd-anchor"></a>
-					<h3>delegator</h3>
-					<div class="tsd-signature tsd-kind-icon">delegator<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
+					<a name="1" class="tsd-anchor"></a>
+					<h3>1</h3>
+					<div class="tsd-signature tsd-kind-icon">1<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
+						<p>Overrides <a href="operation.html">Operation</a>.<a href="operation.html#1">1</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/eziranetwork/wenodejs/blob/master/src/protocol/misc.ts#L109">steem/misc.ts:109</a></li>
+							<li>Defined in <a href="https://github.com/lopudesigns/wenodejs/blob/master/src/protocol/operation.ts#L725">protocol/operation.ts:725</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Account that is delegating ESCOR to delegatee.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="id" class="tsd-anchor"></a>
-					<h3>id</h3>
-					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/eziranetwork/wenodejs/blob/master/src/protocol/misc.ts#L105">steem/misc.ts:105</a></li>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5>autoSCORE<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
+							</li>
+							<li class="tsd-parameter">
+								<h5>from_<wbr>account<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+							</li>
+							<li class="tsd-parameter">
+								<h5>percent<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+							</li>
+							<li class="tsd-parameter">
+								<h5>to_<wbr>account<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+							</li>
 						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Delegation id.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="min_delegation_time" class="tsd-anchor"></a>
-					<h3>min_<wbr>delegation_<wbr>time</h3>
-					<div class="tsd-signature tsd-kind-icon">min_<wbr>delegation_<wbr>time<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/eziranetwork/wenodejs/blob/master/src/protocol/misc.ts#L121">steem/misc.ts:121</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Earliest date delegation can be removed.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="eScore" class="tsd-anchor"></a>
-					<h3>vesting_<wbr>eScore</h3>
-					<div class="tsd-signature tsd-kind-icon">vesting_<wbr>eScore<span class="tsd-signature-symbol">:</span> <a href="../classes/asset.html" class="tsd-signature-type">Asset</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/eziranetwork/wenodejs/blob/master/src/protocol/misc.ts#L117">steem/misc.ts:117</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Amount of ESCOR delegated.</p>
-						</div>
 					</div>
 				</section>
 			</section>
@@ -183,22 +160,13 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="escoredelegation.html" class="tsd-kind-icon">Vesting<wbr>Delegation</a>
+						<a href="setwithdrawscoreastmerouteoperation.html" class="tsd-kind-icon">Set<wbr>WithdrawSCOREasTMEroute<wbr>Operation</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="escoredelegation.html#delegatee" class="tsd-kind-icon">delegatee</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
+								<a href="setwithdrawscoreastmerouteoperation.html#0" class="tsd-kind-icon">0</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="escoredelegation.html#delegator" class="tsd-kind-icon">delegator</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="escoredelegation.html#id" class="tsd-kind-icon">id</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="escoredelegation.html#min_delegation_time" class="tsd-kind-icon">min_<wbr>delegation_<wbr>time</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="escoredelegation.html#eScore" class="tsd-kind-icon">vesting_<wbr>eScore</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
+								<a href="setwithdrawscoreastmerouteoperation.html#1" class="tsd-kind-icon">1</a>
 							</li>
 						</ul>
 					</li>

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>WithdrawVestingOperation | wenodejs</title>
+	<title>withdrawSCOREasTMEoperation | wenodejs</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,10 +56,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="withdrawvestingoperation.html">WithdrawVestingOperation</a>
+					<a href="withdrawscoreastmeoperation.html">withdrawSCOREasTMEoperation</a>
 				</li>
 			</ul>
-			<h1>Interface WithdrawVestingOperation</h1>
+			<h1>Interface withdrawSCOREasTMEoperation</h1>
 		</div>
 	</div>
 </header>
@@ -70,13 +70,13 @@
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
 						<p>At any given point in time an account can be withdrawing from their
-							eScore. A user may change the number of eScore they wish to
-						cash out at any time between 0 and their total vesting stake.</p>
+							SCORE. A user may change the number of SCORE they wish to
+						cash out at any time between 0 and their total SCORE TME fund stake.</p>
 					</div>
-					<p>After applying this operation, eScore will be withdrawn
-						at a rate of eScore/104 per week for two years starting
+					<p>After applying this operation, SCORE will be withdrawn
+						at a rate of SCORE/104 per week for two years starting
 					one week after this operation is included in the blockchain.</p>
-					<p>This operation is not valid if the user has no eScore.
+					<p>This operation is not valid if the user has no SCORE.
 					(A.k.a. Powering Down)</p>
 				</div>
 			</section>
@@ -87,7 +87,7 @@
 						<a href="operation.html" class="tsd-signature-type">Operation</a>
 						<ul class="tsd-hierarchy">
 							<li>
-								<span class="target">WithdrawVestingOperation</span>
+								<span class="target">withdrawSCOREasTMEoperation</span>
 							</li>
 						</ul>
 					</li>
@@ -100,8 +100,8 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite"><a href="withdrawvestingoperation.html#0" class="tsd-kind-icon">0</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite"><a href="withdrawvestingoperation.html#1" class="tsd-kind-icon">1</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite"><a href="withdrawscoreastmeoperation.html#0" class="tsd-kind-icon">0</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite"><a href="withdrawscoreastmeoperation.html#1" class="tsd-kind-icon">1</a></li>
 							</ul>
 						</section>
 					</div>
@@ -112,11 +112,11 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
 					<a name="0" class="tsd-anchor"></a>
 					<h3>0</h3>
-					<div class="tsd-signature tsd-kind-icon">0<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"withdraw_eScore"</span></div>
+					<div class="tsd-signature tsd-kind-icon">0<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"withdrawSCORE"</span></div>
 					<aside class="tsd-sources">
 						<p>Overrides <a href="operation.html">Operation</a>.<a href="operation.html#0">0</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/eziranetwork/wenodejs/blob/master/src/protocol/operation.ts#L825">steem/operation.ts:825</a></li>
+							<li>Defined in <a href="https://github.com/lopudesigns/wenodejs/blob/master/src/protocol/operation.ts#L825">protocol/operation.ts:825</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -127,22 +127,22 @@
 					<aside class="tsd-sources">
 						<p>Overrides <a href="operation.html">Operation</a>.<a href="operation.html#1">1</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/eziranetwork/wenodejs/blob/master/src/protocol/operation.ts#L826">steem/operation.ts:826</a></li>
+							<li>Defined in <a href="https://github.com/lopudesigns/wenodejs/blob/master/src/protocol/operation.ts#L826">protocol/operation.ts:826</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter">
-								<h5>account<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-							</li>
-							<li class="tsd-parameter">
-								<h5>vesting_<wbr>eScore<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="../classes/asset.html" class="tsd-signature-type">Asset</a></h5>
+								<h5>SCORE<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="../classes/asset.html" class="tsd-signature-type">Asset</a></h5>
 								<div class="tsd-comment tsd-typography">
 									<div class="lead">
-										<p>Amount to power down, must be ESCOR.</p>
+										<p>Amount to power down, must be SCORE.</p>
 									</div>
 								</div>
+							</li>
+							<li class="tsd-parameter">
+								<h5>account<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
 							</li>
 						</ul>
 					</div>
@@ -162,13 +162,13 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="withdrawvestingoperation.html" class="tsd-kind-icon">Withdraw<wbr>Vesting<wbr>Operation</a>
+						<a href="withdrawscoreastmeoperation.html" class="tsd-kind-icon">withdrawSCOREasTMEoperation</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
-								<a href="withdrawvestingoperation.html#0" class="tsd-kind-icon">0</a>
+								<a href="withdrawscoreastmeoperation.html#0" class="tsd-kind-icon">0</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
-								<a href="withdrawvestingoperation.html#1" class="tsd-kind-icon">1</a>
+								<a href="withdrawscoreastmeoperation.html#1" class="tsd-kind-icon">1</a>
 							</li>
 						</ul>
 					</li>

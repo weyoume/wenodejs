@@ -77,12 +77,12 @@ export class HexBuffer {
  */
 export interface ChainProperties {
     /**
-     * This fee, paid in ECO, is converted into eScore for the new account. Accounts
-     * without eScore cannot earn usage rations and therefore are powerless. This minimum
+     * This fee, paid in TME, is converted into SCORE for the new account. Accounts
+     * without SCORE cannot earn usage rations and therefore are powerless. This minimum
      * fee requires all accounts to have some kind of commitment to the network that includes the
      * ability to vote and make transactions.
      *
-     * @note This has to be multiplied by `CREATE_ACCOUNT_WITH_ECO_MODIFIER`
+     * @note This has to be multiplied by `CREATE_ACCOUNT_WITH_TME_MODIFIER`
      *       (defined as 30 on the main chain) to get the minimum fee needed to create an account.
      *
      */
@@ -93,28 +93,28 @@ export interface ChainProperties {
      */
     maximum_block_size: number // uint32_t
     /**
-     * The EUSD interest percentage rate decided by witnesses, expressed 0 to 10000.
+     * The TSD interest percentage rate decided by witnesses, expressed 0 to 10000.
      */
-    EUSD_interest_rate: number // uint16_t PERCENT_100
+    TSD_interest_rate: number // uint16_t PERCENT_100
 }
 
-export interface ESCORdelegation {
+export interface SCOREdelegation {
     /**
      * Delegation id.
      */
     id: number // id_type
     /**
-     * Account that is delegating ESCOR to delegatee.
+     * Account that is delegating SCORE to delegatee.
      */
     delegator: string // account_name_type
     /**
-     * Account that is receiving ESCOR from delegator.
+     * Account that is receiving SCORE from delegator.
      */
     delegatee: string // account_name_type
     /**
-     * Amount of ESCOR delegated.
+     * Amount of SCORE delegated.
      */
-    eScore: Asset | string
+    SCORE: Asset | string
     /**
      * Earliest date delegation can be removed.
      */
@@ -155,25 +155,25 @@ export interface DynamicGlobalProperties {
      * Total asset held in confidential balances.
      */
     confidential_supply: Asset | string
-    current_EUSD_supply: Asset | string
+    current_TSD_supply: Asset | string
     /**
      * Total asset held in confidential balances.
      */
-    confidential_EUSD_supply: Asset | string
-    totalECOfundForESCOR: Asset | string
-    totalESCOR: Asset | string
-    total_reward_fund_ECO: Asset | string
+    confidential_TSD_supply: Asset | string
+    totalTMEfundForSCORE: Asset | string
+    totalSCORE: Asset | string
+    total_reward_fund_TME: Asset | string
     /**
      * The running total of REWARD^2.
      */
-    total_ESCORreward2: string
-    pending_rewarded_ESCOR: Asset | string
-    pending_rewarded_ESCORvalueInECO: Asset | string
+    total_SCOREreward2: string
+    pending_rewarded_SCORE: Asset | string
+    pending_rewarded_SCOREvalueInTME: Asset | string
     /**
-     * This property defines the interest rate that EUSD deposits receive.
+     * This property defines the interest rate that TSD deposits receive.
      */
-    EUSD_interest_rate: number
-    EUSD_print_rate: number
+    TSD_interest_rate: number
+    TSD_print_rate: number
     /**
      *  Average block size is updated every block to be:
      *
@@ -230,13 +230,13 @@ export interface DynamicGlobalProperties {
 }
 
 /**
- * Return the eScore price.
+ * Return the SCORE price.
  */
-export function getESCORPriceinECO(props: DynamicGlobalProperties): Price {
-    const totalECOfundForESCOR = Asset.from(props.totalECOfundForESCOR)
-    const totalESCOR = Asset.from(props.totalESCOR)
-    if (totalECOfundForESCOR.amount === 0 || totalESCOR.amount === 0) {
-        return new Price(new Asset(1, 'ESCOR'), new Asset(1, 'ECO'))
+export function getSCOREPriceinTME(props: DynamicGlobalProperties): Price {
+    const totalTMEfundForSCORE = Asset.from(props.totalTMEfundForSCORE)
+    const totalSCORE = Asset.from(props.totalSCORE)
+    if (totalTMEfundForSCORE.amount === 0 || totalSCORE.amount === 0) {
+        return new Price(new Asset(1, 'SCORE'), new Asset(1, 'TME'))
     }
-    return new Price(totalESCOR, totalECOfundForESCOR)
+    return new Price(totalSCORE, totalTMEfundForSCORE)
 }

@@ -11,10 +11,10 @@ const FOLLOW_USER = process.env['FOLLOW_USER'] || die('FOLLOW_USER missing')
 // and the vote weight to use, 10000 = 100%
 const VOTE_WEIGHT = process.env['VOTE_WEIGHT'] ? parseInt(process.env['VOTE_WEIGHT']) : 10000
 
-// setup the wenodejs client, you can use other nodes, for example peer's public node at https://peer.ezira.io:8090
-const client = new wenodejs.Client('https://api.ezira.io')
+// setup the wenodejs client, you can use other nodes, for example peer's public node at https://peer.weyoume.io:8090
+const client = new wenodejs.Client('https://api.weyoume.io')
 
-// deserialize the posting key (in wif format, same format as you find on the alpha.ezira.io interface)
+// deserialize the posting key (in wif format, same format as you find on the alpha.weyoume.io interface)
 const key = wenodejs.PrivateKey.from(POSTING_KEY)
 
 // create a new readable stream with all operations, we use the 'latest' mode since
@@ -43,7 +43,7 @@ stream.on('data', (operation) => {
 
             // finally broadcast the vote to the network
             client.broadcast.vote(vote, key).then(() => {
-                console.log(`Voted for https://alpha.ezira.io/@${ vote.author }/${ vote.permlink }`)
+                console.log(`Voted for https://alpha.weyoume.io/@${ vote.author }/${ vote.permlink }`)
             }).catch((error) => {
                 console.warn('Vote failed', error)
             })

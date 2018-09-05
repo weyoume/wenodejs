@@ -88,9 +88,9 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="chainproperties.html#tsd_interest_rate" class="tsd-kind-icon">TSD_<wbr>interest_<wbr>rate</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="chainproperties.html#account_creation_fee" class="tsd-kind-icon">account_<wbr>creation_<wbr>fee</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="chainproperties.html#maximum_block_size" class="tsd-kind-icon">maximum_<wbr>block_<wbr>size</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="chainproperties.html#eUSD_interest_rate" class="tsd-kind-icon">eUSD_<wbr>interest_<wbr>rate</a></li>
 							</ul>
 						</section>
 					</div>
@@ -99,24 +99,39 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="tsd_interest_rate" class="tsd-anchor"></a>
+					<h3>TSD_<wbr>interest_<wbr>rate</h3>
+					<div class="tsd-signature tsd-kind-icon">TSD_<wbr>interest_<wbr>rate<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/lopudesigns/wenodejs/blob/master/src/protocol/misc.ts#L98">protocol/misc.ts:98</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The TSD interest percentage rate decided by witnesses, expressed 0 to 10000.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="account_creation_fee" class="tsd-anchor"></a>
 					<h3>account_<wbr>creation_<wbr>fee</h3>
 					<div class="tsd-signature tsd-kind-icon">account_<wbr>creation_<wbr>fee<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="../classes/asset.html" class="tsd-signature-type">Asset</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/eziranetwork/wenodejs/blob/master/src/protocol/misc.ts#L89">steem/misc.ts:89</a></li>
+							<li>Defined in <a href="https://github.com/lopudesigns/wenodejs/blob/master/src/protocol/misc.ts#L89">protocol/misc.ts:89</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>This fee, paid in STEEM, is converted into eScore for the new account. Accounts
-								without eScore cannot earn usage rations and therefore are powerless. This minimum
+							<p>This fee, paid in TME, is converted into SCORE for the new account. Accounts
+								without SCORE cannot earn usage rations and therefore are powerless. This minimum
 								fee requires all accounts to have some kind of commitment to the network that includes the
 							ability to vote and make transactions.</p>
 						</div>
 						<dl class="tsd-comment-tags">
 							<dt>note</dt>
-							<dd><p>This has to be multiplied by <code>CREATE_ACCOUNT_WITH_ECO_MODIFIER</code>
+							<dd><p>This has to be multiplied by <code>CREATE_ACCOUNT_WITH_TME_MODIFIER</code>
 								(defined as 30 on the main chain) to get the minimum fee needed to create an account.</p>
 							</dd>
 						</dl>
@@ -128,28 +143,13 @@
 					<div class="tsd-signature tsd-kind-icon">maximum_<wbr>block_<wbr>size<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/eziranetwork/wenodejs/blob/master/src/protocol/misc.ts#L94">steem/misc.ts:94</a></li>
+							<li>Defined in <a href="https://github.com/lopudesigns/wenodejs/blob/master/src/protocol/misc.ts#L94">protocol/misc.ts:94</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>This witnesses vote for the maximum_block_size which is used by the network
 							to tune rate limiting and capacity.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="eUSD_interest_rate" class="tsd-anchor"></a>
-					<h3>eUSD_<wbr>interest_<wbr>rate</h3>
-					<div class="tsd-signature tsd-kind-icon">eUSD_<wbr>interest_<wbr>rate<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/eziranetwork/wenodejs/blob/master/src/protocol/misc.ts#L98">steem/misc.ts:98</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The eUSD interest percentage rate decided by witnesses, expressed 0 to 10000.</p>
 						</div>
 					</div>
 				</section>
@@ -171,13 +171,13 @@
 						<a href="chainproperties.html" class="tsd-kind-icon">Chain<wbr>Properties</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="chainproperties.html#tsd_interest_rate" class="tsd-kind-icon">TSD_<wbr>interest_<wbr>rate</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="chainproperties.html#account_creation_fee" class="tsd-kind-icon">account_<wbr>creation_<wbr>fee</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="chainproperties.html#maximum_block_size" class="tsd-kind-icon">maximum_<wbr>block_<wbr>size</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="chainproperties.html#eUSD_interest_rate" class="tsd-kind-icon">eUSD_<wbr>interest_<wbr>rate</a>
 							</li>
 						</ul>
 					</li>

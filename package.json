@@ -1,14 +1,14 @@
 {
   "name": "wenodejs",
-  "version": "0.9.111",
-  "description": "Ezira blockchain RPC client library",
+  "version": "1.0.0",
+  "description": "WeYouMe blockchain RPC client library",
   "author": "Lopu",
   "license": "BSD-3-Clause",
   "main": "./lib/index-node",
   "typings": "./lib/index",
   "browser": {
-    "./lib/index-node": "./dist/nodejs",
-    "./src/index-node": "./dist/nodejs",
+    "./lib/index-node": "./dist/wenodejs",
+    "./src/index-node": "./dist/wenodejs",
     "./src/version": "./lib/version.js"
   },
   "files": [
@@ -21,7 +21,9 @@
   },
   "scripts": {
     "test": "make ci-test",
-    "prepublishOnly": "make all"
+		"prepublishOnly": "make all",
+		"push" : "./scripts/push.sh",
+		"pull" : "./scripts/pull.sh"
   },
   "keywords": [
     "blockchain",
@@ -31,7 +33,7 @@
     "eziranetwork",
     "node",
     "wenodejs",
-    "ezira protocol"
+    "Protocol"
   ],
   "dependencies": {
     "bs58": "^4.0.1",

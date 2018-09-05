@@ -51,10 +51,10 @@ export interface Comment {
     last_payout: string // time_point_sec
     depth: number // uint8_t
     children: number // uint32_t
-    net_ESCORreward: string // share_type
-    abs_ESCORreward: string // share_type
-    vote_ESCORreward: string // share_type
-    children_abs_ESCORreward: string // share_type
+    net_SCOREreward: string // share_type
+    abs_SCOREreward: string // share_type
+    vote_SCOREreward: string // share_type
+    children_abs_SCOREreward: string // share_type
     cashout_time: string // time_point_sec
     max_cashout_time: string // time_point_sec
     total_vote_weight: number // uint64_t
@@ -65,7 +65,7 @@ export interface Comment {
     net_votes: number // int32_t
     root_comment: number // comment_id_type
     max_accepted_payout: string // asset
-    percent_EUSD: number // uint16_t
+    percent_TSD: number // uint16_t
     allow_replies: boolean
     allow_votes: boolean
     allow_curationRewards: boolean

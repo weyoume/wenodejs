@@ -22,16 +22,16 @@ dist/%.js: lib
 		--compress "dead_code,collapse_vars,reduce_vars,keep_infinity,drop_console,passes=2" \
 		--output $@ || rm $@
 
-dist/nodejs: src/index-browser.ts
+dist/wenodejs.js: src/index-browser.ts
 
-dist/nodejs.d.ts: $(SRC_FILES) node_modules
-	dts-generator --name wenodejs --project . --out dist/nodejs.d.ts
-	sed -e "s@'wenodejs/index'@'wenodejs'@g" -i '' dist/nodejs.d.ts
+dist/wenodejs.d.ts: $(SRC_FILES) node_modules
+	dts-generator --name wenodejs --project . --out dist/wenodejs.d.ts
+	sed -e "s@'wenodejs/index'@'wenodejs'@g" -i '' dist/wenodejs.d.ts
 
-dist/%.gz: dist/nodejs
+dist/%.gz: dist/wenodejs.js
 	gzip -9 -f -c $(basename $@) > $(basename $@).gz
 
-bundle: dist/nodejs.gz dist/nodejs.d.ts
+bundle: dist/wenodejs.js.gz dist/wenodejs.d.ts
 
 .PHONY: coverage
 coverage: node_modules
@@ -47,12 +47,12 @@ ci-test: node_modules
 	nyc -r lcov -e .ts -i ts-node/register mocha --exit --reporter tap --require ts-node/register test/*.ts
 
 .PHONY: browser-test
-browser-test: dist/nodejs
+browser-test: dist/wenodejs.js
 	BUILD_NUMBER="$$(git rev-parse --short HEAD)-$$(date +%s)" \
 		karma start test/_karma-sauce.js
 
 .PHONY: browser-test-local
-browser-test-local: dist/nodejs
+browser-test-local: dist/wenodejs.js
 	karma start test/_karma.js
 
 .PHONY: lint

@@ -3,7 +3,7 @@ import {Client, BlockchainMode} from 'node'
 
 import * as removeMarkdown from 'remove-markdown'
 
-const client = new Client('https://api.ezira.io')
+const client = new Client('https://api.weyoume.io')
 
 function sleep(ms: number): Promise<void> {
     return new Promise<void>((resolve) => {
@@ -28,7 +28,7 @@ function buildComment(comment: any): HTMLDivElement {
 
     rv.innerHTML += `
         <span class="author">
-            <a href="https://ezira.io/@${ author }" target="_blank">@${ author }</a>
+            <a href="https://weyoume.io/@${ author }" target="_blank">@${ author }</a>
         </span>
         <span class="body">${ shortBody(body) }</span>
     `

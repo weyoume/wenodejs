@@ -1,5 +1,5 @@
 /**
- * @file Ezira protocol serialization.
+ * @file Protocol serialization.
  * @author Johan Nordberg <code@johan-nordberg.com>
  * @license
  * Copyright (c) 2017 Johan Nordberg. All Rights Reserved.
@@ -202,7 +202,7 @@ const SignedBlockHeaderSerializer = ObjectSerializer([
 const ChainPropertiesSerializer = ObjectSerializer([
     ['account_creation_fee', AssetSerializer],
     ['maximum_block_size', UInt32Serializer],
-    ['EUSD_interest_rate', UInt16Serializer],
+    ['TSD_interest_rate', UInt16Serializer],
 ])
 
 const OperationDataSerializer = (operationId: number, definitions: Array<[string, Serializer]>) => {
@@ -278,9 +278,9 @@ OperationSerializers.change_recoveryAccount = OperationDataSerializer(26, [
 
 OperationSerializers.claimRewardBalance = OperationDataSerializer(39, [
     ['account', StringSerializer],
-    ['ECOreward', AssetSerializer],
-    ['EUSDreward', AssetSerializer],
-    ['ESCORreward', AssetSerializer],
+    ['TMEreward', AssetSerializer],
+    ['TSDreward', AssetSerializer],
+    ['SCOREreward', AssetSerializer],
 ])
 
 OperationSerializers.comment = OperationDataSerializer(1, [
@@ -297,7 +297,7 @@ OperationSerializers.comment_options = OperationDataSerializer(19, [
     ['author', StringSerializer],
     ['permlink', StringSerializer],
     ['max_accepted_payout', AssetSerializer],
-    ['percent_EUSD', UInt16Serializer],
+    ['percent_TSD', UInt16Serializer],
     ['allow_votes', BooleanSerializer],
     ['allow_curationRewards', BooleanSerializer],
     ['extensions', ArraySerializer(
@@ -340,10 +340,10 @@ OperationSerializers.decline_voting_rights = OperationDataSerializer(36, [
     ['decline', BooleanSerializer],
 ])
 
-OperationSerializers.delegateESCOR = OperationDataSerializer(40, [
+OperationSerializers.delegateSCORE = OperationDataSerializer(40, [
     ['delegator', StringSerializer],
     ['delegatee', StringSerializer],
-    ['ESCOR', AssetSerializer],
+    ['SCORE', AssetSerializer],
 ])
 
 OperationSerializers.deleteComment = OperationDataSerializer(17, [
@@ -375,8 +375,8 @@ OperationSerializers.escrow_release = OperationDataSerializer(29, [
     ['who', StringSerializer],
     ['receiver', StringSerializer],
     ['escrow_id', UInt32Serializer],
-    ['EUSDamount', AssetSerializer],
-    ['ECOamount', AssetSerializer],
+    ['TSDamount', AssetSerializer],
+    ['TMEamount', AssetSerializer],
 ])
 
 OperationSerializers.escrow_transfer = OperationDataSerializer(27, [
@@ -384,8 +384,8 @@ OperationSerializers.escrow_transfer = OperationDataSerializer(27, [
     ['to', StringSerializer],
     ['agent', StringSerializer],
     ['escrow_id', UInt32Serializer],
-    ['EUSDamount', AssetSerializer],
-    ['ECOamount', AssetSerializer],
+    ['TSDamount', AssetSerializer],
+    ['TMEamount', AssetSerializer],
     ['fee', AssetSerializer],
     ['ratification_deadline', DateSerializer],
     ['escrow_expiration', DateSerializer],
@@ -457,11 +457,11 @@ OperationSerializers.set_reset_account = OperationDataSerializer(38, [
     ['reset_account', StringSerializer],
 ])
 
-OperationSerializers.setWithdrawESCORasECOroute = OperationDataSerializer(20, [
+OperationSerializers.setWithdrawSCOREasTMEroute = OperationDataSerializer(20, [
     ['from_account', StringSerializer],
     ['to_account', StringSerializer],
     ['percent', UInt16Serializer],
-    ['autoESCOR', BooleanSerializer],
+    ['autoSCORE', BooleanSerializer],
 ])
 
 OperationSerializers.transfer = OperationDataSerializer(2, [
@@ -486,7 +486,7 @@ OperationSerializers.transferToSavings = OperationDataSerializer(32, [
     ['memo', StringSerializer],
 ])
 
-OperationSerializers.transferECOtoESCORfund = OperationDataSerializer(3, [
+OperationSerializers.transferTMEtoSCOREfund = OperationDataSerializer(3, [
     ['from', StringSerializer],
     ['to', StringSerializer],
     ['amount', AssetSerializer],
@@ -499,9 +499,9 @@ OperationSerializers.vote = OperationDataSerializer(0, [
     ['weight', Int16Serializer],
 ])
 
-OperationSerializers.withdrawESCOR = OperationDataSerializer(4, [
+OperationSerializers.withdrawSCORE = OperationDataSerializer(4, [
     ['account', StringSerializer],
-    ['ESCOR', AssetSerializer],
+    ['SCORE', AssetSerializer],
 ])
 
 OperationSerializers.witness_update = OperationDataSerializer(11, [

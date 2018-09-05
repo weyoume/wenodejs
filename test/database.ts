@@ -22,10 +22,10 @@ describe('database api', function() {
         assert.deepEqual(Object.keys(result), [
             'id', 'head_block_number', 'head_block_id', 'time', 'current_witness',
             'total_pow', 'num_pow_witnesses', 'virtual_supply', 'current_supply',
-            'confidential_supply', 'current_EUSD_supply', 'confidential_EUSD_supply',
-            'totalECOfundForESCOR', 'totalESCOR', 'total_reward_fund_ECO',
-            'total_ESCORreward2', 'pending_rewarded_ESCOR', 'pending_rewarded_ESCORvalueInECO',
-            'EUSD_interest_rate', 'EUSD_print_rate', 'maximum_block_size', 'current_aslot',
+            'confidential_supply', 'current_TSD_supply', 'confidential_TSD_supply',
+            'totalTMEfundForSCORE', 'totalSCORE', 'total_reward_fund_TME',
+            'total_SCOREreward2', 'pending_rewarded_SCORE', 'pending_rewarded_SCOREvalueInTME',
+            'TSD_interest_rate', 'TSD_print_rate', 'maximum_block_size', 'current_aslot',
             'recent_slots_filled', 'participation_count', 'last_irreversible_block_num',
             'vote_power_reserve_rate', 'current_reserve_ratio', 'average_block_size',
             'max_virtual_bandwidth'
@@ -39,7 +39,7 @@ describe('database api', function() {
         serverConfig = result
         // also test some assumptions made throughout the code
         const conf = await liveClient.database.getConfig()
-        assert.equal(r('CREATE_ACCOUNT_WITH_ECO_MODIFIER'), 30)
+        assert.equal(r('CREATE_ACCOUNT_WITH_TME_MODIFIER'), 30)
         assert.equal(r('CREATE_ACCOUNT_DELEGATION_RATIO'), 5)
         assert.equal(r('100_PERCENT'), 10000)
         assert.equal(r('1_PERCENT'), 100)
@@ -90,21 +90,21 @@ describe('database api', function() {
 
     it('getChainProperties', async function() {
         const props = await liveClient.database.getChainProperties()
-        assert.equal(Asset.from(props.account_creation_fee).symbol, 'ECO')
+        assert.equal(Asset.from(props.account_creation_fee).symbol, 'TME')
     })
 
     it('getCurrentMedianHistoryPrice', async function() {
         const price = await liveClient.database.getCurrentMedianHistoryPrice()
-        assert.equal(Asset.from(price.base).symbol, 'EUSD')
-        assert.equal(price.quote.symbol, 'ECO')
+        assert.equal(Asset.from(price.base).symbol, 'TSD')
+        assert.equal(price.quote.symbol, 'TME')
     })
 
-    it('getESCORdelegations', async function() {
+    it('getSCOREdelegations', async function() {
         this.slow(5 * 1000)
-        const [delegation] = await liveClient.database.getESCORdelegations('ProtocolTestAccount', '', 1)
+        const [delegation] = await liveClient.database.getSCOREdelegations('ProtocolTestAccount', '', 1)
         assert.equal(delegation.delegator, 'ProtocolTestAccount')
         assert.equal(typeof delegation.id, 'number')
-        assert.equal(Asset.from(delegation.ESCOR).symbol, 'ESCOR')
+        assert.equal(Asset.from(delegation.SCORE).symbol, 'SCORE')
     })
 
     it('verifyAuthority', async function() {

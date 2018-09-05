@@ -39,7 +39,7 @@ import {Asset, Price} from './../protocol/asset'
 import {BlockHeader, SignedBlock} from './../protocol/block'
 import {Discussion} from './../protocol/comment'
 import {DynamicGlobalProperties} from './../protocol/misc'
-import {ChainProperties, ESCORdelegation} from './../protocol/misc'
+import {ChainProperties, SCOREdelegation} from './../protocol/misc'
 import {AppliedOperation} from './../protocol/operation'
 import {SignedTransaction, Transaction, TransactionConfirmation} from './../protocol/transaction'
 
@@ -114,7 +114,7 @@ export class DatabaseAPI {
     }
 
     /**
-     * Return median price in EUSD for 1 ECO as reported by the witnesses.
+     * Return median price in TSD for 1 TME as reported by the witnesses.
      */
     public async getCurrentMedianHistoryPrice(): Promise<Price> {
         return Price.from(await this.call('get_current_median_history_price'))
@@ -126,10 +126,10 @@ export class DatabaseAPI {
      * @param from Delegatee start offset, used for paging.
      * @param limit Number of results, max 1000.
      */
-    public async getESCORdelegations(account: string,
+    public async getSCOREdelegations(account: string,
                                        from: string = '',
-                                       limit: number = 1000): Promise<ESCORdelegation[]> {
-        return this.call('get_ESCOR_delegations', [account, from, limit])
+                                       limit: number = 1000): Promise<SCOREdelegation[]> {
+        return this.call('get_SCORE_delegations', [account, from, limit])
     }
 
     /**

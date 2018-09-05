@@ -159,7 +159,7 @@ export class Client {
         }
         opts.addressPrefix = 'STX'
         opts.chainId = '79276aea5d4877d9a25892eaa01b0adf019d3e5cb12a97478df3298ccdd01673'
-        return new Client('https://testnet.ezira.io', opts)
+        return new Client('https://testnet.weyoume.io', opts)
     }
 
     /**
@@ -202,7 +202,7 @@ export class Client {
     private backoff: typeof defaultBackoff
 
     /**
-     * @param address The address to the Ezchain RPC server, e.g. `https://api.ezira.io`.
+     * @param address The address to the Ezchain RPC server, e.g. `https://api.weyoume.io`.
      * @param options Client options.
      */
     constructor(address: string, options: ClientOptions = {}) {

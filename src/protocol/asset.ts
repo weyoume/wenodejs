@@ -39,19 +39,19 @@ import * as ByteBuffer from 'bytebuffer'
 /**
  * Asset symbol string.
  */
-export type AssetSymbol = 'ECO' | 'ESCOR' | 'EUSD'
+export type AssetSymbol = 'TME' | 'SCORE' | 'TSD'
 
 /**
- * Class representing an Ezira Network asset, e.g. `1.000 ECO` or `12.112233 ESCOR`.
+ * Class representing an Ezira Network asset, e.g. `1.000 TME` or `12.112233 SCORE`.
  */
 export class Asset {
 
     /**
-     * Create a new Asset instance from a string, e.g. `42.000 ECO`.
+     * Create a new Asset instance from a string, e.g. `42.000 TME`.
      */
     public static fromString(string: string, expectedSymbol?: AssetSymbol) {
         const [amountString, symbol] = string.split(' ')
-        if (['ECO', 'ESCOR', 'EUSD'].indexOf(symbol) === -1) {
+        if (['TME', 'SCORE', 'TSD'].indexOf(symbol) === -1) {
             throw new Error(`Invalid asset symbol: ${ symbol }`)
         }
         if (expectedSymbol && symbol !== expectedSymbol) {
@@ -76,7 +76,7 @@ export class Asset {
              }
              return value
          } else if (typeof value === 'number' && Number.isFinite(value)) {
-             return new Asset(value, symbol || 'ECO')
+             return new Asset(value, symbol || 'TME')
          } else if (typeof value === 'string') {
              return Asset.fromString(value, symbol)
          } else {
@@ -107,16 +107,16 @@ export class Asset {
      */
     public getPrecision(): number {
         switch (this.symbol) {
-            case 'ECO':
-            case 'EUSD':
+            case 'TME':
+            case 'TSD':
                 return 3
-            case 'ESCOR':
+            case 'SCORE':
                 return 6
         }
     }
 
     /**
-     * Return a string representation of this asset, e.g. `42.000 ECO`.
+     * Return a string representation of this asset, e.g. `42.000 TME`.
      */
     public toString(): string {
         return `${ this.amount.toFixed(this.getPrecision()) } ${ this.symbol }`

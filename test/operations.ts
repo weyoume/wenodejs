@@ -21,20 +21,20 @@ describe('operations', function() {
         acc1Key = PrivateKey.fromLogin(acc1.username, acc1.password, 'active')
     })
 
-    it('should delegate eScore', async function() {
+    it('should delegate SCORE', async function() {
         const [user1] = await client.database.getAccounts([acc1.username])
-        const currentDelegation = Asset.from(user1.ESCORreceived)
+        const currentDelegation = Asset.from(user1.SCOREreceived)
         const newDelegation = Asset.from(
             currentDelegation.amount >= 1000 ? 0 : 1000 + Math.random() * 1000,
-            'ESCOR'
+            'SCORE'
         )
-        const result = await client.broadcast.delegateESCOR({
+        const result = await client.broadcast.delegateSCORE({
             delegator: acc1.username,
             delegatee: acc2.username,
-            ESCOR: newDelegation
+            SCORE: newDelegation
         }, acc1Key)
         const [user2] = await client.database.getAccounts([acc2.username])
-        assert.equal(user2.ESCORreceived, newDelegation.toString())
+        assert.equal(user2.SCOREreceived, newDelegation.toString())
     })
 
     it('should send custom', async function() {
@@ -81,16 +81,16 @@ describe('operations', function() {
         assert.deepEqual(JSON.parse(tx.operations[0][1].json), data)
     })
 
-    it('should transfer ECO', async function() {
+    it('should transfer TME', async function() {
         const [acc2bf] = await client.database.getAccounts([acc2.username])
         await client.broadcast.transfer({
             from: acc1.username,
             to: acc2.username,
-            amount: '0.042 ECO',
+            amount: '0.042 TME',
             memo: 'Hej på dig!',
         }, acc1Key)
         const [acc2af] = await client.database.getAccounts([acc2.username])
-        assert.equal(Asset.from(acc2af.balance).subtract(acc2bf.balance).toString(), '0.042 ECO')
+        assert.equal(Asset.from(acc2af.balance).subtract(acc2bf.balance).toString(), '0.042 TME')
     })
 
     it('should create account and post with options', async function() {
@@ -112,8 +112,8 @@ describe('operations', function() {
             permlink, author: username,
             allow_votes: false,
             allow_curationRewards: false,
-            percent_EUSD: 0,
-            max_accepted_payout: Asset.from(10, 'EUSD'),
+            percent_TSD: 0,
+            max_accepted_payout: Asset.from(10, 'TSD'),
             extensions: [
                 [0, {beneficiaries: [
                     {weight: 10000, account: acc1.username}
@@ -128,8 +128,8 @@ describe('operations', function() {
         assert.equal(newAcc.memoKey, PrivateKey.fromLogin(username, password, 'memo').createPublic(client.addressPrefix).toString())
         const [post] = await client.database.getDiscussions('blog', {tag: username, limit: 1})
         assert.deepEqual(post.beneficiaries, [{account: acc1.username, weight: 10000}])
-        assert.equal(post.max_accepted_payout, '10.000 EUSD')
-        assert.equal(post.percent_EUSD, 0)
+        assert.equal(post.max_accepted_payout, '10.000 TSD')
+        assert.equal(post.percent_TSD, 0)
         assert.equal(post.allow_votes, false)
     })
 
@@ -169,7 +169,7 @@ describe('operations', function() {
         }, key)
         const [newAccount] = await client.database.getAccounts([username])
         assert.equal(newAccount.name, username)
-        assert(Asset.from(newAccount.ESCORreceived).amount > 0)
+        assert(Asset.from(newAccount.SCOREreceived).amount > 0)
     })
 
     it('should create account and calculate fees', async function() {
@@ -186,13 +186,13 @@ describe('operations', function() {
         // fixed fee and auto delegation
         await client.broadcast.createAccount({
             password, metadata, creator, username: 'foo' + randomString(12),
-            fee: '2.000 ECO'
+            fee: '2.000 TME'
         }, acc1Key)
 
         // fixed fee and delegation
         await client.broadcast.createAccount({
             password, creator, username: 'foo' + randomString(12),
-            fee: '2.000 ECO', delegation: Asset.from(1000, 'ESCOR')
+            fee: '2.000 TME', delegation: Asset.from(1000, 'SCORE')
         }, acc1Key)
 
         try {

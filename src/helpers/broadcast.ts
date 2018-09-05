@@ -39,7 +39,7 @@ import {Client} from './../client'
 import {cryptoUtils, PrivateKey, PublicKey} from './../crypto'
 import {Authority, AuthorityType} from './../protocol/account'
 import {Asset} from './../protocol/asset'
-import {getESCORPriceinECO, HexBuffer} from './../protocol/misc'
+import {getSCOREPriceinTME, HexBuffer} from './../protocol/misc'
 import {
     AccountCreateOperation,
     AccountCreateWithDelegationOperation,
@@ -47,7 +47,7 @@ import {
     CommentOperation,
     CommentOptionsOperation,
     CustomJsonOperation,
-    DelegateESCOROperation,
+    DelegateSCOREOperation,
     Operation,
     TransferOperation,
     VoteOperation,
@@ -83,7 +83,7 @@ export interface CreateAccountOptions {
      */
     fee?: string | Asset | number
     /**
-     * Account delegation, amount of ESCOR to delegate to the new account.
+     * Account delegation, amount of SCORE to delegate to the new account.
      * If omitted the delegation amount will be the lowest possible based
      * on the fee. Can be set to zero to disable delegation.
      */
@@ -193,34 +193,34 @@ export class BroadcastAPI {
                 this.client.database.getChainProperties(),
             ])
 
-            const ESCORprice = getESCORPriceinECO(dynamicProps)
+            const SCOREprice = getSCOREPriceinTME(dynamicProps)
             const creationFee = Asset.from(chainProps.account_creation_fee)
-            const modifier = 30 // CREATE_ACCOUNT_WITH_ECO_MODIFIER
+            const modifier = 30 // CREATE_ACCOUNT_WITH_TME_MODIFIER
             const ratio = 5 // CREATE_ACCOUNT_DELEGATION_RATIO
 
-            const targetDelegation = ESCORprice
+            const targetDelegation = SCOREprice
                 .convert(creationFee.multiply(modifier * ratio))
-                .add('0.000002 ESCOR') // add a tiny buffer since we are trying to hit a moving target
+                .add('0.000002 SCORE') // add a tiny buffer since we are trying to hit a moving target
 
             if (delegation !== undefined && fee === undefined) {
-                delegation = Asset.from(delegation, 'ESCOR')
+                delegation = Asset.from(delegation, 'SCORE')
                 fee = Asset.max(
-                    ESCORprice.convert(targetDelegation.subtract(delegation)).divide(ratio),
+                    SCOREprice.convert(targetDelegation.subtract(delegation)).divide(ratio),
                     creationFee,
                 )
             } else {
-                fee = Asset.from(fee || creationFee, 'ECO')
+                fee = Asset.from(fee || creationFee, 'TME')
                 delegation = Asset.max(
-                    targetDelegation.subtract(ESCORprice.convert(fee.multiply(ratio))),
-                    Asset.from(0, 'ESCOR'),
+                    targetDelegation.subtract(SCOREprice.convert(fee.multiply(ratio))),
+                    Asset.from(0, 'SCORE'),
                 )
             }
         }
         const op: AccountCreateWithDelegationOperation = ['accountCreateWithDelegation', {
             active, creator,
-            delegation: Asset.from(delegation, 'ESCOR'),
+            delegation: Asset.from(delegation, 'SCORE'),
             extensions: [],
-            fee: Asset.from(fee, 'ECO'),
+            fee: Asset.from(fee, 'TME'),
             json: metadata ? JSON.stringify(metadata) : '',
             memoKey,
             newAccountName: username,
@@ -241,19 +241,19 @@ export class BroadcastAPI {
     }
 
     /**
-     * Delegate eScore from one account to the other. The eScore are still owned
+     * Delegate SCORE from one account to the other. The SCORE are still owned
      * by the original account, but content voting rights and bandwidth allocation are transferred
-     * to the receiving account. This sets the delegation to `eScore`, increasing it or
+     * to the receiving account. This sets the delegation to `SCORE`, increasing it or
      * decreasing it as needed. (i.e. a delegation of 0 removes the delegation)
      *
-     * When a delegation is removed the eScore are placed in limbo for a week to prevent a satoshi
-     * of ESCOR from voting on the same content twice.
+     * When a delegation is removed the SCORE are placed in limbo for a week to prevent a satoshi
+     * of SCORE from voting on the same content twice.
      *
      * @param options Delegation options.
      * @param key Private active key of the delegator.
      */
-    public async delegateESCOR(options: DelegateESCOROperation[1], key: PrivateKey) {
-        const op: Operation = ['delegateESCOR', options]
+    public async delegateSCORE(options: DelegateSCOREOperation[1], key: PrivateKey) {
+        const op: Operation = ['delegateSCORE', options]
         return this.sendOperations([op], key)
     }
 

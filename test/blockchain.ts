@@ -14,13 +14,13 @@ describe('blockchain', function() {
     const expectedIds = ['0000000109833ce528d5bbfb3f6225b39ee10086',
                          '00000002ed04e3c3def0238f693931ee7eebbdf1']
     const expectedOps = ['vote', 'vote', 'comment', 'vote', 'vote', 'vote', 'vote',
-                         'customJson', 'producer_reward', 'authorReward', 'fillESCORWithdraw',
-                         'fillESCORWithdraw', 'comment', 'comment', 'vote', 'vote',
+                         'customJson', 'producer_reward', 'authorReward', 'fillSCOREWithdraw',
+                         'fillSCOREWithdraw', 'comment', 'comment', 'vote', 'vote',
                          'vote', 'vote', 'comment', 'customJson', 'customJson',
                          'customJson', 'customJson', 'claimRewardBalance',
                          'customJson', 'vote', 'comment', 'comment_options',
                          'customJson', 'vote', 'producer_reward', 'curationReward', 'authorReward',
-                         'fillESCORWithdraw', 'fillESCORWithdraw' ]
+                         'fillSCOREWithdraw', 'fillSCOREWithdraw' ]
 
     it('should yield blocks', async function() {
         let ids: string[] = []
