@@ -1,12 +1,12 @@
 
-# [wenodejs](https://github.com/eziranetwork/wenodejs) [![Build Status](https://img.shields.io/circleci/project/github/eziranetwork/wenodejs.svg?style=flat-square)](https://circleci.com/gh/eziranetwork/workflows/wenodejs) [![Coverage Status](https://img.shields.io/coveralls/eziranetwork/wenodejs.svg?style=flat-square)](https://coveralls.io/github/eziranetwork/wenodejs?branch=master) [![Package Version](https://img.shields.io/npm/v/wenodejs.svg?style=flat-square)](https://www.npmjs.com/package/wenodejs)
+# [wenodejs](https://github.com/WeYouMe/wenodejs) [![Build Status](https://img.shields.io/circleci/project/github/WeYouMe/wenodejs.svg?style=flat-square)](https://circleci.com/gh/WeYouMe/workflows/wenodejs) [![Coverage Status](https://img.shields.io/coveralls/WeYouMe/wenodejs.svg?style=flat-square)](https://coveralls.io/github/WeYouMe/wenodejs?branch=master) [![Package Version](https://img.shields.io/npm/v/wenodejs.svg?style=flat-square)](https://www.npmjs.com/package/wenodejs)
 
-Robust [WeYouMe blockchain](https://weyoume.io) client library that runs in both node.js and the browser.
+Robust [WeYouMe blockchain](https://WeYouMe.io) client library that runs in both node.js and the browser.
 
-* [Demo](https://comments.steem.vc) ([source](https://github.com/eziranetwork/wenodejs/tree/master/examples/comment-feed))
+* [Demo](https://comments.steem.vc) ([source](https://github.com/WeYouMe/wenodejs/tree/master/examples/comment-feed))
 * [Code playground](https://playground.steem.vc)
-* [Documentation](https://eziranetwork.github.io/wenodejs/)
-* [Bug tracker](https://github.com/eziranetwork/wenodejs/issues)
+* [Documentation](https://WeYouMe.github.io/wenodejs/)
+* [Bug tracker](https://github.com/WeYouMe/wenodejs/issues)
 
 ---
 
@@ -18,7 +18,7 @@ Robust [WeYouMe blockchain](https://weyoume.io) client library that runs in both
 Browser compatibility
 ---------------------
 
-[![Build Status](https://saucelabs.com/browser-matrix/eziranetwork-wenodejs.svg)](https://saucelabs.com/open_sauce/user/eziranetwork-wenodejs)
+[![Build Status](https://saucelabs.com/browser-matrix/WeYouMe-wenodejs.svg)](https://saucelabs.com/open_sauce/user/WeYouMe-wenodejs)
 
 
 Installation
@@ -34,7 +34,7 @@ npm install wenodejs
 
 ### From cdn or self-hosted script
 
-Grab `dist/wenodejs` from a [release](https://github.com/eziranetwork/wenodejs/releases) and include in your html:
+Grab `dist/wenodejs` from a [release](https://github.com/WeYouMe/wenodejs/releases) and include in your html:
 
 ```html
 <script src="wenodejs"></script>
@@ -57,7 +57,7 @@ Usage
 ```html
 <script src="https://unpkg.com/wenodejs@latest/dist/wenodejs"></script>
 <script>
-    var client = new wenodejs.Client('https://api.weyoume.io')
+    var client = new wenodejs.Client('https://api.WeYouMe.io')
     client.database.getDiscussions('trending', {tag: 'writing', limit: 1}).then(function(discussions){
         document.body.innerHTML += '<h1>' + discussions[0].title + '</h1>'
         document.body.innerHTML += '<h2>by ' + discussions[0].author + '</h2>'
@@ -66,7 +66,7 @@ Usage
 </script>
 ```
 
-See the [demo source](https://github.com/eziranetwork/wenodejs/tree/master/examples/comment-feed) for an example on how to setup a livereloading TypeScript pipeline with [wintersmith](https://github.com/eziranetwork/wintersmith) and [browserify](https://github.com/substack/node-browserify).
+See the [demo source](https://github.com/WeYouMe/wenodejs/tree/master/examples/comment-feed) for an example on how to setup a livereloading TypeScript pipeline with [wintersmith](https://github.com/WeYouMe/wintersmith) and [browserify](https://github.com/substack/node-browserify).
 
 ### In node.js
 
@@ -75,7 +75,7 @@ With TypeScript:
 ```typescript
 import {Client} from 'wenodejs'
 
-const client = new Client('https://api.weyoume.io')
+const client = new Client('https://api.WeYouMe.io')
 
 for await (const block of client.blockchain.getBlocks()) {
     console.log(`New block, id: ${ block.block_id }`)
@@ -87,7 +87,7 @@ With JavaScript:
 ```javascript
 var wenodejs = require('wenodejs')
 
-var client = new wenodejs.Client('https://api.weyoume.io')
+var client = new wenodejs.Client('https://api.WeYouMe.io')
 var key = wenodejs.PrivateKey.fromLogin('username', 'password', 'posting')
 
 client.broadcast.vote({
@@ -107,7 +107,7 @@ With ES2016 (node.js 7+):
 ```javascript
 const {Client} = require('wenodejs')
 
-const client = new Client('https://api.weyoume.io')
+const client = new Client('https://api.WeYouMe.io')
 
 async function main() {
     const props = await client.database.getChainProperties()
@@ -125,7 +125,7 @@ var wenodejs = require('wenodejs')
 var es = require('event-stream') // npm install event-stream
 var util = require('util')
 
-var client = new wenodejs.Client('https://api.weyoume.io')
+var client = new wenodejs.Client('https://api.WeYouMe.io')
 
 var stream = client.blockchain.getBlockStream()
 

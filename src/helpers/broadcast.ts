@@ -195,7 +195,7 @@ export class BroadcastAPI {
 
             const SCOREprice = getSCOREPriceinTME(dynamicProps)
             const creationFee = Asset.from(chainProps.account_creation_fee)
-            const modifier = 30 // CREATE_ACCOUNT_WITH_TME_MODIFIER
+            const modifier = 1 // CREATE_ACCOUNT_WITH_TME_MODIFIER
             const ratio = 5 // CREATE_ACCOUNT_DELEGATION_RATIO
 
             const targetDelegation = SCOREprice

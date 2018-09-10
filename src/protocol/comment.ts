@@ -1,5 +1,5 @@
 /**
- * @file Ezira type definitions related to comments and posting.
+ * @file WeYouMe type definitions related to comments and posting.
  * @author Johan Nordberg <code@johan-nordberg.com>
  * @license
  * Copyright (c) 2017 Johan Nordberg. All Rights Reserved.

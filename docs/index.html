@@ -64,25 +64,25 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<h1 id="wenodejs-build-status-coverage-status-package-version"><a href="https://github.com/eziranetwork/wenodejs">wenodejs</a> <a href="https://circleci.com/gh/eziranetwork/workflows/wenodejs"><img src="https://img.shields.io/circleci/project/github/eziranetwork/wenodejs.svg?style=flat-square" alt="Build Status"></a> <a href="https://coveralls.io/github/eziranetwork/wenodejs?branch=master"><img src="https://img.shields.io/coveralls/eziranetwork/wenodejs.svg?style=flat-square" alt="Coverage Status"></a> <a href="https://www.npmjs.com/package/wenodejs"><img src="https://img.shields.io/npm/v/wenodejs.svg?style=flat-square" alt="Package Version"></a></h1>
-				<p>Robust <a href="https://weyoume.io">WeYouMe blockchain</a> client library that runs in both node.js and the browser.</p>
+				<h1 id="wenodejs-build-status-coverage-status-package-version"><a href="https://github.com/WeYouMe/wenodejs">wenodejs</a> <a href="https://circleci.com/gh/WeYouMe/workflows/wenodejs"><img src="https://img.shields.io/circleci/project/github/WeYouMe/wenodejs.svg?style=flat-square" alt="Build Status"></a> <a href="https://coveralls.io/github/WeYouMe/wenodejs?branch=master"><img src="https://img.shields.io/coveralls/WeYouMe/wenodejs.svg?style=flat-square" alt="Coverage Status"></a> <a href="https://www.npmjs.com/package/wenodejs"><img src="https://img.shields.io/npm/v/wenodejs.svg?style=flat-square" alt="Package Version"></a></h1>
+				<p>Robust <a href="https://WeYouMe.io">WeYouMe blockchain</a> client library that runs in both node.js and the browser.</p>
 				<ul>
-					<li><a href="https://comments.steem.vc">Demo</a> (<a href="https://github.com/eziranetwork/wenodejs/tree/master/examples/comment-feed">source</a>)</li>
+					<li><a href="https://comments.steem.vc">Demo</a> (<a href="https://github.com/WeYouMe/wenodejs/tree/master/examples/comment-feed">source</a>)</li>
 					<li><a href="https://playground.steem.vc">Code playground</a></li>
-					<li><a href="https://eziranetwork.github.io/wenodejs/">Documentation</a></li>
-					<li><a href="https://github.com/eziranetwork/wenodejs/issues">Bug tracker</a></li>
+					<li><a href="https://WeYouMe.github.io/wenodejs/">Documentation</a></li>
+					<li><a href="https://github.com/WeYouMe/wenodejs/issues">Bug tracker</a></li>
 				</ul>
 				<hr>
 				<p><strong>note</strong> As of version 0.7.0 WebSocket support has been removed. The only transport provided now is HTTP(2). For most users the only change required is to swap <code>wss://</code> to <code>https://</code> in the address. If you run your own full node make sure to set the proper <a href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing">CORS headers</a> if you plan to access it from a browser.</p>
 				<hr>
 				<h2 id="browser-compatibility">Browser compatibility</h2>
-				<p><a href="https://saucelabs.com/open_sauce/user/eziranetwork-wenodejs"><img src="https://saucelabs.com/browser-matrix/eziranetwork-wenodejs.svg" alt="Build Status"></a></p>
+				<p><a href="https://saucelabs.com/open_sauce/user/WeYouMe-wenodejs"><img src="https://saucelabs.com/browser-matrix/WeYouMe-wenodejs.svg" alt="Build Status"></a></p>
 				<h2 id="installation">Installation</h2>
 				<h3 id="via-npm">Via npm</h3>
 				<p>For node.js or the browser with <a href="https://github.com/substack/node-browserify">browserify</a> or <a href="https://github.com/webpack/webpack">webpack</a>.</p>
 				<pre><code>npm <span class="hljs-keyword">install</span> wenodejs
 </code></pre><h3 id="from-cdn-or-self-hosted-script">From cdn or self-hosted script</h3>
-				<p>Grab <code>dist/wenodejs</code> from a <a href="https://github.com/eziranetwork/wenodejs/releases">release</a> and include in your html:</p>
+				<p>Grab <code>dist/wenodejs</code> from a <a href="https://github.com/WeYouMe/wenodejs/releases">release</a> and include in your html:</p>
 				<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"wenodejs"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 </code></pre>
 				<p>Or from the <a href="https://unpkg.com">unpkg</a> cdn:</p>
@@ -93,7 +93,7 @@
 				<h3 id="in-the-browser">In the browser</h3>
 				<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://unpkg.com/wenodejs@latest/dist/wenodejs"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
-    <span class="hljs-keyword">var</span> client = <span class="hljs-keyword">new</span> wenodejs.Client(<span class="hljs-string">'https://api.weyoume.io'</span>)
+    <span class="hljs-keyword">var</span> client = <span class="hljs-keyword">new</span> wenodejs.Client(<span class="hljs-string">'https://api.WeYouMe.io'</span>)
     client.database.getDiscussions(<span class="hljs-string">'trending'</span>, {<span class="hljs-attr">tag</span>: <span class="hljs-string">'writing'</span>, <span class="hljs-attr">limit</span>: <span class="hljs-number">1</span>}).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">discussions</span>)</span>{
         <span class="hljs-built_in">document</span>.body.innerHTML += <span class="hljs-string">'&lt;h1&gt;'</span> + discussions[<span class="hljs-number">0</span>].title + <span class="hljs-string">'&lt;/h1&gt;'</span>
         <span class="hljs-built_in">document</span>.body.innerHTML += <span class="hljs-string">'&lt;h2&gt;by '</span> + discussions[<span class="hljs-number">0</span>].author + <span class="hljs-string">'&lt;/h2&gt;'</span>
@@ -101,12 +101,12 @@
     })
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 </code></pre>
-				<p>See the <a href="https://github.com/eziranetwork/wenodejs/tree/master/examples/comment-feed">demo source</a> for an example on how to setup a livereloading TypeScript pipeline with <a href="https://github.com/eziranetwork/wintersmith">wintersmith</a> and <a href="https://github.com/substack/node-browserify">browserify</a>.</p>
+				<p>See the <a href="https://github.com/WeYouMe/wenodejs/tree/master/examples/comment-feed">demo source</a> for an example on how to setup a livereloading TypeScript pipeline with <a href="https://github.com/WeYouMe/wintersmith">wintersmith</a> and <a href="https://github.com/substack/node-browserify">browserify</a>.</p>
 				<h3 id="in-node-js">In node.js</h3>
 				<p>With TypeScript:</p>
 				<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> {Client} <span class="hljs-keyword">from</span> <span class="hljs-string">'wenodejs'</span>
 
-<span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> Client(<span class="hljs-string">'https://api.weyoume.io'</span>)
+<span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> Client(<span class="hljs-string">'https://api.WeYouMe.io'</span>)
 
 <span class="hljs-keyword">for</span> <span class="hljs-keyword">await</span> (<span class="hljs-keyword">const</span> block of client.blockchain.getBlocks()) {
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`New block, id: <span class="hljs-subst">${ block.block_id }</span>`</span>)
@@ -115,7 +115,7 @@
 				<p>With JavaScript:</p>
 				<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> wenodejs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'wenodejs'</span>)
 
-<span class="hljs-keyword">var</span> client = <span class="hljs-keyword">new</span> wenodejs.Client(<span class="hljs-string">'https://api.weyoume.io'</span>)
+<span class="hljs-keyword">var</span> client = <span class="hljs-keyword">new</span> wenodejs.Client(<span class="hljs-string">'https://api.WeYouMe.io'</span>)
 <span class="hljs-keyword">var</span> key = wenodejs.PrivateKey.fromLogin(<span class="hljs-string">'username'</span>, <span class="hljs-string">'password'</span>, <span class="hljs-string">'posting'</span>)
 
 client.broadcast.vote({
@@ -132,7 +132,7 @@ client.broadcast.vote({
 				<p>With ES2016 (node.js 7+):</p>
 				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> {Client} = <span class="hljs-built_in">require</span>(<span class="hljs-string">'wenodejs'</span>)
 
-<span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> Client(<span class="hljs-string">'https://api.weyoume.io'</span>)
+<span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> Client(<span class="hljs-string">'https://api.WeYouMe.io'</span>)
 
 <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">main</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-keyword">const</span> props = <span class="hljs-keyword">await</span> client.database.getChainProperties()
@@ -147,7 +147,7 @@ main().catch(<span class="hljs-built_in">console</span>.error)
 <span class="hljs-keyword">var</span> es = <span class="hljs-built_in">require</span>(<span class="hljs-string">'event-stream'</span>) <span class="hljs-comment">// npm install event-stream</span>
 <span class="hljs-keyword">var</span> util = <span class="hljs-built_in">require</span>(<span class="hljs-string">'util'</span>)
 
-<span class="hljs-keyword">var</span> client = <span class="hljs-keyword">new</span> wenodejs.Client(<span class="hljs-string">'https://api.weyoume.io'</span>)
+<span class="hljs-keyword">var</span> client = <span class="hljs-keyword">new</span> wenodejs.Client(<span class="hljs-string">'https://api.WeYouMe.io'</span>)
 
 <span class="hljs-keyword">var</span> stream = client.blockchain.getBlockStream()
 

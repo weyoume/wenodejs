@@ -2,7 +2,7 @@ Arguments:
   /Users/lopu/.nvm/versions/node/v8.11.2/bin/node /usr/local/Cellar/yarn/1.7.0/libexec/bin/yarn.js install --non-interactive --frozen-lockfile
 
 PATH: 
-  ./node_modules/.bin:/Users/lopu/.nvm/versions/node/v8.11.2/lib/node_modules/npm/node_modules/npm-lifecycle/node-gyp-bin:/Users/lopu/State/git/eziranetwork/wenodejs/dev-wenodejs/node_modules/.bin:/opt/local/bin:/opt/local/sbin:/opt/local/bin:/opt/local/sbin:/opt/local/bin:/opt/local/sbin:/opt/local/bin:/opt/local/sbin:/opt/local/bin:/opt/local/sbin:/opt/local/bin:/opt/local/sbin:/opt/local/bin:/opt/local/sbin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code:/Library/Frameworks/Python.framework/Versions/3.5/bin:/usr/local/opt/openssl/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/MacGPG2/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Users/lopu/.nvm/versions/node/v8.11.2/bin:/opt/local/bin:/opt/local/sbin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code:/Library/Frameworks/Python.framework/Versions/3.5/bin:/usr/local/opt/openssl/bin:/usr/local/sbin
+  ./node_modules/.bin:/Users/lopu/.nvm/versions/node/v8.11.2/lib/node_modules/npm/node_modules/npm-lifecycle/node-gyp-bin:/Users/lopu/State/git/WeYouMe/wenodejs/dev-wenodejs/node_modules/.bin:/opt/local/bin:/opt/local/sbin:/opt/local/bin:/opt/local/sbin:/opt/local/bin:/opt/local/sbin:/opt/local/bin:/opt/local/sbin:/opt/local/bin:/opt/local/sbin:/opt/local/bin:/opt/local/sbin:/opt/local/bin:/opt/local/sbin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code:/Library/Frameworks/Python.framework/Versions/3.5/bin:/usr/local/opt/openssl/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/MacGPG2/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Users/lopu/.nvm/versions/node/v8.11.2/bin:/opt/local/bin:/opt/local/sbin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code:/Library/Frameworks/Python.framework/Versions/3.5/bin:/usr/local/opt/openssl/bin:/usr/local/sbin
 
 Yarn version: 
   1.7.0
@@ -38,7 +38,7 @@ npm manifest:
     ],
     "repository": {
       "type": "git",
-      "url": "https://github.com/eziranetwork/wenodejs"
+      "url": "https://github.com/WeYouMe/wenodejs"
     },
     "scripts": {
       "test": "make ci-test",
@@ -48,8 +48,8 @@ npm manifest:
       "blockchain",
       "client",
       "rpc",
-      "ezira",
-  		"eziranetwork",
+      "WeYouMe",
+  		"WeYouMenetwork",
   		"node",
   		"wenodejs",
   		"Protocol"

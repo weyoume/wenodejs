@@ -1,5 +1,5 @@
 /**
- * @file Ezira asset type definitions and helpers.
+ * @file WeYouMe asset type definitions and helpers.
  * @author Johan Nordberg <code@johan-nordberg.com>
  * @license
  * Copyright (c) 2017 Johan Nordberg. All Rights Reserved.
@@ -42,7 +42,7 @@ import * as ByteBuffer from 'bytebuffer'
 export type AssetSymbol = 'TME' | 'SCORE' | 'TSD'
 
 /**
- * Class representing an Ezira Network asset, e.g. `1.000 TME` or `12.112233 SCORE`.
+ * Class representing an WeYouMe Network asset, e.g. `1.000 TME` or `12.112233 SCORE`.
  */
 export class Asset {
 

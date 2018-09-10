@@ -1,6 +1,6 @@
 {
   "name": "wenodejs",
-  "version": "1.0.1",
+  "version": "1.0.11",
   "description": "WeYouMe blockchain nodejs client library",
   "author": "Lopu",
   "license": "BSD-3-Clause",
@@ -17,7 +17,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/eziranetwork/wenodejs"
+    "url": "https://github.com/WeYouMe/wenodejs"
   },
   "scripts": {
     "test": "make ci-test",
@@ -29,8 +29,8 @@
     "blockchain",
     "client",
     "rpc",
-    "ezira",
-    "eziranetwork",
+    "WeYouMe",
+    "WeYouMenetwork",
     "node",
     "wenodejs",
     "Protocol"

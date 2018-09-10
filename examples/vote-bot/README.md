@@ -2,7 +2,7 @@
 vote-vot
 ========
 
-Simple Ezira copycat votebot.
+Simple WeYouMe copycat votebot.
 
 Usage
 -----

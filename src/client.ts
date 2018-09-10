@@ -1,5 +1,5 @@
 /**
- * @file Ezira RPC client implementation.
+ * @file WeYouMe RPC client implementation.
  * @author Johan Nordberg <code@johan-nordberg.com>
  * @license
  * Copyright (c) 2017 Johan Nordberg. All Rights Reserved.
@@ -112,12 +112,12 @@ interface PendingRequest {
  */
 export interface ClientOptions {
     /**
-     * Ezchain id. Defaults to main Ezira Network:
+     * Ezchain id. Defaults to main WeYouMe Network:
      * `0000000000000000000000000000000000000000000000000000000000000000`
      */
     chainId?: string
     /**
-     * Ezchain address prefix. Defaults to main Ezira Network:
+     * Ezchain address prefix. Defaults to main WeYouMe Network:
      * `STM`
      */
     addressPrefix?: string
@@ -159,7 +159,7 @@ export class Client {
         }
         opts.addressPrefix = 'STX'
         opts.chainId = '79276aea5d4877d9a25892eaa01b0adf019d3e5cb12a97478df3298ccdd01673'
-        return new Client('https://testnet.weyoume.io', opts)
+        return new Client('https://testnet.WeYouMe.io', opts)
     }
 
     /**
@@ -202,7 +202,7 @@ export class Client {
     private backoff: typeof defaultBackoff
 
     /**
-     * @param address The address to the Ezchain RPC server, e.g. `https://api.weyoume.io`.
+     * @param address The address to the Ezchain RPC server, e.g. `https://api.WeYouMe.io`.
      * @param options Client options.
      */
     constructor(address: string, options: ClientOptions = {}) {

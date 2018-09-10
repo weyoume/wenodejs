@@ -39,7 +39,7 @@ describe('database api', function() {
         serverConfig = result
         // also test some assumptions made throughout the code
         const conf = await liveClient.database.getConfig()
-        assert.equal(r('CREATE_ACCOUNT_WITH_TME_MODIFIER'), 30)
+        assert.equal(r('CREATE_ACCOUNT_WITH_TME_MODIFIER'), 1)
         assert.equal(r('CREATE_ACCOUNT_DELEGATION_RATIO'), 5)
         assert.equal(r('100_PERCENT'), 10000)
         assert.equal(r('1_PERCENT'), 100)

@@ -1,5 +1,5 @@
 /**
- * @file Ezira block type definitions.
+ * @file WeYouMe block type definitions.
  * @author Johan Nordberg <code@johan-nordberg.com>
  * @license
  * Copyright (c) 2017 Johan Nordberg. All Rights Reserved.

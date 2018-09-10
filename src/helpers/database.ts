@@ -134,7 +134,7 @@ export class DatabaseAPI {
 
     /**
      * Return server config. See:
-     * https://github.com/eziranetwork/wenode/blob/master/libraries/protocol/include/node/protocol/config.hpp
+     * https://github.com/WeYouMe/wenode/blob/master/libraries/protocol/include/node/protocol/config.hpp
      */
     public getConfig(): Promise<{[name: string]: string|number|boolean}> {
         return this.call('get_config')

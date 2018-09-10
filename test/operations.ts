@@ -123,7 +123,7 @@ describe('operations', function() {
 
         const [newAcc] = await client.database.getAccounts([username])
         assert.equal(newAcc.name, username)
-        // not sure why but on the testnet the recovery account is always 'ezira'
+        // not sure why but on the testnet the recovery account is always 'WeYouMe'
         // assert.equal(newAcc.recoveryAccount, acc1.username)
         assert.equal(newAcc.memoKey, PrivateKey.fromLogin(username, password, 'memo').createPublic(client.addressPrefix).toString())
         const [post] = await client.database.getDiscussions('blog', {tag: username, limit: 1})
